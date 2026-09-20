@@ -2,90 +2,62 @@
 @use '@variables' as variables;
 
 .footer {
-  background-color: variables.$navy;
+  background-color: variables.$purple;
+  color: variables.$navy;
   width: 100%;
-  padding: 45px 0 35px;
+  padding: 62px 0;
 }
 
-.topRow {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 40px;
+.footerGrid {
+  align-items: start;
+  display: grid;
+  gap: 35px;
+  grid-template-columns: minmax(100px, 1.4fr) repeat(4, 1fr);
 }
 
-.intro {
+.mark {
+  // height: 48px;
+  object-fit: contain;
+  object-position: left top;
+  width: 120px;
+  margin-left: 25px;
+}
+
+.linkGroup {
   display: flex;
   flex-direction: column;
-  gap: 65px;
-  max-width: 550px;
-}
+  gap: 5px;
 
-.tagline {
-  @include mixins.italicSubheading;
-  color: variables.$beige;
-}
-
-.contact {
-  p {
-    @include mixins.paragraph;
-    color: variables.$beige;
-    line-height: 25px;
+  h3 {
+    @include mixins.fontSecondaryBold;
+    font-size: 16px;
+    margin-bottom: 5px;
   }
-}
 
-.seal {
-  width: 93px;
-  height: auto;
-  flex-shrink: 0;
-}
+  a {
+    @include mixins.fontSecondary;
+    color: variables.$navy;
+    font-size: 15px;
+    line-height: 1.35;
 
-.divider {
-  height: 1px;
-  background-color: variables.$beige;
-  margin: 40px 0 25px;
-}
-
-.bottomRow {
-  display: flex;
-  align-items: center;
-  gap: 40px;
-  p {
-    margin: 0;
+    &:hover {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
   }
-}
-
-.socialLink {
-  @include mixins.fontPrimary;
-  color: variables.$beige;
-  font-size: 18px;
-  letter-spacing: -0.36px;
-  text-decoration: underline;
-}
-
-.bottomLink {
-  @include mixins.fontPrimary;
-  color: variables.$beige;
-  font-size: 18px;
-  letter-spacing: -0.36px;
-  text-decoration: none;
 }
 
 @media screen and (max-width: variables.$mobile) {
-  .topRow {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 30px;
+  .footer {
+    padding: 45px 0 30px;
   }
-  .intro {
-    gap: 30px;
+
+  .footerGrid {
+    gap: 28px 18px;
+    grid-template-columns: repeat(2, 1fr);
   }
-  .tagline {
-    font-size: 24px;
-  }
-  .bottomRow {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
+
+  .mark {
+    grid-column: 1 / -1;
   }
 }

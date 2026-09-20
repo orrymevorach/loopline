@@ -22,8 +22,8 @@ export const metadata = {
   title: 'Loopline',
   description: '',
   icons: {
-    icon: '/logo.png',
-    apple: '/logo.png',
+    icon: '/brandmark.png',
+    apple: '/brandmark.png',
   },
 };
 
