@@ -5,6 +5,8 @@ import Subscribe from './Subscribe/Subscribe';
 import Company from './Company/Company';
 import NextEvent from './NextEvent/NextEvent';
 import StaffPicks from './StaffPicks/StaffPicks';
+import FunFacts from './FunFacts/FunFacts';
+import Instagram from './Instagram/Instagram';
 
 export default function HomePage({ entries }) {
   const [] = entries;
@@ -16,6 +18,8 @@ export default function HomePage({ entries }) {
       <Company />
       <NextEvent />
       <StaffPicks />
+      <FunFacts />
+      <Instagram />
     </Wrapper>
   );
 }

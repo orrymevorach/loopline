@@ -1,0 +1,93 @@
+@use '@mixins' as mixins;
+@use '@variables' as variables;
+
+.section {
+  background: variables.$pink;
+  border-bottom: 1px solid variables.$navy;
+  border-top: 1px solid variables.$navy;
+  display: flex;
+  justify-content: center;
+  padding: 126px 56px;
+}
+
+.content {
+  align-items: center;
+  display: flex;
+  gap: 167px;
+  justify-content: center;
+  max-width: 1117px;
+  width: 100%;
+}
+
+.illustration {
+  flex: none;
+  height: auto;
+  width: 297px;
+}
+
+.text {
+  align-items: center;
+  display: flex;
+  flex: 0 1 476px;
+  flex-direction: column;
+  gap: 16px;
+  text-align: center;
+}
+
+.title {
+  @include mixins.fontPrimary;
+  color: variables.$navy;
+  font-size: 74px;
+  line-height: normal;
+  margin: 0;
+}
+
+.fact {
+  @include mixins.paragraph;
+  line-height: 27.6px;
+  margin: 0;
+}
+
+.arrows {
+  display: flex;
+  gap: 16px;
+}
+
+.arrow {
+  @include mixins.fontPrimary;
+  background: variables.$cream;
+  border: 1px solid variables.$navy;
+  border-radius: 33px;
+  color: variables.$black;
+  cursor: pointer;
+  font-size: 28px;
+  height: 34px;
+  line-height: 1;
+  padding: 0;
+  width: 71px;
+}
+
+@media screen and (max-width: variables.$tablet) {
+  .section {
+    padding: 80px 20px;
+  }
+
+  .content {
+    flex-direction: column;
+    gap: 48px;
+  }
+
+  .illustration {
+    width: 220px;
+  }
+}
+
+@media screen and (max-width: variables.$mobile) {
+  .title {
+    font-size: 48px;
+  }
+
+  .fact {
+    font-size: 18px;
+  }
+}

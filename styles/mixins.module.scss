@@ -71,17 +71,6 @@
   color: $color;
 }
 
-@mixin italicParagraph($color: variables.$navy) {
-  font-family: 'HAL Timezone Italic';
-  color: $color;
-  font-size: 18px;
-  line-height: normal;
-
-  @media screen and (max-width: variables.$mobile) {
-    font-size: 24px;
-  }
-}
-
 @mixin heading($color: variables.$navy) {
   @include fontPrimary;
   color: $color;
@@ -93,11 +82,10 @@
   }
 }
 
-@mixin paragraph($color: variables.$navy) {
-  @include fontPrimary;
+@mixin paragraph($color: variables.$black) {
+  @include fontSecondary;
   color: $color;
-  font-size: 18px;
-  line-height: 23px;
+  font-size: 16px;
 }
 
 @mixin sectionSpacing {

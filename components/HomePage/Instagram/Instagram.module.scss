@@ -1,0 +1,112 @@
+@use '@mixins' as mixins;
+@use '@variables' as variables;
+
+.section {
+  align-items: center;
+  background: variables.$cream;
+  display: flex;
+  flex-direction: column;
+  gap: 75px;
+  padding: 100px 0;
+}
+
+.title {
+  @include mixins.fontPrimary;
+  color: variables.$navy;
+  font-size: 36px;
+  line-height: 40px;
+  margin: 0;
+  padding: 0 20px;
+  text-align: center;
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+}
+
+.carousel {
+  position: relative;
+  width: 100%;
+}
+
+.track {
+  display: flex;
+  gap: 18px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.tile {
+  aspect-ratio: 329 / 456;
+  flex: 0 0 calc((100% - 54px) / 4);
+  position: relative;
+  scroll-snap-align: start;
+}
+
+.image {
+  object-fit: cover;
+}
+
+.arrow {
+  background: none;
+  border: 0;
+  cursor: pointer;
+  left: 31px;
+  line-height: 0;
+  padding: 0;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+
+  img {
+    height: auto;
+    width: 32px;
+  }
+}
+
+.arrowNext {
+  left: auto;
+  right: 31px;
+
+  img {
+    transform: scaleX(-1);
+  }
+}
+
+@media screen and (max-width: variables.$tablet) {
+  .section {
+    gap: 40px;
+    padding: 60px 0;
+  }
+
+  .tile {
+    flex-basis: calc((100% - 18px) / 2);
+  }
+}
+
+@media screen and (max-width: variables.$mobile) {
+  .title {
+    font-size: 28px;
+    line-height: 32px;
+  }
+
+  .tile {
+    flex-basis: 80%;
+  }
+
+  .arrow {
+    left: 12px;
+  }
+
+  .arrowNext {
+    left: auto;
+    right: 12px;
+  }
+}
