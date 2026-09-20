@@ -1,3 +1,5 @@
+'use client';
+
 import { createContext, useContext, useState } from 'react';
 import styles from './Layout.module.scss';
 import Nav from '@/components/shared/Nav/Nav';

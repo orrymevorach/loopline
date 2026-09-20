@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
+import { usePathname } from 'next/navigation';
 import { ROUTES } from '@/utils/constants';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBagShopping, faUser } from '@fortawesome/free-solid-svg-icons';
@@ -19,8 +19,7 @@ const navItems = [
 ];
 
 export default function NavMenu() {
-  const router = useRouter();
-  const currentPath = router.asPath.split('?')[0];
+  const currentPath = usePathname();
   const [isScrolledPastHalf, setIsScrolledPastHalf] = useState(false);
 
   useEffect(() => {
@@ -49,6 +48,7 @@ export default function NavMenu() {
             className={styles.logo}
             width={310}
             height={103}
+            loading='eager'
             unoptimized
           />
         </Link>

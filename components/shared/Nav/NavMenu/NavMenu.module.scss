@@ -21,6 +21,16 @@
   transition: 0.3s;
 }
 
+.navMenu > .wrapper {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  justify-content: space-between;
+  min-width: 0;
+  width: 100%;
+}
+
 .navMenu.scrolled {
   min-height: 76px;
 }
@@ -49,11 +59,13 @@
 .logoLink {
   display: block;
   flex: 0 0 180px;
+  max-width: 180px;
 }
 
 .logo {
   height: auto;
   width: 100%;
+  max-width: 180px;
 }
 
 .listItems {
@@ -188,6 +200,7 @@ div.border {
 
   .logoLink {
     flex-basis: 145px;
+    max-width: 145px;
   }
 
   .listItems {
@@ -217,6 +230,7 @@ div.border {
 
   .logoLink {
     flex-basis: 150px;
+    max-width: 150px;
   }
 
   .listItems {
