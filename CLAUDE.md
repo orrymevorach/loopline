@@ -7,7 +7,7 @@ Guidance for Claude Code when working in this repository.
 **Loopline** — a Next.js web app using Contentful as a headless CMS.
 
 - **Framework:** Next.js 16.2.1 (React 18.2)
-- **Router:** **Pages Router** (`/pages`). This project is staying on Pages Router — do not suggest or perform an App Router migration.
+- **Router:** **App Router** (`/app`). This project is staying on App Router — do not suggest or perform a Pages Router migration.
 - **CMS:** Contentful (`contentful` SDK) for content modeling and delivery
 - **Styling:** SCSS Modules (`.module.scss`) — also has MUI (Joy UI + Material UI) and Emotion installed, so some components may use CSS-in-JS instead. Check the component before assuming the styling approach.
 - **UI libraries:** `@mui/joy`, `@mui/material`, `@emotion/react` + `@emotion/styled`, FontAwesome icon sets
@@ -25,8 +25,8 @@ npm run lint      # eslint (eslint-config-next is installed)
 
 ## Folder Structure
 
-- `pages/` — page files (file-based routing)
-- `pages/api/` — API routes
+- `app/` — page files (file-based routing) and route handlers (`route.js`)
+- `app/api/` — API routes
 - `components/` — React components. **Every component has its own dedicated folder** containing the component file and its own SCSS Module file (e.g. `components/Button/Button.tsx` + `components/Button/Button.module.scss`).
 - `context/` — React Context providers
 - `hooks/` — custom React hooks
@@ -38,6 +38,9 @@ When creating a new component, always scaffold it as a folder with a colocated `
 - **SCSS Modules** are the standard, one per component, colocated in that component's folder (`ComponentName.module.scss`) — this is the convention for all components, not just some.
 - MUI (Joy + Material) and Emotion are also installed and may appear in some components — if you're editing an existing component that already uses MUI/Emotion, keep it consistent with what's there rather than converting it to SCSS Modules unprompted.
 - Two MUI systems are installed (`@mui/joy` and `@mui/material`) — check which one a given part of the app uses before adding new MUI-based UI, and don't introduce the other one into that area without asking.
+- The project is moving away from MUI. If a component doesn't already use MUI, don't introduce it — prioritize custom components (and the shared components in `components/shared/`, e.g. `Input`, `Button`, `Dropdown`) over adding new MUI usage.
+- Use `clsx` whenever a className is conditional or combines more than one class — don't build className strings manually with template literals or ternaries chained together.
+- In SCSS Modules, avoid combinator selectors like `>` and `+` (and other DOM-structure-dependent selectors) — prefer giving the target element its own custom class name and styling that directly instead.
 
 ## Contentful
 
@@ -48,7 +51,7 @@ When creating a new component, always scaffold it as a folder with a colocated `
 
 ## Things to Avoid / Watch For
 
-- **Do not migrate to App Router** — this project is intentionally staying on Pages Router.
+- **Do not migrate to Pages Router** — this project is intentionally staying on App Router.
 - Don't introduce a competing styling system (e.g. Tailwind, styled-components) — this project already has SCSS Modules + MUI + Emotion, which is enough surface area.
 - Don't place a new component directly in `components/` without its own folder + SCSS Module — follow the existing per-component folder pattern.
 - Sharp (image processing) is an optional dependency of Next.js — expected for `next/image` optimization, not something to remove.

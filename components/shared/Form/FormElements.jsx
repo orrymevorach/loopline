@@ -1,7 +1,7 @@
 import styles from './Form.module.scss';
-import { InputLabel, MenuItem, Select } from '@mui/material';
 import Input from '@/components/shared/Input/Input';
 import Textarea from '@/components/shared/Textarea/Textarea';
+import Dropdown from '@/components/shared/Dropdown/Dropdown';
 import Checkbox from '@/components/shared/Checkbox/Checkbox';
 import checkboxStyles from '@/components/shared/Checkbox/Checkbox.module.scss';
 import { useState } from 'react';
@@ -27,24 +27,18 @@ export default function Form({
   const [showCheckMark, setShowCheckMark] = useState(false);
   const Label = () => {
     return (
-      <InputLabel className={clsx(styles.inputLabel, labelClassNames)} id={id}>
+      <label className={clsx(styles.inputLabel, labelClassNames)} htmlFor={id}>
         {label}
         {required && <span className={styles.asterisk}>*</span>}
-      </InputLabel>
+      </label>
     );
   };
 
   const handleAnimationStart = event => {
-    if (
-      event.animationName === 'autofill' ||
-      event.animationName === 'mui-auto-fill'
-    ) {
+    if (event.animationName === 'autofill') {
       setShowCheckMark(true);
     }
-    if (
-      event.animationName === 'autofill-cancel' ||
-      event.animationName === 'mui-auto-fill-cancel'
-    ) {
+    if (event.animationName === 'autofill-cancel') {
       setShowCheckMark(false);
     }
   };
@@ -63,52 +57,16 @@ export default function Form({
         <div
           className={clsx(styles.formFieldContainer, inputContainerClassNames)}
         >
-          <Select
-            required={required}
-            id={`${id}-label`}
+          <Dropdown
+            id={id}
             value={value}
-            className={styles.dropdown}
-            onChange={e => handleChange(e.target.value)}
-            onBlur={handleBlur}
-            onAnimationStart={handleAnimationStart}
-            displayEmpty
-            sx={{
-              '& .MuiOutlinedInput-notchedOutline': { border: 'none' },
-              '&:hover .MuiOutlinedInput-notchedOutline': { border: 'none' },
-              '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                border: 'none',
-              },
-              '& .MuiSelect-select': {
-                padding: '0px', // Removes default padding
-              },
-              '& .MuiSelect-icon': {
-                color: 'black', // Change arrow color
-              },
-              '&:focus-within': {
-                outline: '2px solid #1976d2', // Chrome's default blue
-                outlineOffset: '2px',
-                borderRadius: '1px', // Adjust border radius
-              },
-            }}
-          >
-            <MenuItem value='' disabled>
-              {placeholder || 'Select an option'}
-            </MenuItem>
-            {dropdownItems.map(item => {
-              return (
-                <MenuItem key={item} value={item}>
-                  {item}
-                </MenuItem>
-              );
-            })}
-          </Select>
-          {showCheckMark && (
-            <FontAwesomeIcon
-              icon={faCheckCircle}
-              className={clsx(styles.check, styles.dropdownCheck)}
-              color='#499048'
-            />
-          )}
+            handleChange={handleChange}
+            options={dropdownItems}
+            placeholder={placeholder || 'Select an option'}
+            required={required}
+            selectClassNames={styles.dropdown}
+            showCheckIcon
+          />
         </div>
       );
     case 'text':

@@ -4,22 +4,26 @@
 .container {
   padding: 10px 0;
 }
+
 .dropdown {
   display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.heroDropdown {
+  align-items: center;
   margin: 10px auto 0;
   color: white;
-  label,
-  svg {
-    color: white;
-  }
-  div {
-    border-bottom: 1px solid white;
-    color: white;
-    font-size: 14px;
-    width: 200px;
-    margin: 0 auto;
-    @include mixins.fontSecondary;
-  }
+}
+
+.label {
+  font-size: 14px;
+  @include mixins.fontSecondary;
+}
+
+.heroLabel {
+  color: white;
 }
 
 .heading {
@@ -31,14 +35,42 @@
 }
 
 .select {
+  width: 100%;
+  background: transparent;
+  border: none;
+  font: inherit;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.heroSelect {
+  border-bottom: 1px solid white;
   color: white;
+  font-size: 14px;
+  width: 200px;
+  margin: 0 auto;
+  @include mixins.fontSecondary;
+}
+
+.option {
+  color: variables.$navy;
+}
+
+.check {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 @media screen and (max-width: variables.$mobile) {
   .heading {
     font-size: 32px;
   }
-  .dropdown div {
+
+  .heroSelect {
     width: 300px;
     text-align: center;
     font-size: 24px;
