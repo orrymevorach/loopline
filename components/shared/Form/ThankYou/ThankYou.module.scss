@@ -1,0 +1,13 @@
+@use '@mixins' as mixins;
+
+.thankYou {
+  text-align: center;
+  @include mixins.heading;
+}
+
+.paragrah {
+  text-align: center;
+  @include mixins.paragraph;
+  margin-top: 20px;
+  font-size: 16px;
+}

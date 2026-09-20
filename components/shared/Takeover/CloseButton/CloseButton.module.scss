@@ -1,0 +1,26 @@
+@use '@variables' as variables;
+
+.closeButton {
+  background-color: black;
+  border-radius: 50%;
+  border: none;
+  position: absolute;
+  right: 10px;
+  top: -15px;
+  z-index: 10001;
+  cursor: pointer;
+  transition: 0.3s;
+  padding: 0;
+  &:hover {
+    transition: 0.3s;
+    border-radius: 50%;
+  }
+  &.dark {
+    color: white;
+    border: none;
+    &:hover {
+      background-color: white;
+      transition: 0.3s;
+    }
+  }
+}

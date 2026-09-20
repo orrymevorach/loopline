@@ -1,0 +1,25 @@
+@use '@variables' as variables;
+
+.underline {
+  display: block;
+  clip-path: inset(0 100% 0 0);
+  transition:
+    clip-path 0.62s cubic-bezier(0.22, 0.7, 0.18, 1),
+    opacity 0.22s ease;
+}
+
+.underlinePath {
+  fill: variables.$beige;
+}
+
+.dark {
+  fill: variables.$navy;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .underline {
+    transition: none;
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+  }
+}

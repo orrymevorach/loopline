@@ -1,0 +1,6 @@
+@use '@mixins' as mixins;
+@use '@variables' as variables;
+
+.children {
+  padding-top: 155px; // to show up below the navbar
+}

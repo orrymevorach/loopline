@@ -1,0 +1,114 @@
+@use '@variables' as variables;
+@use '@mixins' as mixins;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 40px;
+  margin: 0 auto;
+}
+
+.dropdown {
+  width: 100%;
+  height: 40px;
+  border: none;
+  margin-top: 10px;
+  @include mixins.pseudoBorderBottom;
+}
+.dropdownCheck {
+  right: 30px !important;
+}
+
+.input,
+label.inputLabel {
+  color: black;
+  text-wrap: wrap;
+  width: 100% !important;
+  background-color: rgba(0, 0, 0, 0);
+  border-radius: 4px;
+  border-color: #c0baab;
+  font-size: 16px;
+  position: relative;
+  font-weight: normal;
+  @include mixins.fontPrimary;
+}
+
+.input {
+  &::placeholder {
+    text-align: left;
+  }
+}
+
+.formFieldContainer {
+  position: relative;
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.row {
+  display: grid;
+  gap: 24px;
+  width: 100%;
+}
+
+// Heading
+.textContainer {
+  text-align: center;
+  max-width: 620px;
+  margin: 0 auto 60px;
+}
+
+.title {
+  @include mixins.heading;
+  margin-bottom: 20px;
+}
+
+.description {
+  @include mixins.paragraph;
+  span {
+    text-decoration: underline;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+.check {
+  position: absolute;
+  right: 10px;
+  top: 20px;
+}
+
+.loader {
+  position: relative;
+}
+
+.datePicker {
+  label {
+    margin-bottom: 10px;
+  }
+  input {
+    border: 1px solid black;
+    border-radius: 0;
+    padding: 7px;
+  }
+  .check {
+    top: 5px;
+  }
+}
+
+@media screen and (max-width: variables.$mobile) {
+  .container {
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+  .dropdown {
+    margin-top: -2px;
+  }
+  .row {
+    display: block;
+  }
+  .submitButton {
+    width: 100%;
+  }
+}

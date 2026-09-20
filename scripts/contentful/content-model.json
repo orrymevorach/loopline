@@ -1,0 +1,455 @@
+{
+  "Page": {
+    "id": "page",
+    "name": "Page",
+    "description": "Generic page model with a title and modular content references.",
+    "displayField": "title",
+    "fields": [
+      {
+        "id": "title",
+        "name": "Title",
+        "type": "Symbol",
+        "required": true,
+        "localized": false,
+        "validations": [],
+        "disabled": false,
+        "omitted": false
+      },
+      {
+        "id": "content",
+        "name": "Content",
+        "type": "Array",
+        "required": false,
+        "localized": false,
+        "disabled": false,
+        "omitted": false,
+        "items": {
+          "type": "Link",
+          "linkType": "Entry",
+          "validations": []
+        }
+      }
+    ]
+  },
+  "areaOfSupport": {
+    "id": "areaOfSupport",
+    "name": "Area of Support",
+    "description": "Single area of support item.",
+    "displayField": "name",
+    "fields": [
+      {
+        "id": "name",
+        "name": "Name",
+        "type": "Symbol",
+        "required": true,
+        "localized": false,
+        "validations": [],
+        "disabled": false,
+        "omitted": false
+      }
+    ]
+  },
+  "listAreasOfSupport": {
+    "id": "listAreasOfSupport",
+    "name": "List: Areas of Support",
+    "description": "Collection of Area of Support references.",
+    "fields": [
+      {
+        "id": "areasOfSupport",
+        "name": "Areas of Support",
+        "type": "Array",
+        "required": false,
+        "localized": false,
+        "disabled": false,
+        "omitted": false,
+        "items": {
+          "type": "Link",
+          "linkType": "Entry",
+          "validations": [
+            {
+              "linkContentType": ["areaOfSupport"]
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "Testimonials": {
+    "id": "testimonials",
+    "name": "List: Testimonials",
+    "description": "Collection of Testimonial references.",
+    "fields": [
+      {
+        "id": "testimonials",
+        "name": "Testimonials",
+        "type": "Array",
+        "required": false,
+        "localized": false,
+        "disabled": false,
+        "omitted": false,
+        "items": {
+          "type": "Link",
+          "linkType": "Entry",
+          "validations": [
+            {
+              "linkContentType": ["testimonial"]
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "Testimonial": {
+    "id": "testimonial",
+    "name": "Testimonial",
+    "description": "A single testimonial entry.",
+    "displayField": "name",
+    "fields": [
+      {
+        "id": "text",
+        "name": "Text",
+        "type": "RichText",
+        "required": false,
+        "localized": false,
+        "validations": [],
+        "disabled": false,
+        "omitted": false
+      },
+      {
+        "id": "name",
+        "name": "Name",
+        "type": "Symbol",
+        "required": false,
+        "localized": false,
+        "validations": [],
+        "disabled": false,
+        "omitted": false
+      }
+    ]
+  },
+  "service": {
+    "id": "service",
+    "name": "Service",
+    "description": "A single service entry.",
+    "displayField": "title",
+    "fields": [
+      {
+        "id": "title",
+        "name": "Title",
+        "type": "Symbol",
+        "required": true,
+        "localized": false,
+        "validations": [],
+        "disabled": false,
+        "omitted": false
+      },
+      {
+        "id": "description",
+        "name": "Description",
+        "type": "RichText",
+        "required": false,
+        "localized": false,
+        "validations": [],
+        "disabled": false,
+        "omitted": false
+      }
+    ]
+  },
+  "listServices": {
+    "id": "listServices",
+    "name": "List: Services",
+    "description": "Collection of service references for the services page.",
+    "displayField": "title",
+    "fields": [
+      {
+        "id": "title",
+        "name": "Title",
+        "type": "Symbol",
+        "required": false,
+        "localized": false,
+        "validations": [],
+        "disabled": false,
+        "omitted": false
+      },
+      {
+        "id": "appearance",
+        "name": "Appearance",
+        "type": "Symbol",
+        "required": false,
+        "localized": false,
+        "validations": [
+          {
+            "in": ["Services Page"]
+          }
+        ],
+        "disabled": false,
+        "omitted": false
+      },
+      {
+        "id": "services",
+        "name": "Services",
+        "type": "Array",
+        "required": false,
+        "localized": false,
+        "disabled": false,
+        "omitted": false,
+        "items": {
+          "type": "Link",
+          "linkType": "Entry",
+          "validations": [
+            {
+              "linkContentType": ["service"]
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "form": {
+    "id": "form",
+    "name": "Form",
+    "description": "A form entry that composes rows of form fields.",
+    "displayField": "title",
+    "fields": [
+      {
+        "id": "title",
+        "name": "Title",
+        "type": "Symbol",
+        "required": true,
+        "localized": false,
+        "validations": [],
+        "disabled": false,
+        "omitted": false
+      },
+      {
+        "id": "rows",
+        "name": "Rows",
+        "type": "Array",
+        "required": false,
+        "localized": false,
+        "disabled": false,
+        "omitted": false,
+        "items": {
+          "type": "Link",
+          "linkType": "Entry",
+          "validations": [
+            {
+              "linkContentType": ["row"]
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "input": {
+    "id": "input",
+    "name": "Input",
+    "description": "A single text input form field.",
+    "displayField": "label",
+    "fields": [
+      {
+        "id": "label",
+        "name": "Label",
+        "type": "Symbol",
+        "required": false,
+        "localized": false,
+        "validations": [],
+        "disabled": false,
+        "omitted": false
+      },
+      {
+        "id": "fieldName",
+        "name": "Field Name",
+        "type": "Symbol",
+        "required": true,
+        "localized": false,
+        "validations": [],
+        "disabled": false,
+        "omitted": false
+      },
+      {
+        "id": "inputType",
+        "name": "Input Type",
+        "type": "Symbol",
+        "required": true,
+        "localized": false,
+        "validations": [
+          {
+            "in": ["text", "email", "tel", "number"]
+          }
+        ],
+        "disabled": false,
+        "omitted": false
+      },
+      {
+        "id": "placeholder",
+        "name": "Placeholder",
+        "type": "Symbol",
+        "required": false,
+        "localized": false,
+        "validations": [],
+        "disabled": false,
+        "omitted": false
+      },
+      {
+        "id": "required",
+        "name": "Required",
+        "type": "Boolean",
+        "required": false,
+        "localized": false,
+        "validations": [],
+        "disabled": false,
+        "omitted": false
+      }
+    ]
+  },
+  "textarea": {
+    "id": "textarea",
+    "name": "Textarea",
+    "description": "A single textarea form field.",
+    "displayField": "label",
+    "fields": [
+      {
+        "id": "label",
+        "name": "Label",
+        "type": "Symbol",
+        "required": false,
+        "localized": false,
+        "validations": [],
+        "disabled": false,
+        "omitted": false
+      },
+      {
+        "id": "fieldName",
+        "name": "Field Name",
+        "type": "Symbol",
+        "required": true,
+        "localized": false,
+        "validations": [],
+        "disabled": false,
+        "omitted": false
+      },
+      {
+        "id": "placeholder",
+        "name": "Placeholder",
+        "type": "Symbol",
+        "required": false,
+        "localized": false,
+        "validations": [],
+        "disabled": false,
+        "omitted": false
+      },
+      {
+        "id": "required",
+        "name": "Required",
+        "type": "Boolean",
+        "required": false,
+        "localized": false,
+        "validations": [],
+        "disabled": false,
+        "omitted": false
+      }
+    ]
+  },
+  "select": {
+    "id": "select",
+    "name": "Select",
+    "description": "A selector form field supporting checkbox, radio, or dropdown appearance.",
+    "displayField": "label",
+    "fields": [
+      {
+        "id": "label",
+        "name": "Label",
+        "type": "Symbol",
+        "required": true,
+        "localized": false,
+        "validations": [],
+        "disabled": false,
+        "omitted": false
+      },
+      {
+        "id": "fieldName",
+        "name": "Field Name",
+        "type": "Symbol",
+        "required": true,
+        "localized": false,
+        "validations": [],
+        "disabled": false,
+        "omitted": false
+      },
+      {
+        "id": "appearance",
+        "name": "Appearance",
+        "type": "Symbol",
+        "required": false,
+        "localized": false,
+        "validations": [
+          {
+            "in": ["checkbox", "radio", "dropdown"]
+          }
+        ],
+        "disabled": false,
+        "omitted": false
+      },
+      {
+        "id": "options",
+        "name": "Options",
+        "type": "Array",
+        "required": false,
+        "localized": false,
+        "disabled": false,
+        "omitted": false,
+        "items": {
+          "type": "Symbol",
+          "validations": []
+        }
+      },
+      {
+        "id": "required",
+        "name": "Required",
+        "type": "Boolean",
+        "required": false,
+        "localized": false,
+        "validations": [],
+        "disabled": false,
+        "omitted": false
+      }
+    ]
+  },
+  "row": {
+    "id": "row",
+    "name": "Row",
+    "description": "A row that can contain up to two form field references.",
+    "displayField": "title",
+    "fields": [
+      {
+        "id": "title",
+        "name": "Title",
+        "type": "Symbol",
+        "required": false,
+        "localized": false,
+        "validations": [],
+        "disabled": false,
+        "omitted": false
+      },
+      {
+        "id": "fields",
+        "name": "Fields",
+        "type": "Array",
+        "required": false,
+        "localized": false,
+        "disabled": false,
+        "omitted": false,
+        "items": {
+          "type": "Link",
+          "linkType": "Entry",
+          "validations": [
+            {
+              "linkContentType": ["input", "textarea", "select"]
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

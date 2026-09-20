@@ -1,0 +1,37 @@
+name: Sync Contentful Models
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  sync-contentful:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install Contentful CLI
+        run: npm install -g contentful-cli
+
+      - name: Authenticate with Contentful
+        run: contentful login --management-token ${{ secrets.CONTENTFUL_MANAGEMENT_TOKEN }}
+
+      - name: Export Content Model from Master
+        run: contentful space export --space-id ${{ secrets.CONTENTFUL_SPACE_ID }} --environment-id ${{ secrets.CONTENTFUL_ENV_MASTER }} --content-file content-model.json
+
+      - name: Delete Existing Staging Environment
+        run: contentful space environment delete --space-id ${{ secrets.CONTENTFUL_SPACE_ID }} --environment-id ${{ secrets.CONTENTFUL_ENV_STAGING }}
+
+      - name: Create Updated Staging Environment
+        run: contentful space environment create --space-id ${{ secrets.CONTENTFUL_SPACE_ID }} --name staging --environment-id ${{ secrets.CONTENTFUL_ENV_STAGING }}
+
+      - name: Import Content Model to Staging
+        run: contentful space import --space-id ${{ secrets.CONTENTFUL_SPACE_ID }} --environment-id ${{ secrets.CONTENTFUL_ENV_STAGING }} --content-file content-model.json
+
+      - name: Trigger Netlify Build
+        run: curl -X POST -d '{}' ${{ secrets.NETLIFY_BUILD_HOOK_URL }}

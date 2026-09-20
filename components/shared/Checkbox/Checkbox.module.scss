@@ -1,0 +1,51 @@
+@use '@variables' as variables;
+@use '@mixins' as mixins;
+
+.checkboxGroupLabel {
+  @include mixins.paragraph;
+  margin: 0 0 8px;
+}
+
+.checkboxList {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+
+  span {
+    @include mixins.paragraph;
+  }
+}
+
+.checkbox {
+  appearance: none;
+  margin: 0;
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  border: 1px solid variables.$charcoal;
+  cursor: pointer;
+  position: relative;
+
+  &:checked {
+    border-color: variables.$navy;
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 4px;
+      top: 1px;
+      width: 4px;
+      height: 8px;
+      border: solid variables.$navy;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+    }
+  }
+}

@@ -1,0 +1,46 @@
+@use '@mixins' as mixins;
+@use '@variables' as variables;
+
+.container {
+  padding: 10px 0;
+}
+.dropdown {
+  display: flex;
+  margin: 10px auto 0;
+  color: white;
+  label,
+  svg {
+    color: white;
+  }
+  div {
+    border-bottom: 1px solid white;
+    color: white;
+    font-size: 14px;
+    width: 200px;
+    margin: 0 auto;
+    @include mixins.fontSecondary;
+  }
+}
+
+.heading {
+  @include mixins.fontSecondaryMedium;
+  text-align: center;
+  font-size: 22px;
+  color: white;
+  margin-bottom: 10px;
+}
+
+.select {
+  color: white;
+}
+
+@media screen and (max-width: variables.$mobile) {
+  .heading {
+    font-size: 32px;
+  }
+  .dropdown div {
+    width: 300px;
+    text-align: center;
+    font-size: 24px;
+  }
+}

@@ -1,0 +1,38 @@
+@use '@variables' as variables;
+@use '@mixins' as mixins;
+
+.container {
+  padding: 60px 0 90px;
+  width: 785px;
+  margin: 0 auto;
+}
+
+.heading {
+  @include mixins.paragraph;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.footerText {
+  @include mixins.italicSubheading(variables.$black);
+  margin: 0;
+}
+
+.loader {
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media screen and (max-width: variables.$tablet) {
+  .container {
+    width: 100%;
+  }
+}
+
+.footerText {
+  margin-top: 25px;
+}

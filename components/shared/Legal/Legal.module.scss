@@ -1,0 +1,47 @@
+@use '@mixins' as mixins;
+@use '@variables' as variables;
+
+.wrapper {
+  padding: 90px 0;
+  h1 {
+    @include mixins.heading;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  p,
+  li {
+    @include mixins.paragraph;
+  }
+
+  li {
+    list-style: disc;
+    margin-left: 20px;
+  }
+
+  ul {
+    margin: 10px 0;
+  }
+  .bold {
+    @include mixins.fontPrimary;
+  }
+
+  .margin {
+    margin-bottom: 10px;
+  }
+
+  .heading {
+    margin: 20px 0 10px;
+    font-size: 24px;
+    @include mixins.fontPrimary;
+  }
+  .underline,
+  a {
+    text-decoration: underline;
+  }
+}
+
+@media screen and (max-width: variables.$tablet) {
+  .wrapper {
+    padding: 40px 20px;
+  }
+}

@@ -1,0 +1,146 @@
+@use '@variables' as variables;
+
+@mixin fontPrimary {
+  font-family: 'HAL Timezone';
+  font-weight: 400;
+}
+
+@mixin italicHeading($color: variables.$navy) {
+  font-family: 'HAL Timezone Italic';
+  color: $color;
+  font-size: 35px;
+  line-height: normal;
+
+  @media screen and (max-width: variables.$mobile) {
+    font-size: 24px;
+  }
+}
+
+@mixin italicSubheading($color: variables.$navy) {
+  font-family: 'HAL Timezone Italic';
+  color: $color;
+  font-size: 30px;
+  line-height: normal;
+
+  @media screen and (max-width: variables.$mobile) {
+    font-size: 24px;
+  }
+}
+
+@mixin italic($color: variables.$navy) {
+  font-family: 'HAL Timezone Italic';
+  color: $color;
+}
+
+@mixin italicParagraph($color: variables.$navy) {
+  font-family: 'HAL Timezone Italic';
+  color: $color;
+  font-size: 18px;
+  line-height: normal;
+
+  @media screen and (max-width: variables.$mobile) {
+    font-size: 24px;
+  }
+}
+
+@mixin heading($color: variables.$navy) {
+  @include fontPrimary;
+  color: $color;
+  font-size: 35px;
+  line-height: normal;
+
+  @media screen and (max-width: variables.$mobile) {
+    font-size: 28px;
+  }
+}
+
+@mixin paragraph($color: variables.$navy) {
+  @include fontPrimary;
+  color: $color;
+  font-size: 18px;
+  line-height: 23px;
+}
+
+@mixin sectionSpacing {
+  display: flex;
+  flex-direction: column;
+  gap: 110px;
+  padding-bottom: 110px;
+
+  @media screen and (max-width: variables.$mobile) {
+    gap: 60px;
+    padding: 60px 0 70px;
+  }
+}
+
+@mixin borderBottom {
+  position: relative;
+  &:hover {
+    transition: 0.3s;
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: 0px;
+      width: 100%;
+      height: 1px;
+      left: 0%;
+      background-color: black;
+      transition: 0.3s;
+      opacity: 0;
+      animation: fadeIn 0.2s linear forwards;
+    }
+  }
+}
+
+@mixin marker {
+  position: relative;
+  &:after {
+    content: '';
+    background-color: black;
+    width: 3px;
+    height: 3px;
+    position: absolute;
+    top: 7px;
+    left: -10px;
+    border-radius: 50%;
+  }
+}
+
+@mixin pseudoBorderBottom {
+  position: relative;
+  &::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    background-color: black;
+    height: 1px;
+    bottom: -3px;
+    left: 0;
+  }
+}
+
+@mixin pulseShadow($color: #fff, $size: 15px, $opacity: 1) {
+  animation: infinite 2s pulseShadow ease-in-out;
+  box-shadow: 0 0 $size $color;
+
+  @keyframes pulseShadow {
+    0% {
+      box-shadow: none;
+    }
+    50% {
+      box-shadow: 0 0 $size rgba($color, $opacity);
+    }
+    100% {
+      box-shadow: none;
+    }
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

@@ -1,0 +1,70 @@
+@import './fonts.css';
+
+* {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  background-color: #efe5d5;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+li {
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+  font-family: '';
+  font-weight: 400;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+a:active {
+  color: black;
+}
+
+img {
+  display: block;
+  height: auto;
+}
+
+input[type='submit'],
+button {
+  cursor: pointer;
+}
+
+input:-webkit-autofill {
+  background-color: transparent !important;
+  transition: background-color 5000s ease-in-out 0s;
+  animation-name: autofill;
+  animation-fill-mode: both;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: #f0efee;
+}
+
+@keyframes autofill {
+  to {
+    background: transparent; /* Ensures consistent background */
+  }
+}

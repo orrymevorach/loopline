@@ -1,0 +1,74 @@
+@use '@variables' as variables;
+@use '@mixins' as mixins;
+
+.takeover {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  height: 100vh;
+  width: 100%;
+  @include mixins.fontSecondaryBold;
+  color: variables.$black;
+  top: 0;
+  left: 0;
+  z-index: 2002;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  animation: fadeIn linear 0.2s;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.modal {
+  background-color: white;
+  box-shadow: 0px 0px 20px 1px variables.$black;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 50px;
+  border-radius: variables.$borderRadius;
+  margin: 25px;
+  &:before {
+    content: '';
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.4);
+    min-height: 100vh;
+    width: 100vw;
+    left: 0;
+    z-index: -1;
+    top: -25px;
+    height: calc(100% + 50px);
+  }
+  &.dark {
+    background-color: variables.$black;
+    color: white;
+  }
+}
+
+.closeButton {
+  background-color: white;
+  border: none;
+  color: variables.$black;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  z-index: 10001;
+  cursor: pointer;
+}
+
+@media screen and (max-width: variables.$tablet) {
+  .modal {
+    width: 95%;
+    padding: 25px;
+  }
+}

@@ -1,0 +1,29 @@
+@use '@mixins' as mixins;
+
+.container {
+  user-select: 'none';
+  position: relative;
+  display: inline-block;
+  cursor: 'pointer';
+  background: transparent;
+  border: none;
+  padding: 0;
+  color: black;
+  @include mixins.paragraph;
+  &:active {
+    color: black;
+  }
+}
+
+.copied {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 12px;
+  bottom: -20px;
+  text-decoration: none !important;
+  @include mixins.fontPrimary;
+}
+.icon {
+  margin-left: 5px;
+}
