@@ -1,8 +1,8 @@
 'use client';
 
 import styles from './Carousel.module.scss';
-import { useEffect, useState } from 'react';
-import Button from '@/components/shared/Button/Button';
+import { useEffect, useRef, useState } from 'react';
+import Slide from './Slide/Slide';
 
 const slides = [
   {
@@ -47,52 +47,69 @@ const slides = [
 
 export default function Carousel() {
   const [activeSlide, setActiveSlide] = useState(0);
+  const [transitionPhase, setTransitionPhase] = useState('idle');
+  const [outgoingSlide, setOutgoingSlide] = useState(null);
+  const activeSlideRef = useRef(0);
+  const isTransitioning = useRef(false);
+
+  activeSlideRef.current = activeSlide;
+
+  const changeSlide = nextSlide => {
+    if (isTransitioning.current || nextSlide === activeSlideRef.current) {
+      return;
+    }
+
+    setOutgoingSlide(activeSlideRef.current);
+    setActiveSlide(nextSlide);
+    isTransitioning.current = true;
+    setTransitionPhase('in');
+  };
 
   useEffect(() => {
     const interval = window.setInterval(() => {
-      setActiveSlide(current => (current + 1) % slides.length);
+      changeSlide((activeSlideRef.current + 1) % slides.length);
     }, 6000);
 
     return () => window.clearInterval(interval);
   }, []);
 
+  useEffect(() => {
+    if (transitionPhase === 'idle') return undefined;
+
+    const timeout = window.setTimeout(() => {
+      isTransitioning.current = false;
+      setOutgoingSlide(null);
+      setTransitionPhase('idle');
+    }, 800);
+
+    return () => window.clearTimeout(timeout);
+  }, [transitionPhase]);
+
   const slide = slides[activeSlide];
 
   return (
     <section className={styles.carousel} aria-label='Loopline highlights'>
-      <div
-        key={slide.image}
-        className={styles.slide}
-        style={{
-          backgroundImage: `url(${slide.image})`,
-          backgroundSize: slide.size,
-          backgroundPosition: slide.position,
-        }}
-      >
-        <div className={styles.scrim} />
-        <div className={styles.content}>
-          <h1>{slide.title}</h1>
-          <div className={styles.actions}>
-            {slide.actions.map(({ label, ...buttonProps }) => (
-              <Button key={label} {...buttonProps}>
-                {label}
-              </Button>
-            ))}
-          </div>
-        </div>
-
-        <div className={styles.dots} aria-label='Choose a slide'>
-          {slides.map((item, index) => (
-            <button
-              className={index === activeSlide ? styles.activeDot : styles.dot}
-              key={item.image}
-              type='button'
-              aria-label={`Show slide ${index + 1}`}
-              aria-current={index === activeSlide ? 'true' : undefined}
-              onClick={() => setActiveSlide(index)}
-            />
-          ))}
-        </div>
+      <div className={styles.slideStage}>
+        {outgoingSlide !== null && transitionPhase === 'in' ? (
+          <Slide
+            slideData={slides[outgoingSlide]}
+            variant='outgoing'
+            showControls={false}
+            slides={slides}
+            activeSlide={activeSlide}
+            transitionPhase={transitionPhase}
+            changeSlide={changeSlide}
+          />
+        ) : null}
+        <Slide
+          slideData={slide}
+          variant={transitionPhase === 'in' ? 'incoming' : ''}
+          showControls
+          slides={slides}
+          activeSlide={activeSlide}
+          transitionPhase={transitionPhase}
+          changeSlide={changeSlide}
+        />
       </div>
     </section>
   );

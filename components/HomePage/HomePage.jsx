@@ -10,6 +10,7 @@ import Instagram from './Instagram/Instagram';
 
 export default function HomePage({ entries }) {
   const [] = entries;
+
   return (
     <Wrapper>
       <Carousel />

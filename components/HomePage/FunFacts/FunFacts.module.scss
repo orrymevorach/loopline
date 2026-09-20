@@ -35,17 +35,47 @@
 }
 
 .title {
-  @include mixins.fontPrimary;
   color: variables.$navy;
   font-size: 74px;
   line-height: normal;
   margin: 0;
+}
+.factStage {
+  width: 100%;
 }
 
 .fact {
   @include mixins.paragraph;
   line-height: 27.6px;
   margin: 0;
+}
+
+.factIncoming {
+  animation: factFadeIn 0.8s ease-in-out both;
+}
+
+.factOutgoing {
+  animation: factFadeOut 0.7s ease-out both;
+}
+
+@keyframes factFadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes factFadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
 }
 
 .arrows {
@@ -65,6 +95,11 @@
   line-height: 1;
   padding: 0;
   width: 71px;
+
+  &:disabled {
+    cursor: default;
+    opacity: 0.5;
+  }
 }
 
 @media screen and (max-width: variables.$tablet) {

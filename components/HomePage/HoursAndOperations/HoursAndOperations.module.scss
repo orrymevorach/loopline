@@ -15,10 +15,14 @@
   grid-template-columns: 1fr 1fr 1fr;
   margin: 0 auto;
   padding: 26px 140px;
+  background-color: rgba(white, 0.7);
 }
 
 .operation {
   color: variables.$navy;
+  justify-self: center;
+  width: max-content;
+  max-width: 100%;
 
   .title {
     @include mixins.fontSecondaryBold;

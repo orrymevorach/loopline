@@ -25,12 +25,10 @@
 }
 
 .content {
-  align-items: center;
   display: flex;
-  flex: 0 1 671px;
   flex-direction: column;
-  gap: 34px;
-  text-align: center;
+  align-items: center;
+  //   justify-content: center;
 }
 
 .brandmark {
@@ -41,10 +39,11 @@
 .title {
   @include mixins.fontPrimary;
   color: variables.$navy;
-  font-size: 84px;
-  letter-spacing: -0.01em;
-  line-height: 89px;
+  font-size: 75px;
+  line-height: 1.1;
   margin: 0;
+  text-align: center;
+  padding: 0 30px;
 }
 
 .description {
@@ -52,16 +51,17 @@
   color: variables.$navy;
   font-size: 19px;
   line-height: 26px;
-  margin: 0;
+  margin: 25px 0;
   max-width: 455px;
+  text-align: center;
 }
 
 .learnMore {
   @include mixins.fontSecondary;
   color: #000;
-  font-size: 19px;
-  margin-top: -18px;
+  font-size: 18px;
   text-decoration: underline;
+  margin-bottom: 35px;
 }
 
 @media screen and (max-width: variables.$tablet) {
