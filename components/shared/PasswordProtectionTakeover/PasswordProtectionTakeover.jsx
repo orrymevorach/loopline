@@ -1,9 +1,9 @@
 import styles from './PasswordProtectionTakeover.module.scss';
 import { useState } from 'react';
-import Input from '@mui/joy/Input';
+import Input from '@/components/shared/Input/Input';
 // import { ErrorMessage } from 'components/checkout/checkout-shared-components';
 import Takeover from '@/components/shared/Takeover/Takeover';
-import { Button } from '@mui/material';
+import Button from '@/components/shared/Button/Button';
 
 export default function PasswordProtectionTakeover({
   setShowPasswordProtectionTakeover,
@@ -27,15 +27,15 @@ export default function PasswordProtectionTakeover({
   return (
     <Takeover disableClose>
       <form onSubmit={handleSubmit} className={styles.form}>
-        <label className={styles.label} htmlFor="password">
-          Enter password
-        </label>
         {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
 
         <Input
-          type="password"
+          id='password'
+          label='Enter password'
+          labelClassNames={styles.label}
+          type='password'
           value={password}
-          onChange={handleChange}
+          handleChange={handleChange}
           required
         />
         <Button>Submit</Button>

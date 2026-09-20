@@ -1,3 +1,4 @@
+'use client';
 import { useState } from 'react';
 import styles from './ContactForm.module.scss';
 import CopyToClipboard from '@/components/shared/CopyToClipboard/CopyToClipboard';

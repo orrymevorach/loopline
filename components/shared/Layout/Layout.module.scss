@@ -2,5 +2,8 @@
 @use '@variables' as variables;
 
 .children {
-  padding-top: 160px; // to show up below the navbar
+  margin-top: 160px; // to show up below the navbar
+  background-color: variables.$cream;
+  border-radius: 33px;
+  overflow: hidden;
 }

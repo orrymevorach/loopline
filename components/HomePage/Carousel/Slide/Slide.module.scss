@@ -57,7 +57,7 @@
   z-index: 1;
 
   h1 {
-    color: variables.$beige;
+    color: variables.$cream;
     @include mixins.fontPrimary;
     font-size: clamp(42px, 5.5vw, 76px);
     font-weight: 400;
@@ -86,7 +86,7 @@
 
 .dot,
 .activeDot {
-  background: variables.$beige;
+  background: variables.$cream;
   border: 0;
   border-radius: 50%;
   cursor: pointer;

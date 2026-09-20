@@ -12,7 +12,7 @@ export default function HomePage({ entries }) {
   const [] = entries;
 
   return (
-    <Wrapper>
+    <>
       <Carousel />
       <HoursAndOperations />
       <Subscribe />
@@ -21,6 +21,6 @@ export default function HomePage({ entries }) {
       <StaffPicks />
       <FunFacts />
       <Instagram />
-    </Wrapper>
+    </>
   );
 }
