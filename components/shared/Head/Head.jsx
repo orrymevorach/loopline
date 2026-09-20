@@ -1,7 +1,7 @@
 import Head from 'next/head';
 
 export default function Meta() {
-  const tabTitle = `Looplone`;
+  const tabTitle = `Loopline`;
   return (
     <Head>
       <meta charSet='utf-8' />

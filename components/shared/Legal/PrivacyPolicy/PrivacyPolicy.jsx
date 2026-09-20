@@ -68,8 +68,14 @@ export default function PrivacyPolicy() {
       <ul>
         <li>Request access to the personal information we hold about you</li>
         <li>Request correction of inaccurate or incomplete information</li>
-        <li>Withdraw consent to the collection, use, or disclosure of your information, subject to legal or contractual restrictions</li>
-        <li>Make a complaint to the Office of the Privacy Commissioner of Canada or the applicable Ontario privacy authority</li>
+        <li>
+          Withdraw consent to the collection, use, or disclosure of your
+          information, subject to legal or contractual restrictions
+        </li>
+        <li>
+          Make a complaint to the Office of the Privacy Commissioner of Canada
+          or the applicable Ontario privacy authority
+        </li>
       </ul>
 
       <p className={styles.heading}>Data Security</p>
