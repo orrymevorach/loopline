@@ -1,0 +1,83 @@
+@use '@mixins' as mixins;
+@use '@variables' as variables;
+
+.section {
+}
+
+.panel {
+  align-items: center;
+  aspect-ratio: 1431 / 830;
+  background: variables.$cream;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  position: relative;
+}
+
+.title {
+  @include mixins.fontPrimary;
+  color: variables.$navy;
+  font-size: 123px;
+  letter-spacing: -0.01em;
+  line-height: 122px;
+  margin: 0;
+  text-align: center;
+}
+
+.cheese {
+  height: auto;
+  left: 11.2%;
+  position: absolute;
+  top: 16.8%;
+  transform: rotate(177.54deg) scaleY(-1);
+  width: 16.4%;
+}
+
+.wineHand {
+  bottom: 4%;
+  height: auto;
+  position: absolute;
+  right: 5.5%;
+  transform: rotate(10.26deg);
+  width: 16.6%;
+}
+
+@media screen and (max-width: variables.$tablet) {
+  .section {
+    padding: 0 20px;
+  }
+
+  .title {
+    font-size: 72px;
+    line-height: 72px;
+  }
+}
+
+@media screen and (max-width: variables.$mobile) {
+  .section {
+    padding: 0 16px;
+  }
+
+  .panel {
+    aspect-ratio: auto;
+    min-height: 480px;
+    padding: 40px 0;
+  }
+
+  .title {
+    font-size: 44px;
+    line-height: 46px;
+  }
+
+  .cheese {
+    left: 6%;
+    top: 6%;
+    width: 30%;
+  }
+
+  .wineHand {
+    bottom: 3%;
+    right: 6%;
+    width: 30%;
+  }
+}

@@ -1,0 +1,104 @@
+@use '@mixins' as mixins;
+@use '@variables' as variables;
+
+.section {
+  align-items: center;
+  background: variables.$pink;
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  min-height: 767px;
+  padding: 59px 87px;
+}
+
+.imageWrapper {
+  border: 1px solid variables.$black;
+  border-radius: 31px;
+  flex: 0 1 579px;
+  height: 638px;
+  overflow: hidden;
+  position: relative;
+}
+
+.image {
+  object-fit: cover;
+}
+
+.content {
+  align-items: center;
+  display: flex;
+  flex: 0 1 671px;
+  flex-direction: column;
+  gap: 34px;
+  text-align: center;
+}
+
+.brandmark {
+  height: auto;
+  width: 103px;
+}
+
+.title {
+  @include mixins.fontPrimary;
+  color: variables.$navy;
+  font-size: 84px;
+  letter-spacing: -0.01em;
+  line-height: 89px;
+  margin: 0;
+}
+
+.description {
+  @include mixins.fontSecondary;
+  color: variables.$navy;
+  font-size: 19px;
+  line-height: 26px;
+  margin: 0;
+  max-width: 455px;
+}
+
+.learnMore {
+  @include mixins.fontSecondary;
+  color: #000;
+  font-size: 19px;
+  margin-top: -18px;
+  text-decoration: underline;
+}
+
+@media screen and (max-width: variables.$tablet) {
+  .section {
+    flex-direction: column;
+    padding: 45px 20px;
+  }
+
+  .imageWrapper {
+    flex: none;
+    height: 420px;
+    max-width: 480px;
+    width: 100%;
+  }
+
+  .title {
+    font-size: 56px;
+    line-height: 60px;
+  }
+}
+
+@media screen and (max-width: variables.$mobile) {
+  .section {
+    padding: 32px 16px;
+  }
+
+  .imageWrapper {
+    height: 340px;
+  }
+
+  .title {
+    font-size: 42px;
+    line-height: 46px;
+  }
+
+  .description,
+  .learnMore {
+    font-size: 16px;
+  }
+}
