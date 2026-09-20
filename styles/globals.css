@@ -44,6 +44,7 @@ a:active {
 img {
   display: block;
   height: auto;
+  width: auto;
 }
 
 input[type='submit'],

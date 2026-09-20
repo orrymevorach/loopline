@@ -28,8 +28,9 @@ export default function Instagram() {
           target='_blank'
           rel='noopener noreferrer'
         >
-          @looplinewine for sips and snacks
-        </a>
+          @looplinewine
+        </a>{' '}
+        for sips and snacks
       </h2>
       <div className={styles.carousel}>
         <button
@@ -38,7 +39,12 @@ export default function Instagram() {
           onClick={() => scroll(-1)}
           aria-label='Previous posts'
         >
-          <Image src='/instagram/arrow-left.svg' alt='' width={32} height={32} />
+          <Image
+            src='/instagram/arrow-left.svg'
+            alt=''
+            width={32}
+            height={32}
+          />
         </button>
         <div className={styles.track} ref={trackRef}>
           {posts.map(({ src, alt }) => (
@@ -59,7 +65,12 @@ export default function Instagram() {
           onClick={() => scroll(1)}
           aria-label='Next posts'
         >
-          <Image src='/instagram/arrow-left.svg' alt='' width={32} height={32} />
+          <Image
+            src='/instagram/arrow-left.svg'
+            alt=''
+            width={32}
+            height={32}
+          />
         </button>
       </div>
     </section>
