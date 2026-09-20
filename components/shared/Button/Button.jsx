@@ -4,29 +4,13 @@ import styles from './Button.module.scss';
 import Link from 'next/link';
 import clsx from 'clsx';
 import Underline from '../Underline/Underline';
-import arrow from 'public/arrow.png';
+// import arrow from 'public/arrow.png';
 import Image from 'next/image';
 
-const ButtonContents = ({ isLoading, children, isNavy, isBeige }) => {
+const ButtonContents = ({ isLoading, children }) => {
   if (isLoading)
     return <FontAwesomeIcon icon={faSpinner} className={styles.spinnerIcon} />;
-  return (
-    <>
-      {isNavy ? (
-        <span className={styles.textArrowContainer}>
-          <span className={styles.arrow}>
-            <Image src={arrow} alt='' />
-          </span>
-          <span className={styles.text}>{children}</span>
-        </span>
-      ) : (
-        <>
-          <span className={styles.text}>{children}</span>
-          <Underline classNames={styles.underline} isDark={isBeige} />
-        </>
-      )}
-    </>
-  );
+  return <span className={styles.text}>{children}</span>;
 };
 
 export default function Button({
@@ -40,17 +24,10 @@ export default function Button({
   style = {},
   target = null,
   isNavy = false,
-  isBeige = false,
 }) {
-  const classnames = clsx(
-    styles.button,
-    classNames,
-    isNavy && styles.navy,
-    isBeige && styles.beige,
-  );
+  const classnames = clsx(styles.button, classNames, isNavy && styles.navy);
   const buttonProps = {
     isNavy,
-    isBeige,
     isLoading,
   };
 

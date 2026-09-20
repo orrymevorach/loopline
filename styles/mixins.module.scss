@@ -5,6 +5,26 @@
   font-weight: 400;
 }
 
+@mixin fontSecondary {
+  font-family: var(--font-plus-jakarta-sans), sans-serif;
+  font-weight: 400;
+}
+
+@mixin fontSecondaryLight {
+  font-family: var(--font-plus-jakarta-sans), sans-serif;
+  font-weight: 300;
+}
+
+@mixin fontSecondaryMedium {
+  font-family: var(--font-plus-jakarta-sans), sans-serif;
+  font-weight: 500;
+}
+
+@mixin fontSecondaryBold {
+  font-family: var(--font-plus-jakarta-sans), sans-serif;
+  font-weight: 700;
+}
+
 @mixin italicHeading($color: variables.$navy) {
   font-family: 'HAL Timezone Italic';
   color: $color;

@@ -8,6 +8,7 @@ import { ROUTES } from '@/utils/constants';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBagShopping, faUser } from '@fortawesome/free-solid-svg-icons';
 import Wrapper from '../../Wrapper/Wrapper';
+import Button from '@/components/shared/Button/Button';
 
 const navItems = [
   { path: ROUTES.OFFERINGS, label: 'Bottle Shop' },
@@ -70,9 +71,9 @@ export default function NavMenu() {
           })}
         </ul>
         <div className={styles.actions}>
-          <Link href={ROUTES.CONTACT} className={styles.reserve}>
+          <Button isNavy href={ROUTES.CONTACT}>
             Reserve
-          </Link>
+          </Button>
           <Link
             href='/account'
             className={styles.iconLink}

@@ -2,126 +2,58 @@
 @use '@variables' as variables;
 
 .button {
-  @include mixins.fontPrimary;
-  border: none;
-  cursor: pointer;
-  transition: 0.2s;
-  display: flex;
+  @include mixins.fontSecondaryMedium;
   align-items: center;
-  justify-content: center;
-  color: variables.$beige;
-  font-size: 18px;
-  letter-spacing: 2.7px;
+  background: #f4eedf;
+  border: 1px solid variables.$navy;
+  border-radius: 999px;
+  padding: 16px 56px;
   text-transform: uppercase;
-  padding: 0;
-  min-width: auto;
-  background: none;
-  border: none;
-  border-radius: 0;
-  background: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  color: variables.$navy;
+  font-size: 10px;
+  letter-spacing: 0;
+  line-height: 1;
+  min-height: 23px;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+  letter-spacing: 0.5px;
 
   &:hover {
-    .underline {
-      visibility: visible;
-      opacity: 1;
-      clip-path: inset(0 0 0 0);
-      transform: translateX(-50%) translateY(0);
-      transition:
-        clip-path 0.62s cubic-bezier(0.22, 0.7, 0.18, 1),
-        opacity 0.45s ease,
-        transform 0.45s ease,
-        visibility 0s;
-    }
+    background: variables.$navy;
+    color: #f4eedf;
   }
+
   .spinnerIcon {
     animation: rotate 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
   }
+
   &.navy {
-    position: relative;
-    background-color: variables.$navy;
-    border: 1px solid variables.$navy;
-    color: variables.$beige;
-    transition:
-      background-color 0.45s ease,
-      border-color 0.45s ease,
-      color 0.45s ease;
-    padding: 12px 0;
-    @include mixins.fontPrimary;
-
-    .textArrowContainer {
-      position: relative;
-    }
-
-    .text {
-      display: inline-flex;
-      align-items: center;
-      display: inline-block;
-      transform: translateX(0px);
-      transition: transform 0.45s ease;
-    }
-
-    .arrow {
-      position: absolute;
-      left: 0px;
-      top: 50%;
-      transform: translateX(-10px) translateY(-50%);
-      opacity: 0;
-      color: variables.$darkOlive;
-      transition:
-        opacity 0.45s ease,
-        transform 0.45s ease;
-      transition-delay: 0s;
-      pointer-events: none;
-      width: 22px;
-      img {
-        width: 100%;
-      }
-    }
+    background: variables.$navy;
+    border-color: variables.$navy;
+    color: #ede8d5;
+    font-size: 15px;
 
     &:hover {
-      color: variables.$olive;
-
-      .text {
-        transform: translateX(20px);
-      }
-
-      .arrow {
-        transition-delay: 0.1s;
-        opacity: 1;
-        transform: translateY(-50%) translateX(-10px);
-      }
-
-      svg {
-        color: variables.$darkOlive;
-      }
+      background: variables.$navy;
+      border-color: variables.$navy;
+      color: #ede8d5;
     }
   }
-  &.beige {
-    color: variables.$black;
-  }
-}
-
-.underline {
-  position: absolute;
-  bottom: -3px;
-  left: 50%;
-  clip-path: inset(0 100% 0 0);
-  transform: translateX(-50%) translateY(2px);
-  visibility: hidden;
-  opacity: 0;
-  transition:
-    clip-path 0.62s cubic-bezier(0.22, 0.7, 0.18, 1),
-    opacity 0.45s ease,
-    transform 0.45s ease,
-    visibility 0s linear 0.45s;
 }
 
 @media screen and (max-width: variables.$mobile) {
   .button {
-    @include mixins.fontPrimary;
-    font-size: 18px;
-    letter-spacing: 2.7px;
-    padding: 0;
+    @include mixins.fontSecondaryMedium;
+    font-size: 10px;
+    padding: 5px 20px;
+  }
+
+  .button.navy {
+    padding: 10px 30px;
   }
 }
 

@@ -19,6 +19,9 @@ export async function POST(request) {
     return NextResponse.json({ entry: response.items[0]?.fields ?? null });
   } catch (error) {
     console.error('Error fetching entries:', error);
-    return NextResponse.json({ error: 'Unable to fetch entry' }, { status: 400 });
+    return NextResponse.json(
+      { error: 'Unable to fetch entry' },
+      { status: 400 },
+    );
   }
 }

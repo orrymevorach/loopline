@@ -1,4 +1,5 @@
 @use '@variables' as variables;
+@use '@mixins' as mixins;
 
 .navMenu {
   animation: slideIn linear 0.3s forwards;
@@ -21,7 +22,7 @@
   transition: 0.3s;
 }
 
-.navMenu > .wrapper {
+div.wrapper {
   align-items: center;
   display: flex;
   flex-direction: row;
@@ -77,8 +78,9 @@
 }
 
 .link {
-  font-family: 'HAL Timezone', sans-serif;
-  font-size: 14px;
+  @include mixins.fontSecondary;
+  color: variables.$black;
+  font-size: 16;
   white-space: nowrap;
   transition: opacity 0.2s ease;
 
@@ -97,22 +99,6 @@
   align-items: center;
   gap: 13px;
   flex: 0 0 auto;
-}
-
-.reserve {
-  background: variables.$navy;
-  border-radius: 20px;
-  color: white;
-  font-family: 'HAL Timezone', sans-serif;
-  font-size: 12px;
-  line-height: 1;
-  padding: 7px 17px 8px;
-  text-transform: uppercase;
-  transition: background-color 0.2s ease;
-
-  &:hover {
-    background-color: variables.$black;
-  }
 }
 
 .iconLink {
@@ -208,7 +194,7 @@ div.border {
   }
 
   .link {
-    font-size: 12px;
+    font-size: 16px;
   }
 
   .actions {
@@ -248,7 +234,7 @@ div.border {
 
 @media screen and (max-width: 450px) {
   .link {
-    font-size: 11px;
+    font-size: 12px;
   }
 
   .listItems {
