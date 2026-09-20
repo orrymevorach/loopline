@@ -1,6 +1,6 @@
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import '../styles/globals.css';
-import { Plus_Jakarta_Sans } from 'next/font/google';
+import { DM_Serif_Display, Plus_Jakarta_Sans } from 'next/font/google';
 import Layout from '@/components/shared/Layout/Layout';
 import Providers from './providers';
 
@@ -11,15 +11,28 @@ const plusJakartaSans = Plus_Jakarta_Sans({
   display: 'swap',
 });
 
+const dmSerifDisplay = DM_Serif_Display({
+  subsets: ['latin'],
+  weight: '400',
+  variable: '--font-dm-serif-display',
+  display: 'swap',
+});
+
 export const metadata = {
   title: 'Loopline',
   description: '',
+  icons: {
+    icon: '/logo.png',
+    apple: '/logo.png',
+  },
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang='en'>
-      <body className={plusJakartaSans.variable}>
+      <body
+        className={`${plusJakartaSans.variable} ${dmSerifDisplay.variable}`}
+      >
         <Providers>
           <Layout>{children}</Layout>
         </Providers>

@@ -1,8 +1,27 @@
 @use '@variables' as variables;
 
 @mixin fontPrimary {
-  font-family: 'HAL Timezone';
+  font-family: var(--font-dm-serif-display), serif;
   font-weight: 400;
+}
+
+@mixin fontPrimaryLight {
+  font-family: var(--font-dm-serif-display), serif;
+  font-weight: 300;
+}
+
+@mixin fontPrimaryRegular {
+  @include fontPrimary;
+}
+
+@mixin fontPrimaryMedium {
+  font-family: var(--font-dm-serif-display), serif;
+  font-weight: 500;
+}
+
+@mixin fontPrimaryBold {
+  font-family: var(--font-dm-serif-display), serif;
+  font-weight: 700;
 }
 
 @mixin fontSecondary {

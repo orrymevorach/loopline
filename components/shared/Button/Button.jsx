@@ -24,8 +24,16 @@ export default function Button({
   style = {},
   target = null,
   isNavy = false,
+  isPurple = false,
+  isCream = false,
 }) {
-  const classnames = clsx(styles.button, classNames, isNavy && styles.navy);
+  const classnames = clsx(
+    styles.button,
+    classNames,
+    isNavy && styles.navy,
+    isPurple && styles.purple,
+    isCream && styles.cream,
+  );
   const buttonProps = {
     isNavy,
     isLoading,

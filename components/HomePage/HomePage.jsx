@@ -1,6 +1,11 @@
 import Wrapper from '../shared/Wrapper/Wrapper';
+import Carousel from './Carousel/Carousel';
 
 export default function HomePage({ entries }) {
   const [] = entries;
-  return <Wrapper></Wrapper>;
+  return (
+    <Wrapper>
+      <Carousel />
+    </Wrapper>
+  );
 }

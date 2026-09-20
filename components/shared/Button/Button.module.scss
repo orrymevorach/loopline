@@ -2,25 +2,24 @@
 @use '@variables' as variables;
 
 .button {
-  @include mixins.fontSecondaryMedium;
+  @include mixins.fontSecondary;
   align-items: center;
   background: #f4eedf;
   border: 1px solid variables.$navy;
+  color: variables.$navy;
   border-radius: 999px;
-  padding: 16px 56px;
+  padding: 8px 24px;
   text-transform: uppercase;
   cursor: pointer;
   display: flex;
   justify-content: center;
-  color: variables.$navy;
-  font-size: 10px;
-  letter-spacing: 0;
   line-height: 1;
   min-height: 23px;
   transition:
     background-color 0.2s ease,
     color 0.2s ease;
   letter-spacing: 0.5px;
+  font-size: 14px;
 
   &:hover {
     background: variables.$navy;
@@ -35,12 +34,35 @@
     background: variables.$navy;
     border-color: variables.$navy;
     color: #ede8d5;
-    font-size: 15px;
 
     &:hover {
       background: variables.$navy;
       border-color: variables.$navy;
       color: #ede8d5;
+    }
+  }
+
+  &.purple {
+    background: variables.$purple;
+    border-color: variables.$purple;
+    color: variables.$navy;
+
+    &:hover {
+      background: variables.$purple;
+      border-color: variables.$purple;
+      color: variables.$navy;
+    }
+  }
+
+  &.cream {
+    background: #ede8d5;
+    border-color: #ede8d5;
+    color: variables.$navy;
+
+    &:hover {
+      background: #ede8d5;
+      border-color: #ede8d5;
+      color: variables.$navy;
     }
   }
 }
