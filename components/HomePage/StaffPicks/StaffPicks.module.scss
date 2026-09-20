@@ -1,0 +1,255 @@
+@use '@mixins' as mixins;
+@use '@variables' as variables;
+
+.section {
+  align-items: center;
+  background: variables.$cream;
+  display: flex;
+  flex-direction: column;
+  gap: 63px;
+  padding: 85px 56px;
+}
+
+.heading {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  text-align: center;
+}
+
+.eyebrow {
+  @include mixins.fontPrimary;
+  color: variables.$navy;
+  font-size: 40px;
+  line-height: normal;
+  margin: 0;
+}
+
+.title {
+  @include mixins.fontPrimary;
+  color: variables.$navy;
+  font-size: 74px;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 84px;
+  margin: 0;
+  max-width: 990px;
+}
+
+.cards {
+  display: flex;
+  gap: 21px;
+  justify-content: center;
+  width: 100%;
+}
+
+.card {
+  aspect-ratio: 434 / 708;
+  flex: 0 1 434px;
+  perspective: 1200px;
+}
+
+.cardInner {
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s ease;
+  width: 100%;
+}
+
+.flipped .cardInner {
+  transform: rotateY(180deg);
+}
+
+.face {
+  backface-visibility: hidden;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  inset: 0;
+  padding: 25px;
+  position: absolute;
+}
+
+.front {
+  background: variables.$navy;
+}
+
+.back {
+  background: variables.$purple;
+  justify-content: space-between;
+  transform: rotateY(180deg);
+}
+
+.imageWrapper {
+  aspect-ratio: 382 / 453;
+  background: #e1dfdf;
+  border-radius: 30px;
+  flex: none;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.image {
+  object-fit: cover;
+}
+
+.flipButton {
+  background: none;
+  border: 0;
+  cursor: pointer;
+  line-height: 0;
+  padding: 0;
+
+  img {
+    height: auto;
+    width: 44px;
+  }
+
+  .front & {
+    position: absolute;
+    right: 24px;
+    top: 24px;
+  }
+
+  .back & {
+    align-self: flex-start;
+  }
+}
+
+.info {
+  color: variables.$cream;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 4px;
+  padding-bottom: 44px;
+}
+
+.pickedBy {
+  @include mixins.fontSecondary;
+  font-size: 19px;
+  line-height: 26px;
+  margin: 0;
+}
+
+.nameAndPrice {
+  align-items: flex-start;
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+}
+
+.name,
+.price {
+  @include mixins.fontPrimary;
+  font-size: 31px;
+  line-height: 37px;
+  margin: 0;
+}
+
+.name {
+  max-width: 260px;
+}
+
+.price {
+  text-align: right;
+}
+
+.buyButton {
+  font-size: 16px;
+  bottom: 25px;
+  left: 25px;
+  padding: 10px 24px;
+  position: absolute;
+  width: calc(100% - 50px);
+}
+
+.details {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0;
+  padding-top: 8px;
+}
+
+.detail {
+  border-bottom: 1px solid variables.$navy;
+  color: variables.$navy;
+  display: flex;
+  flex-direction: column-reverse;
+  padding-bottom: 12px;
+
+  dt {
+    @include mixins.fontPrimary;
+    font-size: 20px;
+    text-align: right;
+  }
+
+  dd {
+    @include mixins.fontPrimary;
+    font-size: 31px;
+    line-height: 37px;
+    margin: 0;
+    text-align: right;
+  }
+
+  &:last-child {
+    border-bottom: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cardInner {
+    transition: none;
+  }
+}
+
+@media screen and (max-width: variables.$tablet) {
+  .section {
+    gap: 40px;
+    padding: 60px 20px;
+  }
+
+  .title {
+    font-size: 52px;
+    line-height: 58px;
+  }
+
+  .cards {
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .card {
+    flex: none;
+    max-width: 434px;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: variables.$mobile) {
+  .eyebrow {
+    font-size: 28px;
+  }
+
+  .title {
+    font-size: 36px;
+    line-height: 42px;
+  }
+
+  .name,
+  .price,
+  .detail dd {
+    font-size: 24px;
+    line-height: 29px;
+  }
+
+  .detail dt {
+    font-size: 16px;
+  }
+}

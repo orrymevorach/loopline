@@ -32,6 +32,7 @@ export default function RootLayout({ children }) {
     <html lang='en'>
       <body
         className={`${plusJakartaSans.variable} ${dmSerifDisplay.variable}`}
+        suppressHydrationWarning
       >
         <Providers>
           <Layout>{children}</Layout>

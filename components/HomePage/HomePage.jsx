@@ -3,6 +3,8 @@ import Carousel from './Carousel/Carousel';
 import HoursAndOperations from './HoursAndOperations/HoursAndOperations';
 import Subscribe from './Subscribe/Subscribe';
 import Company from './Company/Company';
+import NextEvent from './NextEvent/NextEvent';
+import StaffPicks from './StaffPicks/StaffPicks';
 
 export default function HomePage({ entries }) {
   const [] = entries;
@@ -12,6 +14,8 @@ export default function HomePage({ entries }) {
       <HoursAndOperations />
       <Subscribe />
       <Company />
+      <NextEvent />
+      <StaffPicks />
     </Wrapper>
   );
 }

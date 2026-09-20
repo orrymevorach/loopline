@@ -1,0 +1,133 @@
+@use '@mixins' as mixins;
+@use '@variables' as variables;
+
+.section {
+  align-items: center;
+  background: variables.$yellow;
+  display: flex;
+  gap: 105px;
+  justify-content: center;
+  padding: 85px 84px;
+}
+
+.content {
+  align-items: center;
+  display: flex;
+  flex: 0 1 595px;
+  flex-direction: column;
+  gap: 34px;
+  text-align: center;
+}
+
+.eyebrow {
+  @include mixins.fontPrimary;
+  color: variables.$navy;
+  font-size: 38px;
+  line-height: 46px;
+  margin: 0;
+}
+
+.title {
+  @include mixins.fontPrimary;
+  color: variables.$navy;
+  font-size: 84px;
+  letter-spacing: -0.01em;
+  line-height: 89px;
+  margin: 0;
+}
+
+.description {
+  @include mixins.fontSecondary;
+  align-items: center;
+  color: variables.$black;
+  display: flex;
+  flex-direction: column;
+  font-size: 17px;
+  gap: 16px;
+  line-height: 26px;
+  max-width: 455px;
+
+  p {
+    margin: 0;
+    @include mixins.fontSecondary;
+  }
+}
+
+.learnMore {
+  text-decoration: underline;
+  @include mixins.fontSecondary;
+}
+
+.buttons {
+  align-items: center;
+  display: flex;
+  gap: 16px;
+}
+
+.imageWrapper {
+  border-bottom: 1px solid variables.$navy;
+  border-radius: 32px;
+  border-top: 1px solid variables.$navy;
+  flex: 0 1 581px;
+  height: 670px;
+  overflow: hidden;
+  position: relative;
+}
+
+.image {
+  object-fit: cover;
+  object-position: 50% 20%;
+}
+
+@media screen and (max-width: variables.$tablet) {
+  .section {
+    flex-direction: column;
+    gap: 48px;
+    padding: 45px 20px;
+  }
+
+  .content {
+    flex: none;
+  }
+
+  .title {
+    font-size: 56px;
+    line-height: 60px;
+  }
+
+  .imageWrapper {
+    flex: none;
+    height: 480px;
+    max-width: 520px;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: variables.$mobile) {
+  .section {
+    padding: 32px 16px;
+  }
+
+  .eyebrow {
+    font-size: 28px;
+    line-height: 34px;
+  }
+
+  .title {
+    font-size: 42px;
+    line-height: 46px;
+  }
+
+  .description {
+    font-size: 16px;
+  }
+
+  .buttons {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .imageWrapper {
+    height: 360px;
+  }
+}

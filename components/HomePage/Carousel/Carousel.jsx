@@ -7,17 +7,41 @@ import Button from '@/components/shared/Button/Button';
 const slides = [
   {
     image: '/loopline-wine-hero.jpg',
-    title: "Toronto's neighbourhood\nbottle shop and wine bar.",
+    title: 'Toronto’s neighbourhood\nbottle shop and wine bar.',
+    actions: [
+      { label: 'Shop Wine', href: '/offerings', isPurple: true },
+      { label: 'Reserve a Table', href: '/contact', isCream: true },
+    ],
   },
   {
-    image:
-      'https://images.unsplash.com/photo-1553361371-9b22f78e8b1d?auto=format&fit=crop&w=2200&q=85',
-    title: 'Thoughtful bottles for\nlong lunches and late nights.',
+    image: '/carousel/wine-club.jpg',
+    size: '128.2% auto',
+    position: '75% 66%',
+    title: 'A global lineup of iconic\nand under-the-radar wines.',
+    actions: [
+      { label: 'Shop Wine', href: '/offerings', isPurple: true },
+      { label: 'Join the Wine Club', href: '/wine-club', isCream: true },
+    ],
   },
   {
-    image:
-      'https://images.unsplash.com/photo-1473973266408-ed4e27abdd47?auto=format&fit=crop&w=2200&q=85',
-    title: 'Good wine, good people,\nright around the corner.',
+    image: '/carousel/snacks.jpg',
+    size: '102.12% auto',
+    position: '0% 62%',
+    title: 'Great wine, great snacks,\ngood company.',
+    actions: [
+      { label: 'Reserve a Table', href: '/contact', isPurple: true },
+      { label: 'Food Menu', href: '/menu', isCream: true },
+    ],
+  },
+  {
+    image: '/carousel/apero-hour.jpg',
+    size: '102.12% auto',
+    position: '0% 84%',
+    title: 'Apero Hour with\nGrégoire Doulain',
+    actions: [
+      { label: 'Buy Tickets', href: '/events', isPurple: true },
+      { label: 'See All Events', href: '/events', isCream: true },
+    ],
   },
 ];
 
@@ -39,18 +63,21 @@ export default function Carousel() {
       <div
         key={slide.image}
         className={styles.slide}
-        style={{ backgroundImage: `url(${slide.image})` }}
+        style={{
+          backgroundImage: `url(${slide.image})`,
+          backgroundSize: slide.size,
+          backgroundPosition: slide.position,
+        }}
       >
         <div className={styles.scrim} />
         <div className={styles.content}>
           <h1>{slide.title}</h1>
           <div className={styles.actions}>
-            <Button href='/offerings' isPurple>
-              Shop Wine
-            </Button>
-            <Button href='/contact' isCream>
-              Reserve a Table
-            </Button>
+            {slide.actions.map(({ label, ...buttonProps }) => (
+              <Button key={label} {...buttonProps}>
+                {label}
+              </Button>
+            ))}
           </div>
         </div>
 
