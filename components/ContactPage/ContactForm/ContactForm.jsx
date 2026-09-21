@@ -8,21 +8,6 @@ import ThankYou from '@/components/shared/Form/ThankYou/ThankYou';
 import { useWindowSize } from '@/context/window-size-context/window-size-context';
 import Loader from '@/components/shared/Loader/Loader';
 
-const Heading = () => {
-  const { isMobile } = useWindowSize();
-
-  return (
-    <p className={styles.heading}>
-      We&rsquo;d love to learn more about your family and how we can support
-      you. {!isMobile && <br />}
-      Prefer to email directly?{' '}
-      <CopyToClipboard text='hello@loopline.com'>
-        <span className={styles.underline}>hello@loopline.com</span>
-      </CopyToClipboard>
-    </p>
-  );
-};
-
 const getFieldType = field => {
   if (field.appearance) {
     return field.appearance;
@@ -158,14 +143,8 @@ export default function ContactForm({ fields: config }) {
           <Form
             formConfig={formConfig}
             handleSubmit={handleSubmit}
-            heading='Get in Touch'
-            TextElement={Heading}
+            heading='Contact'
           />
-
-          <p className={styles.footerText}>
-            Every family’s path is different. <br />
-            We approach each one with care.
-          </p>
         </>
       ) : (
         <ThankYou />

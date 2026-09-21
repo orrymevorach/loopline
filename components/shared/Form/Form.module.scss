@@ -4,8 +4,10 @@
 .container {
   display: flex;
   flex-direction: column;
-  padding-bottom: 40px;
+  gap: 25px;
   margin: 0 auto;
+  max-width: 100%;
+  width: 580px;
 }
 
 .dropdown {
@@ -52,7 +54,6 @@ label.inputLabel {
 .formFieldContainer {
   position: relative;
   width: 100%;
-  margin-bottom: 30px;
 }
 
 .row {
@@ -107,18 +108,22 @@ label.inputLabel {
   }
 }
 
+button.submit {
+  font-size: 16.5px;
+  height: 37px;
+  padding: 0;
+  width: 100%;
+}
+
 @media screen and (max-width: variables.$mobile) {
-  .container {
-    margin-bottom: 0;
-    padding-bottom: 0;
+  button.submit {
+    font-size: 14px;
   }
+
   .dropdown {
     margin-top: -2px;
   }
   .row {
     display: block;
-  }
-  .submitButton {
-    width: 100%;
   }
 }

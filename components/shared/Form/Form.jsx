@@ -4,10 +4,16 @@ import styles from './Form.module.scss';
 import clsx from 'clsx';
 import Loader from '../Loader/Loader';
 
-const Heading = ({ heading, text, TextElement }) => {
+const Heading = ({
+  heading,
+  text,
+  TextElement,
+  headingContainerClassNames = '',
+  titleClassNames = '',
+}) => {
   return (
-    <div className={styles.textContainer}>
-      <h2 className={styles.title}>{heading}</h2>
+    <div className={clsx(styles.textContainer, headingContainerClassNames)}>
+      <h2 className={clsx(styles.title, titleClassNames)}>{heading}</h2>
       {text && <p className={styles.description}>{text}</p>}
       {TextElement && <TextElement classNames={styles.description} />}
     </div>
@@ -24,6 +30,9 @@ export default function SubmissionForm({
   inputContainerClassNames = '',
   loaderClassNames = {},
   buttonClassNames = '',
+  buttonText = 'Submit',
+  headingContainerClassNames = '',
+  titleClassNames = '',
   heading,
   text,
   TextElement = null,
@@ -36,14 +45,25 @@ export default function SubmissionForm({
   if (isLoading)
     return (
       <div className={styles.container}>
-        <Heading heading={heading} text={text} />
+        <Heading
+          heading={heading}
+          text={text}
+          headingContainerClassNames={headingContainerClassNames}
+          titleClassNames={titleClassNames}
+        />
         <Loader classNames={clsx(styles.loader, loaderClassNames)} isDotted />
       </div>
     );
 
   return (
     <>
-      <Heading heading={heading} text={text} TextElement={TextElement} />
+      <Heading
+        heading={heading}
+        text={text}
+        TextElement={TextElement}
+        headingContainerClassNames={headingContainerClassNames}
+        titleClassNames={titleClassNames}
+      />
       <form
         action='#'
         className={clsx(styles.container, formContainerClassNames)}
@@ -61,7 +81,9 @@ export default function SubmissionForm({
           );
         })}
 
-        <Button isNavy>Send Message</Button>
+        <Button isYellow classNames={clsx(styles.submit, buttonClassNames)}>
+          {buttonText}
+        </Button>
       </form>
     </>
   );

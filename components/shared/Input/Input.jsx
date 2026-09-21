@@ -3,6 +3,7 @@ import styles from './Input.module.scss';
 import clsx from 'clsx';
 import { useState } from 'react';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
+import { getPlaceholder } from '@/components/shared/Form/get-placeholder';
 
 export default function Input({
   label = '',
@@ -35,12 +36,11 @@ export default function Input({
   };
   return (
     <div className={styles.inputContainer}>
-      <label
-        htmlFor={id}
-        className={clsx(styles.label, labelClassNames, !label && styles.empty)}
-      >
-        {label || ''}
-      </label>
+      {label && (
+        <label htmlFor={id} className={clsx(styles.label, labelClassNames)}>
+          {label}
+        </label>
+      )}
       {error && <p className={styles.error}>{error}</p>}
       <input
         type={type}
@@ -49,7 +49,7 @@ export default function Input({
         onChange={handleChange}
         value={value}
         className={clsx(styles.input, classNames)}
-        placeholder={placeholder}
+        placeholder={getPlaceholder({ placeholder, label, required })}
         required={required}
         onBlur={handleBlur}
         onAnimationStart={handleAnimationStart}

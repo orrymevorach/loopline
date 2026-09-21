@@ -3,7 +3,7 @@
 .section {
   align-items: center;
   display: flex;
-  gap: 144px;
+  gap: var(--split-gap);
   justify-content: center;
   padding: 58px 87px;
 }

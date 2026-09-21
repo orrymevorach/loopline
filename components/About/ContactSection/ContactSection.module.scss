@@ -1,0 +1,33 @@
+@use '@variables' as variables;
+
+.section {
+  align-items: center;
+  background-color: variables.$yellow;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 100px 20px;
+}
+
+// The shared Form heading styles use single-class selectors, so these are
+// qualified with an element to win regardless of stylesheet order.
+div.heading {
+  margin: 0 0 40px;
+}
+
+h2.title {
+  font-size: 38px;
+  line-height: 46px;
+  margin: 0;
+}
+
+@media screen and (max-width: variables.$mobile) {
+  .section {
+    padding: 60px 20px;
+  }
+
+  h2.title {
+    font-size: 28px;
+    line-height: 34px;
+  }
+}

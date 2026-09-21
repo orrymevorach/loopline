@@ -6,33 +6,40 @@
   text-align: left;
 }
 
+// The field's placeholder acts as its visible label, so the <label> is kept
+// for screen readers only.
 .label {
-  @include mixins.paragraph;
-  display: block;
-  &.empty {
-    margin-top: 21px;
-  }
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
 }
 
 .input {
+  @include mixins.fontSecondary;
+  background-color: #fffcef;
+  border: 1px solid variables.$black;
+  border-radius: 30px;
+  color: variables.$black;
+  font-size: 18px;
+  height: 45px;
+  line-height: 25px;
+  padding: 0 15px;
   width: 100%;
-  @include mixins.fontPrimary;
-  padding: 8px 0;
-  background-color: transparent;
-  border: none;
-  border-bottom: 1px solid variables.$black;
-  border-radius: 0;
-  font-size: 16px;
-  color: variables.$navy;
 
   &::placeholder {
-    color: variables.$navy;
-    opacity: 0.5;
-    @include mixins.italic;
+    color: variables.$black;
+    opacity: 1;
   }
 
-  &:focus {
-    outline: none;
+  &:focus-visible {
+    outline: 2px solid variables.$navy;
+    outline-offset: 2px;
   }
 }
 
@@ -45,12 +52,7 @@
 
 .check {
   position: absolute;
-  right: 10px;
-  top: 20px;
-}
-
-@media screen and (max-width: variables.$mobile) {
-  .input {
-    padding: 0 0 5px;
-  }
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
 }

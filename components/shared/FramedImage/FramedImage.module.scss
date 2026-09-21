@@ -1,7 +1,7 @@
 .frame {
   aspect-ratio: var(--frame-aspect-ratio);
   border: 1px solid #000;
-  border-radius: 31px;
+  border-radius: var(--frame-radius);
   overflow: hidden;
   position: relative;
   width: 100%;

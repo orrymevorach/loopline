@@ -1,5 +1,6 @@
 import styles from './Textarea.module.scss';
 import clsx from 'clsx';
+import { getPlaceholder } from '@/components/shared/Form/get-placeholder';
 
 export default function Textarea({
   label = '',
@@ -24,7 +25,7 @@ export default function Textarea({
         name={id}
         value={value}
         onChange={handleChange}
-        placeholder={placeholder}
+        placeholder={getPlaceholder({ placeholder, label, required })}
         required={required}
         className={clsx(styles.textarea, classNames)}
       />

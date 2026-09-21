@@ -2,41 +2,34 @@
 @use '@variables' as variables;
 
 .content {
-  align-items: flex-start;
   display: flex;
-  flex: 0 1 423px;
+  flex: 0 1 586px;
   flex-direction: column;
-  gap: 34px;
+  gap: 35px;
 }
 
 .title {
   @include mixins.heading;
+  letter-spacing: -0.84px;
+  line-height: 89px;
 }
 
 .text {
-  @include mixins.paragraph;
-}
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
 
-.button {
-  gap: 10px;
-  min-width: 241px;
-}
-
-.arrow {
-  height: 9px;
-  transform: rotate(90deg);
-  width: 14px;
+  p {
+    @include mixins.paragraph;
+  }
 }
 
 .image {
-  flex: 0 1 746px;
+  flex: 0 1 615px;
 }
 
 @media screen and (max-width: variables.$tablet) {
-  .content {
-    flex-basis: auto;
-  }
-
+  .content,
   .image {
     flex-basis: auto;
   }

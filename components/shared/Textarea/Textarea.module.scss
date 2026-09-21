@@ -5,30 +5,41 @@
   position: relative;
 }
 
+// The field's placeholder acts as its visible label, so the <label> is kept
+// for screen readers only.
 .label {
-  @include mixins.paragraph;
-  display: block;
-  margin-bottom: 12px;
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
 }
 
 .textarea {
-  @include mixins.fontPrimary;
-  display: block;
-  width: 100%;
-  min-height: 139px;
+  @include mixins.fontSecondary;
+  background-color: #fffcef;
   border: 1px solid variables.$black;
-  background: transparent;
-  padding: 12px 14px;
-  font-size: 16px;
-  color: variables.$navy;
-  resize: vertical;
+  border-radius: 30px;
+  color: variables.$black;
+  display: block;
+  font-size: 18px;
+  height: 172px;
+  line-height: 25px;
+  padding: 15px;
+  resize: none;
+  width: 100%;
 
   &::placeholder {
-    color: variables.$navy;
-    opacity: 0.5;
+    color: variables.$black;
+    opacity: 1;
   }
 
-  &:focus {
-    outline: none;
+  &:focus-visible {
+    outline: 2px solid variables.$navy;
+    outline-offset: 2px;
   }
 }

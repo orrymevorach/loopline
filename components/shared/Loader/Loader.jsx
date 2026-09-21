@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import clsx from 'clsx';
 import Image from 'next/image';
-import logoIcon from 'public/logo-icon.png';
+import logoIcon from 'public/logo.png';
 
 export default function Loader({
   isDotted = false,
@@ -19,7 +19,7 @@ export default function Loader({
         className={clsx(
           styles['lds-ring'],
           classNames,
-          isFullPage && styles.isFullPage
+          isFullPage && styles.isFullPage,
         )}
       >
         <FontAwesomeIcon
@@ -37,7 +37,7 @@ export default function Loader({
         className={clsx(
           styles['lds-ring'],
           isFullPage && styles.isFullPage,
-          classNames
+          classNames,
         )}
       >
         <div></div>
@@ -52,10 +52,10 @@ export default function Loader({
         styles['lds-ring'],
         isFullPage && styles.isFullPage,
         classNames,
-        styles.pulse
+        styles.pulse,
       )}
     >
-      <Image src={logoIcon} alt="Loader" className={styles.icon} />
+      <Image src={logoIcon} alt='Loader' className={styles.icon} />
     </div>
   );
 }

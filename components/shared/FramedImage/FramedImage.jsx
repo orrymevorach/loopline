@@ -2,7 +2,7 @@ import Image from 'next/image';
 import clsx from 'clsx';
 import styles from './FramedImage.module.scss';
 
-// The source photos are portrait, so the image is scaled up and shifted
+// The source photo is scaled up and shifted
 // (imageHeight / imageTop / imageLeft / imageWidth) to match the crop in the
 // Figma frame.
 export default function FramedImage({
@@ -15,6 +15,7 @@ export default function FramedImage({
   imageLeft = '0%',
   imageWidth = '100%',
   aspectRatio,
+  borderRadius = '31px',
   priority = false,
   classNames,
 }) {
@@ -27,6 +28,7 @@ export default function FramedImage({
         '--frame-image-top': imageTop,
         '--frame-image-left': imageLeft,
         '--frame-image-width': imageWidth,
+        '--frame-radius': borderRadius,
       }}
     >
       <Image
