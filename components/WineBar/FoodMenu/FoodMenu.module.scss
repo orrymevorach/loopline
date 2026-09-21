@@ -146,7 +146,7 @@
 }
 
 .disclaimer {
-  @include mixins.italic;
+  @include mixins.paragraph;
   font-size: 14px;
 }
 

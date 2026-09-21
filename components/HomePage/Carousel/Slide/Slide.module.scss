@@ -57,12 +57,7 @@
   z-index: 1;
 
   h1 {
-    color: variables.$cream;
-    @include mixins.fontPrimary;
-    font-size: clamp(42px, 5.5vw, 76px);
-    font-weight: 400;
-    letter-spacing: -1px;
-    line-height: 0.94;
+    @include mixins.headingLarge;
     max-width: 65%;
     white-space: pre-line;
   }
@@ -132,7 +127,6 @@
     left: 16px;
 
     h1 {
-      font-size: clamp(38px, 11vw, 58px);
       max-width: 470px;
     }
   }
