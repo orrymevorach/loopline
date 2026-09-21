@@ -3,32 +3,16 @@ import clsx from 'clsx';
 import styles from './Hero.module.scss';
 
 // The source photos are portrait, so the image is scaled up and shifted
-// (imageHeight / imageTop) to match the crop in the Figma frame.
-export default function Hero({
-  src,
-  width,
-  height,
-  imageHeight,
-  imageTop,
-  aspectRatio,
-  priority = false,
-  classNames,
-  children,
-}) {
+// (imageHeight / imageTop) to match the crop in the Figma frame. If the
+// photo is already cropped to the frame, these can be omitted.
+export default function Hero({ image, priority, children }) {
   return (
-    <section
-      className={clsx(styles.hero, classNames)}
-      style={{
-        '--hero-aspect-ratio': aspectRatio,
-        '--hero-image-height': imageHeight,
-        '--hero-image-top': imageTop,
-      }}
-    >
+    <section className={clsx(styles.hero)}>
       <Image
-        src={src}
+        src={image.src}
         alt=''
-        width={width}
-        height={height}
+        width={image.width}
+        height={image.height}
         className={styles.image}
         priority={priority}
       />

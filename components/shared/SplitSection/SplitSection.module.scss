@@ -1,15 +1,24 @@
 @use '@variables' as variables;
 
 .section {
-  align-items: center;
   display: flex;
-  gap: var(--split-gap);
-  justify-content: center;
-  padding: 58px 87px;
+  padding: 58px 0;
+  width: 1280px;
+  margin: 0 auto;
+  gap: 70px;
 }
 
-.top {
-  align-items: flex-start;
+.frame {
+  border: 1px solid variables.$black;
+  border-radius: 31px;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.image {
+  height: auto;
+  width: 100%;
 }
 
 @media screen and (max-width: variables.$tablet) {

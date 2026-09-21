@@ -1,20 +1,32 @@
 import clsx from 'clsx';
 import styles from './SplitSection.module.scss';
+import Image from 'next/image';
 
 export default function SplitSection({
-  media,
-  isTopAligned = false,
-  gap = '144px',
   classNames,
   children,
+  imageWidth,
+  image,
+  priority,
+  justifyContent = 'space-between',
+  alignItems = 'flex-start',
 }) {
   return (
     <section
-      className={clsx(styles.section, isTopAligned && styles.top, classNames)}
-      style={{ '--split-gap': gap }}
+      className={clsx(styles.section, classNames)}
+      style={{ justifyContent, alignItems }}
     >
       {children}
-      {media}
+      <div style={{ width: imageWidth }} className={clsx(styles.frame)}>
+        <Image
+          src={image.src}
+          alt={image.alt}
+          width={image.width}
+          height={image.height}
+          className={styles.image}
+          priority={priority}
+        />
+      </div>
     </section>
   );
 }

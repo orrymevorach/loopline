@@ -5,7 +5,7 @@
   @include mixins.paragraph;
   i {
     font-size: 18px !important;
-    @include mixins.italic;
+    // @include mixins.italic;
   }
 }
 
@@ -51,12 +51,12 @@
   @include mixins.heading;
   i {
     line-height: normal;
-    @include mixins.italicHeading;
+    // @include mixins.italicHeading;
   }
 }
 
 .italic {
-  @include mixins.italic;
+  // @include mixins.italic;
 }
 
 @media screen and (max-width: variables.$mobile) {

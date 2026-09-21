@@ -1,27 +1,10 @@
-import FramedImage from '@/components/shared/FramedImage/FramedImage';
 import SplitSection from '@/components/shared/SplitSection/SplitSection';
+import image from 'public/about-hero.png';
 import styles from './AboutHero.module.scss';
 
 export default function AboutHero() {
   return (
-    <SplitSection
-      isTopAligned
-      gap='115px'
-      media={
-        <FramedImage
-          src='/about-hero.png'
-          width={3750}
-          height={2250}
-          imageHeight='134.23%'
-          imageTop='-26.19%'
-          imageLeft='-162.75%'
-          imageWidth='274.86%'
-          aspectRatio='615 / 755'
-          classNames={styles.image}
-          priority
-        />
-      }
-    >
+    <SplitSection imageWidth={615} image={image} priority>
       <div className={styles.content}>
         <h1 className={styles.title}>About</h1>
         <div className={styles.text}>
@@ -36,18 +19,18 @@ export default function AboutHero() {
             colleagues.
           </p>
           <p>
-            Like many wines, our namesake was born out of a salute to
-            community, place and time. Cornered on Loop Line Lane, the history
-            of the Church St. streetcar which ran east via Dupont, Avenue Road
-            and Bloor to Church, then south to loop via Front, Yonge and
-            Wellington, is commemorated. The Christie Loop continued until 1963
-            when the University subway opened.
+            Like many wines, our namesake was born out of a salute to community,
+            place and time. Cornered on Loop Line Lane, the history of the
+            Church St. streetcar which ran east via Dupont, Avenue Road and
+            Bloor to Church, then south to loop via Front, Yonge and Wellington,
+            is commemorated. The Christie Loop continued until 1963 when the
+            University subway opened.
           </p>
           <p>
             Its contemporary but cozy feel is created by the inherent warmth of
             floor to ceiling wine bottles housed in Bene Boxes. The space is
-            rounded out with a show-stopping bar and pieces from the
-            collections of artists Alex McLeod &amp; Graham Girard.
+            rounded out with a show-stopping bar and pieces from the collections
+            of artists Alex McLeod &amp; Graham Girard.
           </p>
         </div>
       </div>

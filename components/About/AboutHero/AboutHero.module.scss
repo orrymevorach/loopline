@@ -24,13 +24,8 @@
   }
 }
 
-.image {
-  flex: 0 1 615px;
-}
-
 @media screen and (max-width: variables.$tablet) {
-  .content,
-  .image {
+  .content {
     flex-basis: auto;
   }
 }

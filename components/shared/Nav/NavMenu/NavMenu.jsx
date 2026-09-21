@@ -12,7 +12,7 @@ const navItems = [
   { path: ROUTES.OFFERINGS, label: 'Bottle Shop', hasDropdown: true },
   { path: '/wine-bar', label: 'Wine Bar' },
   { path: '/events', label: 'Events' },
-  { path: '/wine-club', label: 'Wine Club' },
+  // { path: '/wine-club', label: 'Wine Club' },
   { path: ROUTES.ABOUT, label: 'About' },
   { path: ROUTES.CONTACT, label: 'Contact' },
 ];

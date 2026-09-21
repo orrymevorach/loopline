@@ -41,9 +41,7 @@ export default function MenuLinks() {
           );
         })}
       </ul>
-      {showFoodMenu && (
-        <FoodMenu handleClose={() => setShowFoodMenu(false)} />
-      )}
+      {showFoodMenu && <FoodMenu handleClose={() => setShowFoodMenu(false)} />}
     </>
   );
 }

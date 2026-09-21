@@ -1,25 +1,12 @@
 import Image from 'next/image';
 import Button from '@/components/shared/Button/Button';
-import FramedImage from '@/components/shared/FramedImage/FramedImage';
 import SplitSection from '@/components/shared/SplitSection/SplitSection';
 import styles from './EventsHero.module.scss';
+import image from 'public/events-hero.jpg';
 
 export default function EventsHero() {
   return (
-    <SplitSection
-      media={
-        <FramedImage
-          src='/events-hero.jpg'
-          width={2731}
-          height={4096}
-          imageHeight='212.2%'
-          imageTop='-63.31%'
-          aspectRatio='746 / 527'
-          classNames={styles.image}
-          priority
-        />
-      }
-    >
+    <SplitSection imageWidth={745} image={image} priority>
       <div className={styles.content}>
         <h1 className={styles.title}>Events</h1>
         <p className={styles.text}>

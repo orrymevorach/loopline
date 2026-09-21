@@ -2,7 +2,7 @@
 @use '@variables' as variables;
 
 .image {
-  flex: 0 0 716px;
+  width: 715px;
 }
 
 .content {
@@ -38,10 +38,6 @@
 @media screen and (max-width: variables.$tablet) {
   .content {
     width: 100%;
-  }
-
-  .image {
-    flex-basis: auto;
   }
 }
 

@@ -15,8 +15,6 @@ const slides = [
   },
   {
     image: '/carousel/wine-club.jpg',
-    size: '128.2% auto',
-    position: '75% 66%',
     title: 'A global lineup of iconic\nand under-the-radar wines.',
     actions: [
       { label: 'Shop Wine', href: '/offerings', isPurple: true },
@@ -25,8 +23,6 @@ const slides = [
   },
   {
     image: '/carousel/snacks.jpg',
-    size: '102.12% auto',
-    position: '0% 62%',
     title: 'Great wine, great snacks,\ngood company.',
     actions: [
       { label: 'Reserve a Table', href: '/contact', isPurple: true },
@@ -35,8 +31,6 @@ const slides = [
   },
   {
     image: '/carousel/apero-hour.jpg',
-    size: '102.12% auto',
-    position: '0% 84%',
     title: 'Apero Hour with\nGrégoire Doulain',
     actions: [
       { label: 'Buy Tickets', href: '/events', isPurple: true },

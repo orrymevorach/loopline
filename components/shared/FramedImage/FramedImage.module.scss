@@ -1,17 +1,14 @@
+@use '@variables' as variables;
+
 .frame {
-  aspect-ratio: var(--frame-aspect-ratio);
-  border: 1px solid #000;
-  border-radius: var(--frame-radius);
+  border: 1px solid variables.$black;
+  border-radius: 31px;
   overflow: hidden;
   position: relative;
   width: 100%;
 }
 
 .image {
-  height: var(--frame-image-height);
-  left: var(--frame-image-left);
-  max-width: none;
-  position: absolute;
-  top: var(--frame-image-top);
-  width: var(--frame-image-width);
+  height: auto;
+  width: 100%;
 }

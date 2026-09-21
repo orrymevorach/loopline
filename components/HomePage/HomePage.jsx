@@ -15,7 +15,7 @@ export default function HomePage({ entries }) {
     <>
       <Carousel />
       <HoursAndOperations />
-      <Subscribe />
+      {/* <Subscribe /> */}
       <Company />
       <NextEvent />
       <StaffPicks />
