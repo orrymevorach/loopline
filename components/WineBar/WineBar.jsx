@@ -2,13 +2,31 @@ import Link from 'next/link';
 import Wrapper from '../shared/Wrapper/Wrapper';
 import MenuLinks from './MenuLinks/MenuLinks';
 import Actions from './Actions/Actions';
-import HeroImage from './HeroImage/HeroImage';
+import FramedImage from '../shared/FramedImage/FramedImage';
+import SplitSection from '../shared/SplitSection/SplitSection';
 import styles from './WineBar.module.scss';
 
 export default function WineBar() {
   return (
     <Wrapper>
-      <section className={styles.section}>
+      <SplitSection
+        isTopAligned
+        media={
+          <FramedImage
+            src='/wine-bar-hero.jpg'
+            alt='Shelves of wine bottles at the Loopline wine bar'
+            width={2683}
+            height={4096}
+            imageHeight='181.67%'
+            imageTop='-74.89%'
+            imageLeft='-4.2%'
+            imageWidth='104.2%'
+            aspectRatio='716 / 618'
+            classNames={styles.image}
+            priority
+          />
+        }
+      >
         <div className={styles.content}>
           <h1 className={styles.title}>Wine Bar</h1>
           <div className={styles.textContainer}>
@@ -29,8 +47,7 @@ export default function WineBar() {
             at the bar
           </Link>
         </div>
-        <HeroImage />
-      </section>
+      </SplitSection>
     </Wrapper>
   );
 }

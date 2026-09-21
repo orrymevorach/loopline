@@ -1,0 +1,22 @@
+@use '@variables' as variables;
+
+.section {
+  align-items: center;
+  display: flex;
+  gap: 144px;
+  justify-content: center;
+  padding: 58px 87px;
+}
+
+.top {
+  align-items: flex-start;
+}
+
+@media screen and (max-width: variables.$tablet) {
+  .section {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 40px;
+    padding: 40px 20px;
+  }
+}

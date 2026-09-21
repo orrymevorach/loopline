@@ -1,6 +1,13 @@
 @use '@mixins' as mixins;
 @use '@variables' as variables;
 
+// Keeps label text and any passed-in icon (e.g. an arrow) on one line instead of wrapping.
+.text {
+  align-items: center;
+  display: inline-flex;
+  gap: 8px;
+}
+
 .button {
   @include mixins.fontSecondary;
   align-items: center;
@@ -61,8 +68,7 @@
     @include mixins.fontSecondaryMedium;
 
     &:hover {
-      background: variables.$black;
-      color: variables.$yellow;
+      background-color: transparent;
     }
   }
 

@@ -1,0 +1,36 @@
+@use '@mixins' as mixins;
+@use '@variables' as variables;
+
+.title {
+  @include mixins.heading;
+}
+
+.text {
+  @include mixins.paragraph;
+}
+
+.arrow {
+  height: 9px;
+  transform: rotate(90deg);
+  width: 14px;
+}
+
+@media screen and (max-width: variables.$tablet) {
+  .content {
+    flex-basis: auto;
+  }
+
+  .image {
+    flex-basis: auto;
+  }
+}
+
+@media screen and (max-width: variables.$mobile) {
+  .content {
+    gap: 20px;
+  }
+
+  .title {
+    line-height: 36px;
+  }
+}

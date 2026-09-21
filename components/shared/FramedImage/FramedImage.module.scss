@@ -1,0 +1,17 @@
+.frame {
+  aspect-ratio: var(--frame-aspect-ratio);
+  border: 1px solid #000;
+  border-radius: 31px;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.image {
+  height: var(--frame-image-height);
+  left: var(--frame-image-left);
+  max-width: none;
+  position: absolute;
+  top: var(--frame-image-top);
+  width: var(--frame-image-width);
+}
