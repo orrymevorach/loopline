@@ -72,3 +72,26 @@
     padding: 25px;
   }
 }
+
+// Let consumers trigger window.print() and have only the modal content show up.
+@media print {
+  .takeover {
+    position: static;
+    height: auto;
+    overflow: visible;
+    animation: none;
+  }
+
+  .modal {
+    box-shadow: none;
+    margin: 0;
+
+    &:before {
+      display: none;
+    }
+  }
+
+  .closeButton {
+    display: none;
+  }
+}

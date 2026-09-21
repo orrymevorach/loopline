@@ -3,7 +3,6 @@ import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import styles from './Button.module.scss';
 import Link from 'next/link';
 import clsx from 'clsx';
-import Underline from '../Underline/Underline';
 // import arrow from 'public/arrow.png';
 import Image from 'next/image';
 
@@ -26,6 +25,7 @@ export default function Button({
   isNavy = false,
   isPurple = false,
   isCream = false,
+  isYellow = false,
 }) {
   const classnames = clsx(
     styles.button,
@@ -33,6 +33,7 @@ export default function Button({
     isNavy && styles.navy,
     isPurple && styles.purple,
     isCream && styles.cream,
+    isYellow && styles.yellow,
   );
   const buttonProps = {
     isNavy,

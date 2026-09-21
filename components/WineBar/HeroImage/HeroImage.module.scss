@@ -1,0 +1,30 @@
+@use '@variables' as variables;
+
+.frame {
+  border: 1px solid #000;
+  border-radius: 31px;
+  flex-shrink: 0;
+  height: 618px;
+  overflow: hidden;
+  position: relative;
+  width: 716px;
+}
+
+// Crop matches the Figma frame: the source photo is portrait, so it is
+// scaled to 104% of the frame width and shifted up to show the shelves.
+.image {
+  height: 181.67%;
+  left: -4.2%;
+  max-width: none;
+  position: absolute;
+  top: -74.89%;
+  width: 104.2%;
+}
+
+@media screen and (max-width: variables.$tablet) {
+  .frame {
+    height: auto;
+    aspect-ratio: 716 / 618;
+    width: 100%;
+  }
+}

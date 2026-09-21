@@ -13,7 +13,17 @@
   height: 40px;
   border: none;
   margin-top: 10px;
+  background-color: transparent;
+  color: black;
+  font-size: 16px;
+  @include mixins.fontPrimary;
   @include mixins.pseudoBorderBottom;
+
+  &:focus {
+    outline: 2px solid #1976d2;
+    outline-offset: 2px;
+    border-radius: 1px;
+  }
 }
 .dropdownCheck {
   right: 30px !important;

@@ -54,6 +54,18 @@
     }
   }
 
+  &.yellow {
+    background: variables.$yellow;
+    border-color: variables.$black;
+    color: variables.$black;
+    @include mixins.fontSecondaryMedium;
+
+    &:hover {
+      background: variables.$black;
+      color: variables.$yellow;
+    }
+  }
+
   &.cream {
     background: #ede8d5;
     border-color: #ede8d5;

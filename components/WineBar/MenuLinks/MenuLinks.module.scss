@@ -1,0 +1,26 @@
+@use '@mixins' as mixins;
+@use '@variables' as variables;
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.link {
+  @include mixins.fontSecondary;
+  background: none;
+  border: none;
+  color: variables.$black;
+  cursor: pointer;
+  font-size: inherit;
+  padding: 0;
+  text-align: left;
+  text-decoration: underline;
+  text-underline-position: from-font;
+  margin-bottom: 5px;
+  display: block;
+}

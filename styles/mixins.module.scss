@@ -71,11 +71,11 @@
   color: $color;
 }
 
-@mixin heading($color: variables.$navy) {
+@mixin heading {
   @include fontPrimary;
-  color: $color;
-  font-size: 35px;
-  line-height: normal;
+  color: variables.$black;
+  font-size: 84px;
+  margin: 0;
 
   @media screen and (max-width: variables.$mobile) {
     font-size: 28px;

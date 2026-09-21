@@ -1,0 +1,64 @@
+@use '@mixins' as mixins;
+@use '@variables' as variables;
+
+.section {
+  align-items: flex-start;
+  display: flex;
+  gap: 144px;
+  justify-content: center;
+  padding: 58px 87px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  width: 340px;
+}
+
+.title {
+  @include mixins.heading;
+}
+
+.textContainer {
+  margin: 15px 0 25px;
+}
+
+.text {
+  color: variables.$black;
+  @include mixins.paragraph;
+  line-height: 1.5;
+}
+
+.eventsLink {
+  @include mixins.fontPrimary;
+  color: variables.$black;
+  font-size: 38px;
+  line-height: 46px;
+  text-decoration: underline;
+  text-underline-position: from-font;
+}
+
+@media screen and (max-width: variables.$tablet) {
+  .section {
+    flex-direction: column;
+    gap: 40px;
+    padding: 40px 0;
+  }
+
+  .content {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: variables.$mobile) {
+  .title {
+    font-size: 56px;
+    line-height: 60px;
+  }
+
+  .eventsLink {
+    font-size: 30px;
+    line-height: 36px;
+  }
+}
