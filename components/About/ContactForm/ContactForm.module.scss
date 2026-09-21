@@ -9,6 +9,10 @@
   padding: 100px 20px;
 }
 
+.light {
+  background-color: variables.$cream;
+}
+
 // The shared Form heading styles use single-class selectors, so these are
 // qualified with an element to win regardless of stylesheet order.
 div.heading {

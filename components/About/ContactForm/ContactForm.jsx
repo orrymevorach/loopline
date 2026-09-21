@@ -1,9 +1,10 @@
 'use client';
 import { useState } from 'react';
+import clsx from 'clsx';
 import Form from '@/components/shared/Form/Form';
 import ThankYou from '@/components/shared/Form/ThankYou/ThankYou';
 import { sendFormSubmission } from '@/lib/mailgun';
-import styles from './ContactSection.module.scss';
+import styles from './ContactForm.module.scss';
 
 const FIELDS = [
   { id: 'name', name: 'Name', type: 'text' },
@@ -12,7 +13,7 @@ const FIELDS = [
   { id: 'message', name: 'Message', type: 'textarea' },
 ];
 
-export default function ContactSection() {
+export default function ContactForm({ isLight = false }) {
   const [values, setValues] = useState(
     Object.fromEntries(FIELDS.map(field => [field.id, ''])),
   );
@@ -48,7 +49,7 @@ export default function ContactSection() {
   };
 
   return (
-    <section className={styles.section}>
+    <section className={clsx(styles.section, isLight && styles.light)}>
       {isSubmitted ? (
         <ThankYou />
       ) : (

@@ -1,12 +1,12 @@
 import AboutHero from './AboutHero/AboutHero';
-import ContactSection from './ContactSection/ContactSection';
+import ContactForm from './ContactForm/ContactForm';
 import AboutBanner from './AboutBanner/AboutBanner';
 
 export default function About() {
   return (
     <>
       <AboutHero />
-      <ContactSection />
+      <ContactForm />
       <AboutBanner />
     </>
   );
