@@ -1,0 +1,88 @@
+@use '@mixins' as mixins;
+@use '@variables' as variables;
+
+.section {
+  align-items: stretch;
+  background-color: #eb98a3;
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  padding: 59px 87px;
+}
+
+.card {
+  align-items: center;
+  background-color: variables.$cream;
+  border: 1px solid variables.$black;
+  border-radius: 31px;
+  display: flex;
+  flex: 0 1 604px;
+  flex-direction: column;
+  padding: 69px 60px;
+}
+
+.title {
+  @include mixins.fontPrimary;
+  color: variables.$black;
+  font-size: 37px;
+  letter-spacing: -0.37px;
+  line-height: 45px;
+  margin: 0 0 34px;
+  text-align: center;
+}
+
+.subtitle {
+  @include mixins.fontPrimary;
+  color: variables.$black;
+  font-size: 25px;
+  font-style: italic;
+  line-height: 35px;
+  margin: 0 0 34px;
+  text-align: center;
+}
+
+.body {
+  max-width: 448px;
+}
+
+.text {
+  @include mixins.paragraph;
+  line-height: 26px;
+  margin: 0 0 26px;
+  max-width: 469px;
+  text-align: center;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.body .text {
+  text-align: left;
+}
+
+.list {
+  @include mixins.paragraph;
+  font-size: 17px;
+  line-height: 26px;
+  margin: 0;
+  padding-left: 28px;
+  list-style: disc;
+}
+
+.button {
+  margin-top: 34px;
+  min-width: 225px;
+}
+
+@media screen and (max-width: variables.$tablet) {
+  .section {
+    flex-direction: column;
+    padding: 40px 20px;
+  }
+
+  .card {
+    flex-basis: auto;
+    padding: 50px 30px;
+  }
+}

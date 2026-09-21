@@ -1,0 +1,67 @@
+@use '@mixins' as mixins;
+@use '@variables' as variables;
+
+.section {
+  background-color: variables.$cream;
+  padding: 120px 60px;
+}
+
+.inner {
+  margin: 0 auto;
+  max-width: 750px;
+  position: relative;
+}
+
+.content {
+  line-height: 1.6;
+  margin: 0 auto;
+  max-width: 720px;
+  text-align: center;
+
+  p {
+    @include mixins.paragraph;
+    margin: 0 0 26px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.leftImage {
+  height: auto;
+  left: -25%;
+  position: absolute;
+  top: -40%;
+  width: 140px;
+}
+
+.rightImage {
+  bottom: -40%;
+  height: auto;
+  position: absolute;
+  right: -25%;
+  width: 110px;
+}
+
+@media screen and (max-width: variables.$tablet) {
+  .section {
+    padding: 90px 40px;
+  }
+
+  .leftImage,
+  .rightImage {
+    width: 90px;
+  }
+}
+
+@media screen and (max-width: variables.$mobile) {
+  .section {
+    padding: 70px 20px;
+  }
+
+  .leftImage,
+  .rightImage {
+    display: none;
+  }
+}
