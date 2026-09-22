@@ -3,12 +3,8 @@ import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import styles from './FunFacts.module.scss';
 
-const facts = [
-  'Loopline is named after a real streetcar loop—an ode to the Church Street streetcar route that once looped through the area, running until 1963.',
-  'Loopline has over 150 wines on debut—from sustainable, estate-grown bottles to trending classics from both iconic and under-the-radar vineyards.',
-];
-
-export default function FunFacts() {
+export default function FunFacts({ funFacts }) {
+  const facts = funFacts?.facts || [];
   const [index, setIndex] = useState(0);
   const [transitionPhase, setTransitionPhase] = useState('idle');
   const pendingIndex = useRef(null);
@@ -37,6 +33,8 @@ export default function FunFacts() {
     return () => window.clearTimeout(timeout);
   }, [transitionPhase]);
 
+  if (!facts.length) return null;
+
   return (
     <section className={styles.section}>
       <div className={styles.content}>
@@ -48,7 +46,7 @@ export default function FunFacts() {
           className={styles.illustration}
         />
         <div className={styles.text}>
-          <h2 className={styles.title}>Fun Facts</h2>
+          <h2 className={styles.title}>{funFacts.title}</h2>
           <div className={styles.factStage}>
             <p
               className={`${styles.fact} ${

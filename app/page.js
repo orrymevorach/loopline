@@ -6,6 +6,7 @@ import {
 import {
   formatCarouselSlides,
   formatHours,
+  formatFunFacts,
 } from '@/lib/contentful-format-utils';
 import { CONTENTFUL_PAGE_IDS } from '@/utils/constants';
 
@@ -16,14 +17,16 @@ export default async function Page() {
     fieldValue: CONTENTFUL_PAGE_IDS.HOME,
   });
 
-  const [carouselSlides, hoursOfOperations] = await getPageReferenceEntries({
-    page,
-  });
+  const [carouselSlides, hoursOfOperations, funFacts] =
+    await getPageReferenceEntries({
+      page,
+    });
 
   return (
     <HomePage
       carouselSlides={formatCarouselSlides(carouselSlides)}
       hoursOfOperations={formatHours(hoursOfOperations)}
+      funFacts={formatFunFacts(funFacts)}
     />
   );
 }

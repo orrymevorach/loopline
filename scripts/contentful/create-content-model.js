@@ -4,7 +4,7 @@ require('dotenv').config({ path: '.env.local' });
 const json = require('./content-model.json');
 const { request } = require('./setup');
 
-const CONTENT_MODEL_KEY = 'about';
+const CONTENT_MODEL_KEY = 'funFacts';
 const ENVIRONMENT_ID =
   process.env.NEXT_PUBLIC_CONTENTFUL_ENVIRONMENT || 'master';
 

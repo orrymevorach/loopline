@@ -7,7 +7,7 @@ import StaffPicks from './StaffPicks/StaffPicks';
 import FunFacts from './FunFacts/FunFacts';
 import Instagram from './Instagram/Instagram';
 
-export default function HomePage({ carouselSlides, hoursOfOperations }) {
+export default function HomePage({ carouselSlides, hoursOfOperations, funFacts }) {
   return (
     <>
       <Carousel slides={carouselSlides} />
@@ -16,7 +16,7 @@ export default function HomePage({ carouselSlides, hoursOfOperations }) {
       <Company />
       <NextEvent />
       <StaffPicks />
-      <FunFacts />
+      <FunFacts funFacts={funFacts} />
       <Instagram />
     </>
   );

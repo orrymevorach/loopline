@@ -305,6 +305,39 @@
     ]
   },
 
+  "funFacts": {
+    "id": "funFacts",
+    "name": "Fun Facts",
+    "description": "Rotating fun facts block.",
+    "displayField": "title",
+    "fields": [
+      {
+        "id": "title",
+        "name": "Title",
+        "type": "Symbol",
+        "required": true,
+        "localized": false,
+        "validations": [],
+        "disabled": false,
+        "omitted": false
+      },
+      {
+        "id": "facts",
+        "name": "Facts",
+        "type": "Array",
+        "required": false,
+        "localized": false,
+        "validations": [],
+        "disabled": false,
+        "omitted": false,
+        "items": {
+          "type": "Symbol",
+          "validations": []
+        }
+      }
+    ]
+  },
+
   "form": {
     "id": "form",
     "name": "Form",
