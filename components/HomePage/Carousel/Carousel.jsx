@@ -4,42 +4,7 @@ import styles from './Carousel.module.scss';
 import { useEffect, useRef, useState } from 'react';
 import Slide from './Slide/Slide';
 
-const slides = [
-  {
-    image: '/loopline-wine-hero.jpg',
-    title: 'Toronto’s neighbourhood\nbottle shop and wine bar.',
-    actions: [
-      { label: 'Shop Wine', href: '/offerings', isPurple: true },
-      { label: 'Reserve a Table', href: '/contact', isCream: true },
-    ],
-  },
-  {
-    image: '/carousel/wine-club.jpg',
-    title: 'A global lineup of iconic\nand under-the-radar wines.',
-    actions: [
-      { label: 'Shop Wine', href: '/offerings', isPurple: true },
-      { label: 'Join the Wine Club', href: '/wine-club', isCream: true },
-    ],
-  },
-  {
-    image: '/carousel/snacks.jpg',
-    title: 'Great wine, great snacks,\ngood company.',
-    actions: [
-      { label: 'Reserve a Table', href: '/contact', isPurple: true },
-      { label: 'Food Menu', href: '/menu', isCream: true },
-    ],
-  },
-  {
-    image: '/carousel/apero-hour.jpg',
-    title: 'Apero Hour with\nGrégoire Doulain',
-    actions: [
-      { label: 'Buy Tickets', href: '/events', isPurple: true },
-      { label: 'See All Events', href: '/events', isCream: true },
-    ],
-  },
-];
-
-export default function Carousel() {
+export default function Carousel({ slides = [] }) {
   const [activeSlide, setActiveSlide] = useState(0);
   const [transitionPhase, setTransitionPhase] = useState('idle');
   const [outgoingSlide, setOutgoingSlide] = useState(null);
@@ -60,12 +25,14 @@ export default function Carousel() {
   };
 
   useEffect(() => {
+    if (slides.length < 2) return undefined;
+
     const interval = window.setInterval(() => {
       changeSlide((activeSlideRef.current + 1) % slides.length);
     }, 6000);
 
     return () => window.clearInterval(interval);
-  }, []);
+  }, [slides.length]);
 
   useEffect(() => {
     if (transitionPhase === 'idle') return undefined;
@@ -80,6 +47,8 @@ export default function Carousel() {
   }, [transitionPhase]);
 
   const slide = slides[activeSlide];
+
+  if (!slide) return null;
 
   return (
     <section className={styles.carousel} aria-label='Loopline highlights'>

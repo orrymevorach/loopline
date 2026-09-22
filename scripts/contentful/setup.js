@@ -4,12 +4,12 @@ require('dotenv').config({ path: '.env.local' });
 const SPACE_ID = process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID;
 const ENVIRONMENT_ID =
   process.env.NEXT_PUBLIC_CONTENTFUL_ENVIRONMENT || 'master';
-const MANAGEMENT_TOKEN = process.env.NEXT_PUBLIC_CONTENTFUL_MANAGEMENT_TOKEN;
+const MANAGEMENT_TOKEN = process.env.CONTENTFUL_MANAGEMENT_TOKEN;
 
 if (!SPACE_ID || !MANAGEMENT_TOKEN) {
   console.error('Missing required environment variables.');
   console.error(
-    'Required: NEXT_PUBLIC_CONTENTFUL_SPACE_ID and NEXT_PUBLIC_CONTENTFUL_MANAGEMENT_TOKEN',
+    'Required: NEXT_PUBLIC_CONTENTFUL_SPACE_ID and CONTENTFUL_MANAGEMENT_TOKEN',
   );
   process.exit(1);
 }
@@ -43,4 +43,8 @@ async function request(path, options = {}) {
 
 module.exports = {
   request,
+  headers,
+  SPACE_ID,
+  ENVIRONMENT_ID,
+  MANAGEMENT_TOKEN,
 };

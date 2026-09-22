@@ -1,4 +1,3 @@
-import Wrapper from '../shared/Wrapper/Wrapper';
 import Carousel from './Carousel/Carousel';
 import HoursAndOperations from './HoursAndOperations/HoursAndOperations';
 import Subscribe from './Subscribe/Subscribe';
@@ -8,12 +7,10 @@ import StaffPicks from './StaffPicks/StaffPicks';
 import FunFacts from './FunFacts/FunFacts';
 import Instagram from './Instagram/Instagram';
 
-export default function HomePage({ entries }) {
-  const [] = entries;
-
+export default function HomePage({ carouselSlides }) {
   return (
     <>
-      <Carousel />
+      <Carousel slides={carouselSlides} />
       <HoursAndOperations />
       {/* <Subscribe /> */}
       <Company />

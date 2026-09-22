@@ -1,5 +1,5 @@
 {
-  "Page": {
+  "page": {
     "id": "page",
     "name": "Page",
     "description": "Generic page model with a title and modular content references.",
@@ -31,84 +31,27 @@
       }
     ]
   },
-  "areaOfSupport": {
-    "id": "areaOfSupport",
-    "name": "Area of Support",
-    "description": "Single area of support item.",
-    "displayField": "name",
+
+  "button": {
+    "id": "button",
+    "name": "Button",
+    "description": "A button with link text, a destination, and a colour.",
+    "displayField": "title",
     "fields": [
       {
-        "id": "name",
-        "name": "Name",
+        "id": "title",
+        "name": "Title",
         "type": "Symbol",
         "required": true,
         "localized": false,
         "validations": [],
         "disabled": false,
         "omitted": false
-      }
-    ]
-  },
-  "listAreasOfSupport": {
-    "id": "listAreasOfSupport",
-    "name": "List: Areas of Support",
-    "description": "Collection of Area of Support references.",
-    "fields": [
-      {
-        "id": "areasOfSupport",
-        "name": "Areas of Support",
-        "type": "Array",
-        "required": false,
-        "localized": false,
-        "disabled": false,
-        "omitted": false,
-        "items": {
-          "type": "Link",
-          "linkType": "Entry",
-          "validations": [
-            {
-              "linkContentType": ["areaOfSupport"]
-            }
-          ]
-        }
-      }
-    ]
-  },
-  "Testimonials": {
-    "id": "testimonials",
-    "name": "List: Testimonials",
-    "description": "Collection of Testimonial references.",
-    "fields": [
-      {
-        "id": "testimonials",
-        "name": "Testimonials",
-        "type": "Array",
-        "required": false,
-        "localized": false,
-        "disabled": false,
-        "omitted": false,
-        "items": {
-          "type": "Link",
-          "linkType": "Entry",
-          "validations": [
-            {
-              "linkContentType": ["testimonial"]
-            }
-          ]
-        }
-      }
-    ]
-  },
-  "Testimonial": {
-    "id": "testimonial",
-    "name": "Testimonial",
-    "description": "A single testimonial entry.",
-    "displayField": "name",
-    "fields": [
+      },
       {
         "id": "text",
         "name": "Text",
-        "type": "RichText",
+        "type": "Symbol",
         "required": false,
         "localized": false,
         "validations": [],
@@ -116,8 +59,18 @@
         "omitted": false
       },
       {
-        "id": "name",
-        "name": "Name",
+        "id": "href",
+        "name": "Href",
+        "type": "Symbol",
+        "required": false,
+        "localized": false,
+        "validations": [],
+        "disabled": false,
+        "omitted": false
+      },
+      {
+        "id": "colour",
+        "name": "Colour",
         "type": "Symbol",
         "required": false,
         "localized": false,
@@ -127,10 +80,11 @@
       }
     ]
   },
-  "service": {
-    "id": "service",
-    "name": "Service",
-    "description": "A single service entry.",
+
+  "carouselSlide": {
+    "id": "carouselSlide",
+    "name": "Carousel Slide",
+    "description": "A single slide in a carousel.",
     "displayField": "title",
     "fields": [
       {
@@ -144,27 +98,9 @@
         "omitted": false
       },
       {
-        "id": "description",
-        "name": "Description",
+        "id": "heading",
+        "name": "Heading",
         "type": "RichText",
-        "required": false,
-        "localized": false,
-        "validations": [],
-        "disabled": false,
-        "omitted": false
-      }
-    ]
-  },
-  "listServices": {
-    "id": "listServices",
-    "name": "List: Services",
-    "description": "Collection of service references for the services page.",
-    "displayField": "title",
-    "fields": [
-      {
-        "id": "title",
-        "name": "Title",
-        "type": "Symbol",
         "required": false,
         "localized": false,
         "validations": [],
@@ -172,22 +108,23 @@
         "omitted": false
       },
       {
-        "id": "appearance",
-        "name": "Appearance",
-        "type": "Symbol",
+        "id": "image",
+        "name": "Image",
+        "type": "Link",
+        "linkType": "Asset",
         "required": false,
         "localized": false,
         "validations": [
           {
-            "in": ["Services Page"]
+            "linkMimetypeGroup": ["image"]
           }
         ],
         "disabled": false,
         "omitted": false
       },
       {
-        "id": "services",
-        "name": "Services",
+        "id": "buttons",
+        "name": "Buttons",
         "type": "Array",
         "required": false,
         "localized": false,
@@ -198,13 +135,51 @@
           "linkType": "Entry",
           "validations": [
             {
-              "linkContentType": ["service"]
+              "linkContentType": ["button"]
             }
           ]
         }
       }
     ]
   },
+
+  "carousel": {
+    "id": "carousel",
+    "name": "Carousel",
+    "description": "A carousel composed of carousel slides.",
+    "displayField": "title",
+    "fields": [
+      {
+        "id": "title",
+        "name": "Title",
+        "type": "Symbol",
+        "required": true,
+        "localized": false,
+        "validations": [],
+        "disabled": false,
+        "omitted": false
+      },
+      {
+        "id": "slides",
+        "name": "Slides",
+        "type": "Array",
+        "required": false,
+        "localized": false,
+        "disabled": false,
+        "omitted": false,
+        "items": {
+          "type": "Link",
+          "linkType": "Entry",
+          "validations": [
+            {
+              "linkContentType": ["carouselSlide"]
+            }
+          ]
+        }
+      }
+    ]
+  },
+
   "form": {
     "id": "form",
     "name": "Form",

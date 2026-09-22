@@ -1,6 +1,7 @@
 import clsx from 'clsx';
 import styles from './Slide.module.scss';
 import Button from '@/components/shared/Button/Button';
+import RichText from '@/components/shared/RichText/RichText';
 
 const variantClassNames = {
   outgoing: 'slideOutgoing',
@@ -27,10 +28,14 @@ export default function Slide({
     >
       <div className={styles.scrim} />
       <div className={styles.content}>
-        <h1>{slideData.title}</h1>
+        {slideData.heading ? (
+          <RichText json={slideData.heading} />
+        ) : (
+          <h1>{slideData.title}</h1>
+        )}
         <div className={styles.actions}>
-          {slideData.actions.map(({ label, ...buttonProps }) => (
-            <Button key={label} {...buttonProps}>
+          {slideData.actions.map(({ id, label, ...buttonProps }) => (
+            <Button key={id} {...buttonProps}>
               {label}
             </Button>
           ))}
@@ -42,7 +47,7 @@ export default function Slide({
           {slides.map((item, index) => (
             <button
               className={index === activeSlide ? styles.activeDot : styles.dot}
-              key={item.image}
+              key={item.id}
               type='button'
               aria-label={`Show slide ${index + 1}`}
               aria-current={index === activeSlide ? 'true' : undefined}
