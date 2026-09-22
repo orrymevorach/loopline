@@ -7,3 +7,9 @@
   border-radius: 33px;
   overflow: hidden;
 }
+
+@media screen and (max-width: variables.$mobile) {
+  .children {
+    margin-top: 76px; // to show up below the navbar
+  }
+}

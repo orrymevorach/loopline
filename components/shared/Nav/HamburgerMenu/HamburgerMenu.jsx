@@ -1,38 +1,24 @@
-import React from 'react';
 import styles from './HamburgerMenu.module.scss';
 import clsx from 'clsx';
 
 export default function HamburgerMenu({
   isOpen = false,
-  setIsOpen,
-  hamburgerMenuColor = '#2f2f2f',
-  setSlideOut,
-  slideOut,
+  onClick,
+  color = '#2f2f2f',
+  controls,
 }) {
-  const backgroundColor = isOpen ? '#2f2f2f' : hamburgerMenuColor;
-  const handleClick = () => {
-    if (isOpen) {
-      setSlideOut(true);
-      setTimeout(() => {
-        setIsOpen(false);
-        setSlideOut(false);
-      }, 200);
-      return;
-    }
-    setIsOpen(true);
-  };
   return (
     <button
-      className={clsx(
-        styles.hamburgerMenu,
-        isOpen && !slideOut ? styles.open : ''
-      )}
-      onClick={handleClick}
+      type='button'
+      className={clsx(styles.hamburgerMenu, isOpen && styles.open)}
+      onClick={onClick}
+      aria-label={isOpen ? 'Close menu' : 'Open menu'}
+      aria-expanded={isOpen}
+      aria-controls={controls}
     >
-      <span style={{ backgroundColor }}></span>
-      <span style={{ backgroundColor }}></span>
-      <span style={{ backgroundColor }}></span>
-      {/* <span style={{ backgroundColor }}></span> */}
+      <span className={styles.barTop} style={{ backgroundColor: color }} />
+      <span className={styles.barMiddle} style={{ backgroundColor: color }} />
+      <span className={styles.barBottom} style={{ backgroundColor: color }} />
     </button>
   );
 }

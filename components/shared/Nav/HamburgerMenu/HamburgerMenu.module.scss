@@ -1,90 +1,36 @@
-@use '@variables' as variables;
-
 .hamburgerMenu {
-  z-index: 13;
-  width: 60px;
-  height: 10px;
-  -webkit-transform: rotate(0deg);
-  -moz-transform: rotate(0deg);
-  -o-transform: rotate(0deg);
-  transform: rotate(0deg);
-  -webkit-transition: 0.5s ease-in-out;
-  -moz-transition: 0.5s ease-in-out;
-  -o-transition: 0.5s ease-in-out;
-  transition: 0.5s ease-in-out;
-  cursor: pointer;
-  background-color: rgba(0, 0, 0, 0);
+  background-color: transparent;
   border: none;
-  &:active {
-    background-color: transparent;
-  }
-}
-
-.hamburgerMenu span {
-  display: block;
-  position: absolute;
-  height: 1px;
-  width: 70px;
-  border-radius: 9px;
-  opacity: 1;
-  left: 0;
-  -webkit-transform: rotate(0deg);
-  -moz-transform: rotate(0deg);
-  -o-transform: rotate(0deg);
-  transform: rotate(0deg);
-  -webkit-transition: 0.25s ease-in-out;
-  -moz-transition: 0.25s ease-in-out;
-  -o-transition: 0.25s ease-in-out;
-  transition: 0.25s ease-in-out;
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  height: 18px;
+  justify-content: space-between;
+  padding: 0;
+  width: 28px;
 }
 
-.hamburgerMenu.open span {
-  width: 40px;
-  left: 15px !important;
+.barTop,
+.barMiddle,
+.barBottom {
+  border-radius: 2px;
+  display: block;
+  height: 2px;
+  transition:
+    transform 0.25s ease,
+    opacity 0.25s ease;
+  width: 100%;
 }
 
-.hamburgerMenu span:nth-child(1) {
-  top: 0px;
+.open .barTop {
+  transform: translateY(8px) rotate(45deg);
 }
 
-.hamburgerMenu span:nth-child(2),
-.hamburgerMenu span:nth-child(3) {
-  top: 8px;
+.open .barMiddle {
+  opacity: 0;
 }
 
-.hamburgerMenu span:nth-child(4) {
-  top: 14px;
-}
-
-.hamburgerMenu.open span:nth-child(1) {
-  top: 21px;
-  width: 0%;
-  left: 50%;
-}
-
-.hamburgerMenu.open span:nth-child(2) {
-  -webkit-transform: rotate(45deg);
-  -moz-transform: rotate(45deg);
-  -o-transform: rotate(45deg);
-  transform: rotate(45deg);
-}
-
-.hamburgerMenu.open span:nth-child(3) {
-  -webkit-transform: rotate(-45deg);
-  -moz-transform: rotate(-45deg);
-  -o-transform: rotate(-45deg);
-  transform: rotate(-45deg);
-}
-
-.hamburgerMenu.open span:nth-child(4) {
-  top: 18px;
-  width: 0%;
-  left: 50%;
-}
-
-@media (max-width: variables.$mobile) {
-  .hamburgerMenu.open {
-    margin-top: -5px;
-  }
+.open .barBottom {
+  transform: translateY(-8px) rotate(-45deg);
 }
