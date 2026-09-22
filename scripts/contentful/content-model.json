@@ -250,6 +250,61 @@
     ]
   },
 
+  "about": {
+    "id": "about",
+    "name": "About",
+    "description": "About page content block.",
+    "displayField": "title",
+    "controls": [
+      {
+        "fieldId": "title",
+        "widgetNamespace": "builtin",
+        "widgetId": "radio"
+      }
+    ],
+    "fields": [
+      {
+        "id": "title",
+        "name": "Title",
+        "type": "Symbol",
+        "required": true,
+        "localized": false,
+        "validations": [
+          {
+            "in": ["About Page Content"]
+          }
+        ],
+        "disabled": false,
+        "omitted": false
+      },
+      {
+        "id": "description",
+        "name": "Description",
+        "type": "RichText",
+        "required": false,
+        "localized": false,
+        "validations": [],
+        "disabled": false,
+        "omitted": false
+      },
+      {
+        "id": "image",
+        "name": "Image",
+        "type": "Link",
+        "linkType": "Asset",
+        "required": false,
+        "localized": false,
+        "validations": [
+          {
+            "linkMimetypeGroup": ["image"]
+          }
+        ],
+        "disabled": false,
+        "omitted": false
+      }
+    ]
+  },
+
   "form": {
     "id": "form",
     "name": "Form",

@@ -4,10 +4,10 @@ import image from 'public/about-banner.jpg';
 import Image from 'next/image';
 import styles from './About.module.scss';
 
-export default function About() {
+export default function About({ about }) {
   return (
     <>
-      <AboutHero />
+      <AboutHero description={about?.description} image={about?.image} />
       <ContactForm />
       <div className={styles.imageContainer}>
         <Image

@@ -4,7 +4,7 @@ require('dotenv').config({ path: '.env.local' });
 const json = require('./content-model.json');
 const { request } = require('./setup');
 
-const CONTENT_MODEL_KEY = 'hoursOfOperation';
+const CONTENT_MODEL_KEY = 'about';
 const ENVIRONMENT_ID =
   process.env.NEXT_PUBLIC_CONTENTFUL_ENVIRONMENT || 'master';
 
@@ -25,6 +25,9 @@ if (!contentModel.id || typeof contentModel.id !== 'string') {
 
 const CONTENT_TYPE_ID = contentModel.id;
 
+// `controls` is editor-interface config, not part of the content type payload.
+const { id: _id, controls, ...contentTypePayload } = contentModel;
+
 async function getExistingContentType() {
   try {
     return await request(`/content_types/${CONTENT_TYPE_ID}`);
@@ -36,17 +39,9 @@ async function getExistingContentType() {
 }
 
 async function createContentType() {
-  const { id, ...payload } = contentModel;
-
-  if (!id) {
-    throw new Error(
-      `Missing required "id" field for model key "${CONTENT_MODEL_KEY}" in content-model.json`,
-    );
-  }
-
   return request(`/content_types/${CONTENT_TYPE_ID}`, {
     method: 'PUT',
-    body: JSON.stringify(payload),
+    body: JSON.stringify(contentTypePayload),
     headers: {
       'X-Contentful-Content-Type': CONTENT_TYPE_ID,
     },
@@ -54,20 +49,25 @@ async function createContentType() {
 }
 
 async function updateContentType(existingContentType) {
-  const { id, ...payload } = contentModel;
-
-  if (!id) {
-    throw new Error(
-      `Missing required "id" field for model key "${CONTENT_MODEL_KEY}" in content-model.json`,
-    );
-  }
-
   return request(`/content_types/${CONTENT_TYPE_ID}`, {
     method: 'PUT',
-    body: JSON.stringify(payload),
+    body: JSON.stringify(contentTypePayload),
     headers: {
       'X-Contentful-Version': String(existingContentType.sys.version),
       'X-Contentful-Content-Type': CONTENT_TYPE_ID,
+    },
+  });
+}
+
+async function updateEditorInterface() {
+  const editorInterfacePath = `/content_types/${CONTENT_TYPE_ID}/editor_interface`;
+  const existing = await request(editorInterfacePath);
+
+  return request(editorInterfacePath, {
+    method: 'PUT',
+    body: JSON.stringify({ controls }),
+    headers: {
+      'X-Contentful-Version': String(existing.sys.version),
     },
   });
 }
@@ -100,6 +100,11 @@ async function run() {
 
   console.log('Publishing content type...');
   await publishContentType(updatedOrCreated);
+
+  if (controls?.length) {
+    console.log('Applying editor interface controls...');
+    await updateEditorInterface();
+  }
 
   console.log(
     `Success: content model "${contentModel.name || CONTENT_MODEL_KEY}" created and published.`,
