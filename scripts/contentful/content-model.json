@@ -180,6 +180,76 @@
     ]
   },
 
+  "hours": {
+    "id": "hours",
+    "name": "Hours",
+    "description": "A titled group of detail lines, e.g. an address or opening hours.",
+    "displayField": "title",
+    "fields": [
+      {
+        "id": "title",
+        "name": "Title",
+        "type": "Symbol",
+        "required": true,
+        "localized": false,
+        "validations": [],
+        "disabled": false,
+        "omitted": false
+      },
+      {
+        "id": "details",
+        "name": "Details",
+        "type": "Array",
+        "required": false,
+        "localized": false,
+        "validations": [],
+        "disabled": false,
+        "omitted": false,
+        "items": {
+          "type": "Symbol",
+          "validations": []
+        }
+      }
+    ]
+  },
+
+  "hoursOfOperation": {
+    "id": "hoursOfOperation",
+    "name": "Hours Of Operation",
+    "description": "Collection of Hours entries.",
+    "displayField": "title",
+    "fields": [
+      {
+        "id": "title",
+        "name": "Title",
+        "type": "Symbol",
+        "required": true,
+        "localized": false,
+        "validations": [],
+        "disabled": false,
+        "omitted": false
+      },
+      {
+        "id": "data",
+        "name": "Data",
+        "type": "Array",
+        "required": false,
+        "localized": false,
+        "disabled": false,
+        "omitted": false,
+        "items": {
+          "type": "Link",
+          "linkType": "Entry",
+          "validations": [
+            {
+              "linkContentType": ["hours"]
+            }
+          ]
+        }
+      }
+    ]
+  },
+
   "form": {
     "id": "form",
     "name": "Form",

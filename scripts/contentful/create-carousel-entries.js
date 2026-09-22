@@ -5,6 +5,15 @@ const fs = require('fs');
 const path = require('path');
 
 const { request, SPACE_ID, MANAGEMENT_TOKEN } = require('./setup');
+const {
+  slugify,
+  entryLink,
+  sleep,
+  getDefaultLocale,
+  getExisting,
+  publish,
+  upsertEntry,
+} = require('./entry-utils');
 
 const CAROUSEL_ID = 'home-carousel';
 const CAROUSEL_TITLE = 'Home Carousel';
@@ -54,15 +63,6 @@ const MIME_TYPES = {
   '.svg': 'image/svg+xml',
 };
 
-const slugify = value =>
-  value
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-+|-+$/g, '')
-    .slice(0, 60);
-
 const colourFor = action => {
   if (action.isPurple) return 'Purple';
   if (action.isCream) return 'Cream';
@@ -81,34 +81,6 @@ const headingDocument = text => ({
     },
   ],
 });
-
-const sleep = ms =>
-  new Promise(resolve => {
-    setTimeout(resolve, ms);
-  });
-
-async function getDefaultLocale() {
-  const { items } = await request('/locales');
-  const defaultLocale = items.find(locale => locale.default);
-  if (!defaultLocale) throw new Error('No default locale found in space.');
-  return defaultLocale.code;
-}
-
-async function getExisting(resourcePath) {
-  try {
-    return await request(resourcePath);
-  } catch (error) {
-    if (String(error.message).includes('404')) return null;
-    throw error;
-  }
-}
-
-async function publish(resourcePath, version) {
-  return request(`${resourcePath}/published`, {
-    method: 'PUT',
-    headers: { 'X-Contentful-Version': String(version) },
-  });
-}
 
 async function uploadFile(absolutePath) {
   const response = await fetch(
@@ -194,27 +166,6 @@ async function ensureAsset(publicPath, locale) {
   console.log(`  Asset "${assetId}" created and published.`);
   return assetId;
 }
-
-async function upsertEntry(entryId, contentTypeId, fields) {
-  const entryPath = `/entries/${entryId}`;
-  const existing = await getExisting(entryPath);
-
-  const entry = await request(entryPath, {
-    method: 'PUT',
-    body: JSON.stringify({ fields }),
-    headers: {
-      'X-Contentful-Content-Type': contentTypeId,
-      ...(existing
-        ? { 'X-Contentful-Version': String(existing.sys.version) }
-        : {}),
-    },
-  });
-
-  await publish(entryPath, entry.sys.version);
-  return entryId;
-}
-
-const entryLink = id => ({ sys: { type: 'Link', linkType: 'Entry', id } });
 
 async function run() {
   const locale = await getDefaultLocale();
