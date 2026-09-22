@@ -3,7 +3,8 @@
 .section {
   display: flex;
   padding: 58px 0;
-  width: 1280px;
+  width: 100%;
+  max-width: 1280px;
   margin: 0 auto;
   gap: 70px;
 }
@@ -13,7 +14,8 @@
   border-radius: 31px;
   overflow: hidden;
   position: relative;
-  width: 100%;
+  width: var(--image-width, 100%);
+  max-width: 100%;
 }
 
 .image {
@@ -27,5 +29,9 @@
     flex-direction: column;
     gap: 40px;
     padding: 40px 20px;
+  }
+
+  .frame {
+    width: 100%;
   }
 }

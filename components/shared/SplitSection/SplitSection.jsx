@@ -17,7 +17,10 @@ export default function SplitSection({
       style={{ justifyContent, alignItems }}
     >
       {children}
-      <div style={{ width: imageWidth }} className={clsx(styles.frame)}>
+      <div
+        style={{ '--image-width': `${imageWidth}px` }}
+        className={clsx(styles.frame)}
+      >
         <Image
           src={image.src}
           alt={image.alt}

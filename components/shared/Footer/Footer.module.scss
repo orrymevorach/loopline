@@ -47,6 +47,18 @@
   }
 }
 
+@media screen and (max-width: variables.$tablet) {
+  .footerGrid {
+    gap: 32px 20px;
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .mark {
+    grid-column: 1 / -1;
+    margin-left: 0;
+  }
+}
+
 @media screen and (max-width: variables.$mobile) {
   .footer {
     padding: 45px 0 30px;
@@ -55,9 +67,5 @@
   .footerGrid {
     gap: 28px 18px;
     grid-template-columns: repeat(2, 1fr);
-  }
-
-  .mark {
-    grid-column: 1 / -1;
   }
 }

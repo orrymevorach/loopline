@@ -48,6 +48,12 @@
     grid-template-columns: 1fr;
     padding: 28px 34px;
   }
+
+  // Single column: share one left edge instead of centring each block on its own width.
+  .operation {
+    justify-self: stretch;
+    width: auto;
+  }
 }
 
 @media screen and (max-width: variables.$mobile) {
