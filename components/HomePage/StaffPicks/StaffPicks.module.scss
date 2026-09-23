@@ -44,7 +44,7 @@
 }
 
 .card {
-  aspect-ratio: 434 / 708;
+  aspect-ratio: 434 / 740;
   flex: 0 1 434px;
   perspective: 1200px;
 }
@@ -125,7 +125,12 @@
   flex: 1;
   flex-direction: column;
   gap: 4px;
-  padding-bottom: 44px;
+}
+
+.front .buyButton {
+  margin-top: auto;
+  position: static;
+  width: 100%;
 }
 
 .pickedBy {

@@ -83,10 +83,10 @@ function PickCard({ name, price, pickedBy, image, details }) {
               <h3 className={styles.name}>{name}</h3>
               <p className={styles.price}>{price}</p>
             </div>
+            <Button href='/wine' isCream classNames={styles.buyButton}>
+              Buy Now
+            </Button>
           </div>
-          <Button href='/wine' isCream classNames={styles.buyButton}>
-            Buy Now
-          </Button>
         </div>
 
         <div className={clsx(styles.face, styles.back)}>

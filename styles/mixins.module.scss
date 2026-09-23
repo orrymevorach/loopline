@@ -1,12 +1,12 @@
 @use '@variables' as variables;
 
 @mixin fontPrimary {
-  font-family: var(--font-dm-serif-display), serif;
+  font-family: 'Feature Deck', serif;
   font-weight: 400;
 }
 
 @mixin fontPrimaryLight {
-  font-family: var(--font-dm-serif-display), serif;
+  font-family: 'Feature Deck', serif;
   font-weight: 300;
 }
 
