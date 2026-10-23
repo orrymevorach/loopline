@@ -18,13 +18,14 @@
   display: flex;
   flex: 0 1 604px;
   flex-direction: column;
-  padding: 69px 60px;
+  min-width: 0;
+  padding: 69px 30px;
 }
 
 .title {
   @include mixins.fontPrimary;
   color: variables.$black;
-  font-size: 37px;
+  font-size: 35px;
   letter-spacing: -0.37px;
   line-height: 45px;
   margin: 0 0 34px;
@@ -70,9 +71,15 @@
   list-style: disc;
 }
 
+.action {
+  margin-top: auto;
+  max-width: 100%;
+  padding-top: 34px;
+}
+
 .button {
-  margin-top: 34px;
-  min-width: 225px;
+  max-width: 100%;
+  min-width: 0;
 }
 
 @media screen and (max-width: variables.$tablet) {

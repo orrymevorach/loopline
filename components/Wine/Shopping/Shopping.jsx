@@ -37,9 +37,32 @@ export default function Shopping() {
             <li>Wines meant for the table</li>
           </ul>
         </div>
-        <Button href='#' isYellow classNames={styles.button}>
-          Shop now
-        </Button>
+        <div className={styles.action}>
+          <Button href='#' isYellow classNames={styles.button}>
+            Shop now
+          </Button>
+        </div>
+      </div>
+      <div className={styles.card}>
+        <h2 className={styles.title}>Shop with Uber Eats</h2>
+        <p className={styles.subtitle}>Great taste. Delivered.</p>
+        <p className={styles.text}>
+          If you’re shopping with Uber Eats, expect good wine without the extra
+          stop. A last-minute dinner, an impromptu gathering, or a night you’d
+          rather stay in? We’ve got a bottle for that. Browse a curated
+          selection of our favourites and have something worth opening delivered
+          to your door.
+        </p>
+        <div className={styles.action}>
+          <Button
+            href='https://www.ubereats.com/ca/store/loopline-%7C-bottle-shop-%26-wine-bar/NPAuFxhLVQCRu2rYT3kNng?diningMode=DELIVERY'
+            isAnchor
+            isYellow
+            classNames={styles.button}
+          >
+            Shop with Uber Eats
+          </Button>
+        </div>
       </div>
     </section>
   );
