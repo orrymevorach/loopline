@@ -44,3 +44,4 @@ node_modules/
 # Next.js
 .next/
 out/
+.github/copilot-instructions.md
