@@ -8,6 +8,7 @@ import {
   formatHours,
   formatFunFacts,
 } from '@/lib/contentful-format-utils';
+import { getStaffPicks } from '@/lib/staff-pick-server-utils';
 import { CONTENTFUL_PAGE_IDS } from '@/utils/constants';
 
 export default async function Page() {
@@ -22,11 +23,20 @@ export default async function Page() {
       page,
     });
 
+  const aboutPage = await getEntryByField({
+    contentTypeId: 'page',
+    fieldName: 'title',
+    fieldValue: CONTENTFUL_PAGE_IDS.ABOUT,
+  });
+  const aboutSections = await getPageReferenceEntries({ page: aboutPage });
+  const { staffPicks } = await getStaffPicks(aboutSections);
+
   return (
     <HomePage
       carouselSlides={formatCarouselSlides(carouselSlides)}
       hoursOfOperations={formatHours(hoursOfOperations)}
       funFacts={formatFunFacts(funFacts)}
+      staffPicks={staffPicks}
     />
   );
 }

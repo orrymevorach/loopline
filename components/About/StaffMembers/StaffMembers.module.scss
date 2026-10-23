@@ -8,34 +8,80 @@
 
 .title {
   @include mixins.heading;
-  color: variables.$navy;
+  letter-spacing: -0.84px;
   margin: 0 0 44px;
   text-align: center;
 }
 
 .list {
   display: grid;
-  gap: 48px 32px;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 48px;
   margin: 0 auto;
   max-width: 1120px;
 }
 
 .member {
-  color: variables.$navy;
+  color: variables.$black;
+  display: grid;
+  gap: 32px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  min-width: 0;
+  scroll-margin-top: 160px;
+}
+
+.staffTile,
+.wineTile {
+  border: 1px solid variables.$black;
+  border-radius: 31px;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  padding: 28px;
+}
+
+.wineTile {
+  background-color: variables.$purple;
+}
+
+.wineImage {
+  aspect-ratio: 1;
+  margin: 20px 0;
+  object-fit: contain;
+  width: 100%;
+}
+
+.wineName {
+  @include mixins.fontPrimary;
+  font-size: 30px;
+  line-height: 36px;
+  margin: 0 0 12px;
+}
+
+.price {
+  @include mixins.fontSecondary;
+  font-size: 20px;
+  margin: 0 0 16px;
 }
 
 .image {
+  aspect-ratio: 1;
+  border: 1px solid variables.$black;
+  border-radius: 31px;
   display: block;
-  height: auto;
   margin-bottom: 20px;
   object-fit: cover;
   width: 100%;
 }
 
+.placeholder {
+  background-color: variables.$purple;
+  object-fit: contain;
+  padding: 40px;
+}
+
 .name {
-  @include mixins.fontSecondaryBold;
-  font-size: 24px;
+  @include mixins.fontPrimary;
+  font-size: 36px;
+  line-height: 42px;
   margin: 0 0 12px;
 }
 
@@ -49,7 +95,11 @@
   }
 
   .list {
-    gap: 36px 24px;
+    gap: 36px;
+  }
+
+  .member {
+    gap: 24px;
   }
 }
 
@@ -58,7 +108,22 @@
     padding: 44px 20px;
   }
 
-  .list {
+  .member {
     grid-template-columns: 1fr;
+    scroll-margin-top: 90px;
+  }
+
+  .staffTile,
+  .wineTile {
+    padding: 20px;
+  }
+
+  .title {
+    line-height: 36px;
+  }
+
+  .name {
+    font-size: 28px;
+    line-height: 34px;
   }
 }

@@ -3,11 +3,9 @@ import {
   getEntryByField,
   getPageReferenceEntries,
 } from '@/lib/contentful-server-utils';
-import {
-  formatAbout,
-  formatStaffMembers,
-} from '@/lib/contentful-format-utils';
+import { formatAbout } from '@/lib/contentful-format-utils';
 import { CONTENTFUL_PAGE_IDS } from '@/utils/constants';
+import { getStaffPicks } from '@/lib/staff-pick-server-utils';
 
 export default async function Page() {
   const page = await getEntryByField({
@@ -23,12 +21,17 @@ export default async function Page() {
       !Array.isArray(section) &&
       ('description' in section || 'image' in section),
   );
-  const staffMembers = pageSections.find(Array.isArray) || [];
+  const { staffMembers, staffPicks } = await getStaffPicks(pageSections);
+  const picksByMemberId = new Map(staffPicks.map(pick => [pick.id, pick]));
+  const staffMembersWithPicks = staffMembers.map(member => ({
+    ...member,
+    wine: picksByMemberId.get(member.id) || null,
+  }));
 
   return (
     <About
       about={formatAbout(about)}
-      staffMembers={formatStaffMembers(staffMembers)}
+      staffMembers={staffMembersWithPicks}
     />
   );
 }

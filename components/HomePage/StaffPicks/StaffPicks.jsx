@@ -1,87 +1,71 @@
 'use client';
 import { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import clsx from 'clsx';
 import Button from '@/components/shared/Button/Button';
 import styles from './StaffPicks.module.scss';
 
-const picks = [
-  {
-    name: 'Vincent Dancer ‘Les Perrieres’ Pommard',
-    price: '$185',
-    pickedBy: 'Wyatt’s Pick',
-    image: '/staff-picks/bottle-1.png',
-    details: {
-      Winery: 'Vincent Dancer',
-      Grapes: 'Pinot Noir',
-      Region: 'France / Burgundy / Pommard',
-      'Wine Style': 'Burgundy Rouge',
-      'Alcohol Content': '13%',
-    },
-  },
-  {
-    name: 'Chateau Moulin Pey Labrie',
-    price: '$97',
-    pickedBy: 'Diana’s Pick',
-    image: '/staff-picks/bottle-2.png',
-    details: {
-      Winery: 'Chateau Moulin Pey Labrie',
-      Grapes: 'Merlot',
-      Region: 'France / Bordeaux / Fronsac',
-      'Wine Style': 'Bordeaux Rouge',
-      'Alcohol Content': '14%',
-    },
-  },
-  {
-    name: 'San Pietro Barolo Riserva DOCG',
-    price: '$149',
-    pickedBy: 'Alexa’s Pick',
-    image: '/staff-picks/bottle-3.png',
-    details: {
-      Winery: 'Viberti Giovanni',
-      Grapes: 'Nebbiolo',
-      Region: 'Italy / Northern Italy / Piemonte / Barolo',
-      'Wine Style': 'Italian Barolo',
-      'Alcohol Content': '14%',
-    },
-  },
-];
-
-function PickCard({ name, price, pickedBy, image, details }) {
+function PickCard({ name, price, pickedBy, staffHref, image, details }) {
   const [isFlipped, setIsFlipped] = useState(false);
+  const hasDetails = Object.keys(details).length > 0;
 
   return (
     <div className={clsx(styles.card, isFlipped && styles.flipped)}>
       <div className={styles.cardInner}>
         <div className={clsx(styles.face, styles.front)}>
           <div className={styles.imageWrapper}>
-            <Image
-              src={image}
-              alt={name}
-              fill
-              sizes='(max-width: 850px) 90vw, 383px'
-              className={styles.image}
-            />
-            <button
-              type='button'
-              className={styles.flipButton}
-              onClick={() => setIsFlipped(true)}
-              aria-label={`See details for ${name}`}
+            <Link
+              href={staffHref}
+              className={styles.imageLink}
+              aria-label={`${name}, picked by ${pickedBy}`}
               tabIndex={isFlipped ? -1 : 0}
             >
-              <Image
-                src='/staff-picks/flip.svg'
-                alt=''
-                width={44}
-                height={32}
-              />
+              {image && (
+                <Image
+                  src={image}
+                  alt={name}
+                  fill
+                  unoptimized
+                  sizes='(max-width: 850px) 90vw, 383px'
+                  className={styles.image}
+                />
+              )}
+            </Link>
+            <button
+                type='button'
+                className={styles.flipButton}
+                onClick={() => setIsFlipped(true)}
+                aria-label={`See details for ${name}`}
+                tabIndex={isFlipped ? -1 : 0}
+              >
+                <Image
+                  src='/staff-picks/flip.svg'
+                  alt=''
+                  width={44}
+                  height={32}
+                />
             </button>
           </div>
           <div className={styles.info}>
-            <p className={styles.pickedBy}>{pickedBy}</p>
+            <Link
+              href={staffHref}
+              className={styles.pickedBy}
+              tabIndex={isFlipped ? -1 : 0}
+            >
+              {pickedBy}
+            </Link>
             <div className={styles.nameAndPrice}>
-              <h3 className={styles.name}>{name}</h3>
-              <p className={styles.price}>{price}</p>
+              <h3 className={styles.name}>
+                <Link
+                  href={staffHref}
+                  className={styles.nameLink}
+                  tabIndex={isFlipped ? -1 : 0}
+                >
+                  {name}
+                </Link>
+              </h3>
+              {price && <p className={styles.price}>{price}</p>}
             </div>
             <Button href='/wine' isCream classNames={styles.buyButton}>
               Buy Now
@@ -100,6 +84,12 @@ function PickCard({ name, price, pickedBy, image, details }) {
             <Image src='/staff-picks/flip.svg' alt='' width={44} height={32} />
           </button>
           <dl className={styles.details}>
+            {!hasDetails && (
+              <div className={styles.detail}>
+                <dt>{name}</dt>
+                <dd>Tasting details are not available yet.</dd>
+              </div>
+            )}
             {Object.entries(details).map(([label, value]) => (
               <div key={label} className={styles.detail}>
                 <dt>{label}</dt>
@@ -116,7 +106,9 @@ function PickCard({ name, price, pickedBy, image, details }) {
   );
 }
 
-export default function StaffPicks() {
+export default function StaffPicks({ picks = [] }) {
+  if (!picks.length) return null;
+
   return (
     <section className={styles.section}>
       <div className={styles.heading}>
@@ -129,7 +121,7 @@ export default function StaffPicks() {
       </div>
       <div className={styles.cards}>
         {picks.map(pick => (
-          <PickCard key={pick.name} {...pick} />
+          <PickCard key={pick.id} {...pick} />
         ))}
       </div>
     </section>

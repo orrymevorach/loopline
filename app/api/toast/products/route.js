@@ -1,19 +1,9 @@
 import { NextResponse } from 'next/server';
-import { getMenuItems } from 'lib/toast-server-utils';
-
-// menuGroups can nest arbitrarily, so collect menuItems recursively.
-function getItemsFromGroup(group) {
-  const nestedItems = group.menuGroups?.flatMap(getItemsFromGroup) ?? [];
-  return [...(group.menuItems ?? []), ...nestedItems];
-}
+import { getProducts } from '@/lib/toast-server-utils';
 
 export async function GET() {
   try {
-    const { menus } = await getMenuItems();
-
-    const items = menus.flatMap(menu =>
-      menu.menuGroups.flatMap(getItemsFromGroup),
-    );
+    const items = await getProducts();
 
     return NextResponse.json({ items });
   } catch (error) {
