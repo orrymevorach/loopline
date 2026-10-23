@@ -1,0 +1,64 @@
+@use '@mixins' as mixins;
+@use '@variables' as variables;
+
+.section {
+  background-color: variables.$cream;
+  padding: 80px 56px;
+}
+
+.title {
+  @include mixins.heading;
+  color: variables.$navy;
+  margin: 0 0 44px;
+  text-align: center;
+}
+
+.list {
+  display: grid;
+  gap: 48px 32px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 0 auto;
+  max-width: 1120px;
+}
+
+.member {
+  color: variables.$navy;
+}
+
+.image {
+  display: block;
+  height: auto;
+  margin-bottom: 20px;
+  object-fit: cover;
+  width: 100%;
+}
+
+.name {
+  @include mixins.fontSecondaryBold;
+  font-size: 24px;
+  margin: 0 0 12px;
+}
+
+.description {
+  @include mixins.paragraph;
+}
+
+@media screen and (max-width: variables.$tablet) {
+  .section {
+    padding: 60px 32px;
+  }
+
+  .list {
+    gap: 36px 24px;
+  }
+}
+
+@media screen and (max-width: variables.$mobile) {
+  .section {
+    padding: 44px 20px;
+  }
+
+  .list {
+    grid-template-columns: 1fr;
+  }
+}

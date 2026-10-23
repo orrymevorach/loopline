@@ -3,7 +3,10 @@ import {
   getEntryByField,
   getPageReferenceEntries,
 } from '@/lib/contentful-server-utils';
-import { formatAbout } from '@/lib/contentful-format-utils';
+import {
+  formatAbout,
+  formatStaffMembers,
+} from '@/lib/contentful-format-utils';
 import { CONTENTFUL_PAGE_IDS } from '@/utils/constants';
 
 export default async function Page() {
@@ -13,7 +16,19 @@ export default async function Page() {
     fieldValue: CONTENTFUL_PAGE_IDS.ABOUT,
   });
 
-  const [about] = await getPageReferenceEntries({ page });
+  const pageSections = await getPageReferenceEntries({ page });
+  const about = pageSections.find(
+    section =>
+      section &&
+      !Array.isArray(section) &&
+      ('description' in section || 'image' in section),
+  );
+  const staffMembers = pageSections.find(Array.isArray) || [];
 
-  return <About about={formatAbout(about)} />;
+  return (
+    <About
+      about={formatAbout(about)}
+      staffMembers={formatStaffMembers(staffMembers)}
+    />
+  );
 }
