@@ -6,7 +6,7 @@ import SplitSection from '../shared/SplitSection/SplitSection';
 import styles from './WineBar.module.scss';
 import image from 'public/wine-bar-hero.jpg';
 
-export default function WineBar() {
+export default function WineBar({ menus }) {
   return (
     <Wrapper>
       <SplitSection image={image} priority imageWidth={715}>
@@ -23,7 +23,7 @@ export default function WineBar() {
             </p>
           </div>
 
-          <MenuLinks />
+          <MenuLinks menus={menus} />
           <Actions />
           <Link href='/events' className={styles.eventsLink}>
             See our events <br />

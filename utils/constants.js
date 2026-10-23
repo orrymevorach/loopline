@@ -14,6 +14,7 @@ export const ROUTES = {
 export const CONTENTFUL_PAGE_IDS = {
   HOME: 'Home Page',
   ABOUT: 'About Page',
+  WINE_BAR: 'Wine Bar Page',
   OFFERINGS: 'Offerings Page',
   CONTACT: 'Contact Page',
 };

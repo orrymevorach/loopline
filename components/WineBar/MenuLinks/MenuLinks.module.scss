@@ -24,3 +24,11 @@
   margin-bottom: 5px;
   display: block;
 }
+
+.label {
+  @include mixins.fontSecondary;
+  color: variables.$black;
+  display: block;
+  font-size: inherit;
+  margin-bottom: 5px;
+}
