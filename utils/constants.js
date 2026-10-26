@@ -17,4 +17,5 @@ export const CONTENTFUL_PAGE_IDS = {
   WINE_BAR: 'Wine Bar Page',
   OFFERINGS: 'Offerings Page',
   CONTACT: 'Contact Page',
+  EVENTS: 'Our Events Page',
 };
