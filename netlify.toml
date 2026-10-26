@@ -2,7 +2,7 @@
   NODE_VERSION = "22"
 
 [functions."sync-toast-events"]
-  schedule = "25 20,21 * * *"
+  schedule = "32 20,21 * * *"
 
 [functions."import-toast-events-background"]
   node_bundler = "esbuild"
