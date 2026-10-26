@@ -4,7 +4,8 @@ require('dotenv').config({ path: '.env.local' });
 const json = require('./content-model.json');
 const { request } = require('./setup');
 
-const CONTENT_MODEL_KEY = 'funFacts';
+// Pass a model key, e.g. node scripts/contentful/create-content-model.js event.
+const CONTENT_MODEL_KEY = process.argv[2] || 'event';
 const ENVIRONMENT_ID =
   process.env.NEXT_PUBLIC_CONTENTFUL_ENVIRONMENT || 'master';
 

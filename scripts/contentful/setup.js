@@ -22,23 +22,52 @@ const headers = {
 };
 
 async function request(path, options = {}) {
-  const response = await fetch(`${cmaBase}${path}`, {
-    ...options,
-    headers: {
-      ...headers,
-      ...(options.headers || {}),
-    },
-  });
+  const method = options.method || 'GET';
 
-  if (!response.ok) {
-    const text = await response.text();
-    throw new Error(
-      `Request failed ${response.status} ${response.statusText}: ${text}`,
-    );
+  for (let attempt = 0; attempt < 5; attempt += 1) {
+    const response = await fetch(`${cmaBase}${path}`, {
+      ...options,
+      signal: options.signal || AbortSignal.timeout(25000),
+      headers: {
+        ...headers,
+        ...(options.headers || {}),
+      },
+    });
+
+    // Retry throttled requests and failed reads, but never replay ambiguous writes.
+    const shouldRetry =
+      attempt < 4 &&
+      (response.status === 429 ||
+        (method === 'GET' && response.status >= 500));
+    if (shouldRetry) {
+      const resetSeconds = Number(
+        response.headers.get('X-Contentful-RateLimit-Reset'),
+      );
+      const delaySeconds =
+        Number.isFinite(resetSeconds) && resetSeconds > 0
+          ? resetSeconds
+          : 2 ** attempt;
+      const delayMilliseconds = Math.min(30, delaySeconds) * 1000;
+      await response.text();
+      console.warn(
+        `Retrying Contentful ${method} ${path.split('?')[0]} after HTTP ${response.status} in ${delayMilliseconds}ms (retry ${attempt + 1}/4).`,
+      );
+      await new Promise(resolve => setTimeout(resolve, delayMilliseconds));
+      continue;
+    }
+
+    if (!response.ok) {
+      const text = await response.text();
+      const error = new Error(
+        `Request failed ${response.status} ${response.statusText}: ${text}`,
+      );
+      error.status = response.status;
+      throw error;
+    }
+
+    if (response.status === 204) return null;
+    return response.json();
   }
-
-  if (response.status === 204) return null;
-  return response.json();
 }
 
 module.exports = {

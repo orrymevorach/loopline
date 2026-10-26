@@ -305,6 +305,97 @@
     ]
   },
 
+  "event": {
+    "id": "event",
+    "name": "Event",
+    "description": "An event with a name, description, date, and image.",
+    "displayField": "eventName",
+    "fields": [
+      {
+        "id": "eventName",
+        "name": "Event Name",
+        "type": "Symbol",
+        "required": true,
+        "localized": false,
+        "validations": [],
+        "disabled": false,
+        "omitted": false
+      },
+      {
+        "id": "description",
+        "name": "Description",
+        "type": "RichText",
+        "required": false,
+        "localized": false,
+        "validations": [],
+        "disabled": false,
+        "omitted": false
+      },
+      {
+        "id": "date",
+        "name": "Date",
+        "type": "Symbol",
+        "required": false,
+        "localized": false,
+        "validations": [],
+        "disabled": false,
+        "omitted": false
+      },
+      {
+        "id": "image",
+        "name": "Image",
+        "type": "Link",
+        "linkType": "Asset",
+        "required": false,
+        "localized": false,
+        "validations": [
+          {
+            "linkMimetypeGroup": ["image"]
+          }
+        ],
+        "disabled": false,
+        "omitted": false
+      }
+    ]
+  },
+
+  "galleryEvents": {
+    "id": "galleryEvents",
+    "name": "Gallery: Events",
+    "description": "A titled gallery of Event entries.",
+    "displayField": "title",
+    "fields": [
+      {
+        "id": "title",
+        "name": "Title",
+        "type": "Symbol",
+        "required": true,
+        "localized": false,
+        "validations": [],
+        "disabled": false,
+        "omitted": false
+      },
+      {
+        "id": "events",
+        "name": "Events",
+        "type": "Array",
+        "required": false,
+        "localized": false,
+        "disabled": false,
+        "omitted": false,
+        "items": {
+          "type": "Link",
+          "linkType": "Entry",
+          "validations": [
+            {
+              "linkContentType": ["event"]
+            }
+          ]
+        }
+      }
+    ]
+  },
+
   "funFacts": {
     "id": "funFacts",
     "name": "Fun Facts",
