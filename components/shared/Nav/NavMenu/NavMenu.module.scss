@@ -1,5 +1,4 @@
 @use '@variables' as variables;
-@use '@mixins' as mixins;
 
 .navMenu {
   animation: slideIn linear 0.3s forwards;
@@ -29,6 +28,8 @@ div.wrapper {
   height: 100%;
   justify-content: space-between;
   min-width: 0;
+  // Anchor the full-width shop dropdown to the navigation, not the content wrapper.
+  position: static;
   width: 100%;
 }
 
@@ -78,93 +79,12 @@ div.wrapper {
   flex: 1;
 }
 
-.link {
-  @include mixins.fontSecondary;
-  color: variables.$black;
-  align-items: center;
-  display: flex;
-  font-size: 17px;
-  gap: 8px;
-  white-space: nowrap;
-  transition: opacity 0.2s ease;
-
-  &:hover {
-    opacity: 0.6;
-  }
-}
-
-.chevron {
-  height: auto;
-  width: 15px;
-}
-
-.chevronOpen {
-  transform: rotate(180deg);
-}
-
-.dropdown {
-  background: variables.$purple;
-  left: 0;
-  padding: 0 0 48px;
-  position: absolute;
-  right: 0;
-  top: 100%;
-}
-
-.dropdownInner {
-  align-items: flex-start;
-  display: flex;
-  gap: 60px;
-  margin: 0 auto;
-  max-width: 1440px;
-  padding: 0 73px;
-}
-
-.column {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
-.columnTitle {
-  @include mixins.fontSecondary;
-  color: variables.$navy;
-  font-size: 18px;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  margin: 0;
-  text-transform: uppercase;
-}
-
-.columnLinks {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
-.dropdownLink {
-  @include mixins.fontSecondary;
-  color: variables.$navy;
-  font-size: 18px;
-  white-space: nowrap;
-  transition: opacity 0.2s ease;
-
-  &:hover {
-    opacity: 0.6;
-  }
-}
-
 .reserve {
   font-size: 15px;
   font-weight: 500;
   letter-spacing: 0.45px;
   min-height: 31px;
   padding: 0 24px;
-}
-
-.activeLink {
-  text-decoration: underline;
-  text-underline-offset: 4px;
 }
 
 .actions {
@@ -209,48 +129,6 @@ div.wrapper {
   display: flex;
   flex-direction: column;
   gap: 4px;
-}
-
-.mobileItem {
-  border-bottom: 1px solid rgba(21, 35, 53, 0.15);
-  display: flex;
-  flex-direction: column;
-}
-
-.mobileRow {
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
-}
-
-.mobileLink {
-  @include mixins.fontSecondary;
-  color: variables.$black;
-  display: block;
-  flex: 1;
-  font-size: 20px;
-  padding: 14px 0;
-}
-
-.mobileToggle {
-  align-items: center;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  padding: 14px 8px;
-}
-
-.mobileShop {
-  display: grid;
-  gap: 24px;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  padding: 4px 0 24px;
-
-  .dropdownLink {
-    white-space: normal;
-  }
 }
 
 .mobileReserve {
@@ -322,10 +200,6 @@ div.border {
     gap: 15px;
   }
 
-  .link {
-    font-size: 16px;
-  }
-
   .actions {
     gap: 10px;
   }
@@ -336,10 +210,6 @@ div.border {
 }
 
 @media screen and (max-width: variables.$mobile) {
-  .dropdown {
-    display: none;
-  }
-
   .listItems {
     display: none;
   }
@@ -359,16 +229,6 @@ div.border {
 
   .actions {
     margin-left: auto;
-  }
-}
-
-@media screen and (max-width: 450px) {
-  .mobileLink {
-    font-size: 18px;
-  }
-
-  .mobileShop {
-    grid-template-columns: 1fr;
   }
 }
 

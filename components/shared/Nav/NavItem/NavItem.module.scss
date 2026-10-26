@@ -1,0 +1,91 @@
+@use '@variables' as variables;
+@use '@mixins' as mixins;
+
+.item {
+  position: relative;
+}
+
+.link {
+  @include mixins.fontSecondary;
+  color: variables.$black;
+  align-items: center;
+  display: flex;
+  font-size: 17px;
+  gap: 8px;
+  white-space: nowrap;
+  transition: opacity 0.2s ease;
+
+  &:hover {
+    opacity: 0.6;
+  }
+}
+
+.toggle {
+  background: none;
+  border: 0;
+  cursor: pointer;
+  padding: 0;
+}
+
+.chevron {
+  height: auto;
+  width: 15px;
+}
+
+.chevronOpen {
+  transform: rotate(180deg);
+}
+
+.activeLink {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.mobileItem {
+  border-bottom: 1px solid rgba(21, 35, 53, 0.15);
+  display: flex;
+  flex-direction: column;
+}
+
+.mobileRow {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.mobileLink {
+  display: block;
+  flex: 1;
+  font-size: 20px;
+  padding: 14px 0;
+}
+
+.mobileDropdownToggle {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  text-align: left;
+  width: 100%;
+}
+
+.mobileToggle {
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  padding: 14px 8px;
+}
+
+@media screen and (max-width: variables.$tablet) {
+  .link:not(.mobileLink) {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .mobileLink {
+    font-size: 18px;
+  }
+}

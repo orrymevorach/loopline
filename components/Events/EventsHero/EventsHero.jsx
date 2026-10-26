@@ -4,24 +4,25 @@ import SplitSection from '@/components/shared/SplitSection/SplitSection';
 import styles from './EventsHero.module.scss';
 import image from 'public/events-hero.jpg';
 
-export default function EventsHero() {
+export default function EventsHero({
+  title = 'Events',
+  description = 'At Loopline, our events are an extension of the table. From educational tastings and winemaker takeovers to themed dinners, thoughtful collaborations, and community nights, each gathering is designed to bring people together over something worth sharing.',
+  actionHref = 'https://toast.app/r/loopline-bottle-shop-wine-bar-643-dupont-street/experiences',
+  actionLabel = 'See current events',
+  actionTarget = '_blank',
+}) {
   return (
     <SplitSection imageWidth={745} image={image} priority>
       <div className={styles.content}>
-        <h1 className={styles.title}>Events</h1>
-        <p className={styles.text}>
-          At Loopline, our events are an extension of the table. From
-          educational tastings and winemaker takeovers to themed dinners,
-          thoughtful collaborations, and community nights, each gathering is
-          designed to bring people together over something worth sharing.
-        </p>
+        <h1 className={styles.title}>{title}</h1>
+        <p className={styles.text}>{description}</p>
         <Button
-          href='https://toast.app/r/loopline-bottle-shop-wine-bar-643-dupont-street/experiences'
-          target='_blank'
+          href={actionHref}
+          target={actionTarget}
           isYellow
           classNames={styles.button}
         >
-          See current events
+          {actionLabel}
           <Image
             src='/arrow-right.svg'
             alt=''

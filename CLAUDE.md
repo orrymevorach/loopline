@@ -33,6 +33,10 @@ npm run lint      # eslint (eslint-config-next is installed)
 
 When creating a new component, always scaffold it as a folder with a colocated `.module.scss` file, matching the existing pattern — don't drop a loose component file directly in `components/`.
 
+## React Component Conventions
+
+- Extract reusable JSX into PascalCase React components and render them with JSX, such as `<Links />`. Do not use `render*` helper functions, such as `renderLinks()`, inside components to produce JSX. Define extracted components outside their parent component in their own component files.
+
 ## Styling Conventions
 
 - **SCSS Modules** are the standard, one per component, colocated in that component's folder (`ComponentName.module.scss`) — this is the convention for all components, not just some.

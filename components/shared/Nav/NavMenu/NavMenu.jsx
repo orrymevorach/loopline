@@ -2,23 +2,20 @@ import styles from './NavMenu.module.scss';
 import clsx from 'clsx';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { ROUTES } from '@/utils/constants';
-import Wrapper from '../../Wrapper/Wrapper';
+import Wrapper from '@/components/shared/Wrapper/Wrapper';
 import Button from '@/components/shared/Button/Button';
 import HamburgerMenu from '@/components/shared/Nav/HamburgerMenu/HamburgerMenu';
+import NavItem from '@/components/shared/Nav/NavItem/NavItem';
 import useStopScroll from '@/hooks/useStopScroll';
 
 const MOBILE_MENU_ID = 'mobile-nav-menu';
 
-const navItems = [
-  { path: ROUTES.OFFERINGS, label: 'Bottle Shop', hasDropdown: true },
-  { path: '/wine-bar', label: 'Wine Bar' },
-  { path: '/events', label: 'Events' },
-  // { path: '/wine-club', label: 'Wine Club' },
-  { path: ROUTES.ABOUT, label: 'About' },
-  { path: ROUTES.CONTACT, label: 'Contact' },
+const eventLinks = [
+  { path: '/private-events', label: 'Private Events' },
+  { path: '/events', label: 'Our Events' },
 ];
 
 const shopLinks = labels =>
@@ -66,24 +63,49 @@ const shopColumns = [
   },
 ];
 
+const navItems = [
+  {
+    path: ROUTES.OFFERINGS,
+    label: 'Bottle Shop',
+    dropdown: { columns: shopColumns },
+  },
+  { path: '/wine-bar', label: 'Wine Bar' },
+  { label: 'Events', dropdown: { links: eventLinks } },
+  // { path: '/wine-club', label: 'Wine Club' },
+  { path: ROUTES.ABOUT, label: 'About' },
+  { path: ROUTES.CONTACT, label: 'Contact' },
+];
+
 export default function NavMenu() {
   const currentPath = usePathname();
-  const [isShopOpen, setIsShopOpen] = useState(false);
+  const closeActiveDropdownRef = useRef(null);
   const [isScrolledPastHalf, setIsScrolledPastHalf] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isMobileShopOpen, setIsMobileShopOpen] = useState(false);
 
   useStopScroll({ isOpen: isMobileMenuOpen });
 
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
-    setIsMobileShopOpen(false);
   };
 
+  const closeDesktopDropdown = () => {
+    closeActiveDropdownRef.current?.();
+    closeActiveDropdownRef.current = null;
+  };
+
+  const handleDesktopItemActivate = closeDropdown => {
+    closeDesktopDropdown();
+    closeActiveDropdownRef.current = closeDropdown;
+  };
+
+  // Close dropdowns after navigation so the new page is not covered by the menu.
   useEffect(() => {
     closeMobileMenu();
+    closeActiveDropdownRef.current?.();
+    closeActiveDropdownRef.current = null;
   }, [currentPath]);
 
+  // Shrink the navigation after the user scrolls past one third of the viewport.
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY;
@@ -101,10 +123,10 @@ export default function NavMenu() {
   return (
     <div
       className={clsx(styles.navMenu, isScrolledPastHalf && styles.scrolled)}
-      onMouseLeave={() => setIsShopOpen(false)}
+      onMouseLeave={closeDesktopDropdown}
       onKeyDown={e => {
         if (e.key !== 'Escape') return;
-        setIsShopOpen(false);
+        closeDesktopDropdown();
         closeMobileMenu();
       }}
     >
@@ -120,40 +142,14 @@ export default function NavMenu() {
           />
         </Link>
         <ul className={styles.listItems}>
-          {navItems.map(item => {
-            return (
-              <li
-                key={item.label}
-                onMouseEnter={() => setIsShopOpen(!!item.hasDropdown)}
-              >
-                <Link
-                  href={item.path}
-                  className={clsx(
-                    styles.link,
-                    (currentPath === item.path ||
-                      (item.hasDropdown && isShopOpen)) &&
-                      styles.activeLink,
-                  )}
-                  onFocus={() => setIsShopOpen(!!item.hasDropdown)}
-                  aria-expanded={item.hasDropdown ? isShopOpen : undefined}
-                >
-                  {item.label}
-                  {item.hasDropdown && (
-                    <Image
-                      src='/nav/chevron.svg'
-                      alt=''
-                      className={clsx(
-                        styles.chevron,
-                        isShopOpen && styles.chevronOpen,
-                      )}
-                      width={15}
-                      height={8}
-                    />
-                  )}
-                </Link>
-              </li>
-            );
-          })}
+          {navItems.map(item => (
+            <NavItem
+              key={item.label}
+              item={item}
+              currentPath={currentPath}
+              onActivate={handleDesktopItemActivate}
+            />
+          ))}
           <li>
             <Button isNavy href={ROUTES.CONTACT} classNames={styles.reserve}>
               Reserve
@@ -190,91 +186,18 @@ export default function NavMenu() {
         <div className={styles.mobileMenu} id={MOBILE_MENU_ID}>
           <ul className={styles.mobileList}>
             {navItems.map(item => (
-              <li key={item.label} className={styles.mobileItem}>
-                <div className={styles.mobileRow}>
-                  <Link
-                    href={item.path}
-                    className={clsx(
-                      styles.mobileLink,
-                      currentPath === item.path && styles.activeLink,
-                    )}
-                    onClick={closeMobileMenu}
-                  >
-                    {item.label}
-                  </Link>
-                  {item.hasDropdown && (
-                    <button
-                      type='button'
-                      className={styles.mobileToggle}
-                      onClick={() => setIsMobileShopOpen(!isMobileShopOpen)}
-                      aria-expanded={isMobileShopOpen}
-                      aria-label={`${isMobileShopOpen ? 'Hide' : 'Show'} ${item.label} categories`}
-                    >
-                      <Image
-                        src='/nav/chevron.svg'
-                        alt=''
-                        className={clsx(
-                          styles.chevron,
-                          isMobileShopOpen && styles.chevronOpen,
-                        )}
-                        width={15}
-                        height={8}
-                      />
-                    </button>
-                  )}
-                </div>
-                {item.hasDropdown && isMobileShopOpen && (
-                  <div className={styles.mobileShop}>
-                    {shopColumns.map(column => (
-                      <div key={column.title} className={styles.column}>
-                        <p className={styles.columnTitle}>{column.title}</p>
-                        <ul className={styles.columnLinks}>
-                          {column.links.map(link => (
-                            <li key={link.label}>
-                              <Link
-                                href={link.path}
-                                className={styles.dropdownLink}
-                                onClick={closeMobileMenu}
-                              >
-                                {link.label}
-                              </Link>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </li>
+              <NavItem
+                key={item.label}
+                item={item}
+                currentPath={currentPath}
+                isMobile
+                onNavigate={closeMobileMenu}
+              />
             ))}
           </ul>
           <Button isNavy href={ROUTES.CONTACT} classNames={styles.mobileReserve}>
             Reserve
           </Button>
-        </div>
-      )}
-      {isShopOpen && (
-        <div className={styles.dropdown}>
-          <div className={styles.dropdownInner}>
-            {shopColumns.map(column => (
-              <div key={column.title} className={styles.column}>
-                <p className={styles.columnTitle}>{column.title}</p>
-                <ul className={styles.columnLinks}>
-                  {column.links.map(link => (
-                    <li key={link.label}>
-                      <Link
-                        href={link.path}
-                        className={styles.dropdownLink}
-                        onClick={() => setIsShopOpen(false)}
-                      >
-                        {link.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
         </div>
       )}
     </div>

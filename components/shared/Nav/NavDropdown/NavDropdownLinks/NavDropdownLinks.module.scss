@@ -1,0 +1,18 @@
+@use '@variables' as variables;
+@use '@mixins' as mixins;
+
+.link {
+  @include mixins.fontSecondary;
+  color: variables.$navy;
+  font-size: 18px;
+  white-space: nowrap;
+  transition: opacity 0.2s ease;
+
+  &:hover {
+    opacity: 0.6;
+  }
+}
+
+.mobileLink {
+  white-space: normal;
+}

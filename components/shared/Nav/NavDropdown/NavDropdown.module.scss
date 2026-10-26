@@ -1,0 +1,86 @@
+@use '@variables' as variables;
+@use '@mixins' as mixins;
+
+.links {
+  background: variables.$purple;
+  border-radius: 0 0 12px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  left: -20px;
+  min-width: 190px;
+  padding: 24px 20px;
+  position: absolute;
+  top: 100%;
+}
+
+.mobileLinks {
+  border-radius: 0;
+  min-width: 0;
+  padding: 4px 0 24px 16px;
+  position: static;
+}
+
+.dropdown {
+  background: variables.$purple;
+  left: 0;
+  padding: 0 0 48px;
+  position: absolute;
+  right: 0;
+  top: 100%;
+}
+
+.columns {
+  align-items: flex-start;
+  display: flex;
+  gap: 60px;
+  margin: 0 auto;
+  max-width: 1440px;
+  padding: 0 73px;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.columnTitle {
+  @include mixins.fontSecondary;
+  color: variables.$navy;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.columnLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.mobileDropdown {
+  padding: 4px 0 24px;
+  position: static;
+
+  .columns {
+    display: grid;
+    gap: 24px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    padding: 0;
+  }
+}
+
+@media screen and (max-width: variables.$mobile) {
+  .dropdown:not(.mobileDropdown) {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .mobileDropdown .columns {
+    grid-template-columns: 1fr;
+  }
+}
