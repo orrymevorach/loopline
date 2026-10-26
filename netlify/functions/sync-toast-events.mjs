@@ -7,9 +7,9 @@ export default async function syncToastEvents() {
     hourCycle: 'h23',
   }).format(new Date());
 
-  // Toronto reaches 6 AM at 10 UTC in summer and 11 UTC in winter.
-  if (torontoHour !== '06') {
-    console.log('Skipping Toast sync: it is not 6 AM in Toronto.');
+  // Toronto reaches 4:25 PM at 20:25 UTC in summer and 21:25 UTC in winter.
+  if (torontoHour !== '16') {
+    console.log('Skipping Toast sync: it is not the 4:25 PM Toronto schedule.');
     return new Response(null, { status: 204 });
   }
 
@@ -38,7 +38,7 @@ export default async function syncToastEvents() {
       throw new Error(`Netlify background invocation failed: HTTP ${response.status}.`);
     }
   } catch (error) {
-    console.error('Failed to start the morning Toast event sync:', error.message);
+    console.error('Failed to start the scheduled Toast event sync:', error.message);
     throw error;
   }
 
