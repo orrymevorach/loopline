@@ -7,9 +7,9 @@ export default async function syncToastEvents() {
     hourCycle: 'h23',
   }).format(new Date());
 
-  // Toronto reaches 4:32 PM at 20:32 UTC in summer and 21:32 UTC in winter.
+  // Toronto reaches 4:35 PM at 20:35 UTC in summer and 21:35 UTC in winter.
   if (torontoHour !== '16') {
-    console.log('Skipping Toast sync: it is not the 4:32 PM Toronto schedule.');
+    console.log('Skipping Toast sync: it is not the 4:35 PM Toronto schedule.');
     return new Response(null, { status: 204 });
   }
 

@@ -74,8 +74,8 @@ The background function uses the Linux Chromium binary packaged by
 modules, including the compressed browser files. Local CLI runs use the browser
 installed by Playwright instead.
 
-Netlify checks at 20:32 and 21:32 UTC. The function dispatches only when the
-current hour in `America/Toronto` is 16, so imports run at 4:32 PM Toronto time in
+Netlify checks at 20:35 and 21:35 UTC. The function dispatches only when the
+current hour in `America/Toronto` is 16, so imports run at 4:35 PM Toronto time in
 both daylight-saving and standard time. Scheduler and runner queues may delay
 the actual start; this is not an exact-time guarantee.
 

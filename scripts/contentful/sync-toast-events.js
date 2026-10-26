@@ -65,7 +65,19 @@ async function scrapeEvents({ isHeadless, isServerless }) {
       timeout: 60000,
     });
     if (!response?.ok()) {
-      throw new Error(`Toast page request failed: HTTP ${response?.status()}.`);
+      const responseHeaders = response ? await response.allHeaders() : {};
+      console.error('Toast navigation rejected:', {
+        status: response?.status(),
+        isServerless,
+        browserVersion,
+        pageTitle: await page.title(),
+        server: responseHeaders.server,
+        requestId: responseHeaders['cf-ray'] || responseHeaders['x-request-id'],
+        challenge: responseHeaders['cf-mitigated'],
+      });
+      throw new Error(
+        `Toast page request failed: HTTP ${response?.status()}.${response?.status() === 403 ? ' Toast denied this request; inspect the navigation diagnostics. No Contentful writes were performed.' : ''}`,
+      );
     }
 
     // Toast initially renders placeholder cards; wait for complete event content.
