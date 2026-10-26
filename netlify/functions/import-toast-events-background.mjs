@@ -33,14 +33,25 @@ export default async function importToastEvents(request) {
     !options ||
     typeof options !== 'object' ||
     Array.isArray(options) ||
-    Object.keys(options).some(key => key !== 'isDryRun') ||
-    (options.isDryRun !== undefined && typeof options.isDryRun !== 'boolean')
+    Object.keys(options).some(
+      key => !['isDryRun', 'isDiagnosticOnly'].includes(key),
+    ) ||
+    (options.isDryRun !== undefined && typeof options.isDryRun !== 'boolean') ||
+    (options.isDiagnosticOnly !== undefined &&
+      typeof options.isDiagnosticOnly !== 'boolean')
   ) {
-    console.warn('Rejected Toast import: expected an object with an optional boolean isDryRun.');
+    console.warn('Rejected Toast import: expected optional boolean isDryRun and isDiagnosticOnly options.');
     return;
   }
 
   try {
+    // Diagnose Toast access without loading Chromium or any Contentful helpers.
+    if (options.isDiagnosticOnly === true) {
+      const { diagnoseToastFetch } = await import('../../scripts/contentful/toast-fetch-diagnostics.mjs');
+      await diagnoseToastFetch();
+      return;
+    }
+
     const { syncToastEvents } = await import('../../scripts/contentful/sync-toast-events.js');
     await syncToastEvents({
       isServerless: true,

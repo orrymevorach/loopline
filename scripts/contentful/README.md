@@ -128,6 +128,31 @@ HTTP 202 only acknowledges queuing, including for rejected requests.
 Netlify's scheduled-function Run now control still applies the Toronto-hour
 guard; use the background endpoint directly for previews at other times.
 
+### Plain-fetch access diagnostic
+
+Deploy the updated worker, then invoke the same authenticated endpoint with:
+
+```bash
+curl --fail-with-body --request POST \
+  "$TOAST_SYNC_SITE_URL/.netlify/functions/import-toast-events-background" \
+  --header "Authorization: Bearer $TOAST_SYNC_SECRET" \
+  --header 'Content-Type: application/json' \
+  --data '{"isDiagnosticOnly":true}'
+```
+
+This mode takes priority over `isDryRun`. It makes one ordinary Node HTTP request
+to Toast without Chromium and without accessing Contentful. Check the worker
+logs for `Toast plain-fetch diagnostic`, HTTP status, Cloudflare challenge status,
+and `hasUsableEventData`. A successful HTTP status alone is not enough: the
+diagnostic checks for structured Event records with names, descriptions, images,
+and URLs. It does not yet validate dates or provide a browser-free importer.
+
+A blocked or incomplete response is logged as a diagnostic result, not thrown
+as an import failure, so Netlify will not retry a known blocked request. Network
+failures, timeouts, and malformed structured JSON are reported as errors.
+If this also returns a Cloudflare challenge, continue using the locally verified
+importer while choosing an accessible runner.
+
 Netlify retries background failures after one minute and then two minutes.
 Deterministic event IDs and existing-entry checks prevent duplicate imports;
 do not manually start overlapping imports. Exhausted update conflicts and all
