@@ -65,6 +65,33 @@ existing event: publish it manually before rerunning to add it to the gallery.
 
 ## Daily Netlify schedule
 
+### GitHub Actions access trial
+
+`Diagnose Toast Access` is a manual-only GitHub Actions workflow that checks the
+same scraper using full Chromium in an Xvfb display on an Ubuntu runner.
+It has no schedule, Contentful credentials, or Contentful reads/writes. It does
+not replace or disable the existing Netlify schedule.
+
+1. Commit and push `.github/workflows/diagnose-toast-access.yml`,
+   `scripts/contentful/diagnose-toast-browser.js`,
+   `scripts/contentful/toast-scraper.js`, and the updated importer and documentation
+   to the repository's default branch.
+2. Open **Actions > Diagnose Toast Access > Run workflow**.
+3. Inspect **Check Toast event access using full Chromium**. Success requires
+   actual event names, dates, descriptions, and images, not just HTTP 200.
+4. If successful, migrate the import and schedule separately. If Cloudflare
+   challenges the runner, the workflow fails with navigation diagnostics.
+
+No repository secrets are needed for this trial. To run the same diagnostic
+locally without Contentful configuration:
+
+```bash
+node scripts/contentful/diagnose-toast-browser.js
+```
+
+Add `--headed` for a visible browser. The CLI importer and Netlify worker reuse
+the extracted scraper, preserving their existing event IDs and import behavior.
+
 The Netlify scheduled function `sync-toast-events` starts the Netlify background
 function `import-toast-events-background`, which runs the same importer with headless
 Chromium. No GitHub Actions workflow, GitHub token, desktop, or Xvfb is needed.
