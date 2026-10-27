@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import clsx from 'clsx';
 import usePageSectionsField from './usePageSectionsField';
 import styles from './PageSectionsField.module.scss';
 
@@ -26,11 +27,7 @@ export default function PageSectionsField() {
   }
 
   return (
-    <section className={styles.container} aria-labelledby='page-sections-heading'>
-      <h2 id='page-sections-heading' className={styles.heading}>Editable page content</h2>
-      <p className={styles.description}>
-        Select a section to edit its content. Page layout is managed by the website.
-      </p>
+    <section className={styles.container} aria-label='Editable page content'>
       {error ? <p role='alert' className={styles.error}>{error}</p> : (
         <>
           {isLoading ? <p role='status'>Loading editable sections...</p> : (
@@ -38,28 +35,30 @@ export default function PageSectionsField() {
               <ul className={styles.list}>
                 {rows.map((row, index) => (
                   <li className={styles.row} key={`${row.entryId || 'invalid'}-${index}`}>
-                    <div className={styles.details}>
-                      <p className={styles.name}>{row.name || row.entryId || 'Invalid reference'}</p>
+                    <div className={styles.header}>
+                      <p className={styles.type}>{row.contentTypeName || 'Unavailable section'}</p>
+                      {!row.error && (
+                        <span className={clsx(styles.status, styles[row.status.toLowerCase()])}>
+                          {row.status}
+                        </span>
+                      )}
                       {row.error ? (
-                        <p role='alert' className={styles.error}>{row.error}</p>
+                        <button type='button' className={styles.button} onClick={retry}>Retry</button>
                       ) : (
-                        <p className={styles.type}>
-                          {row.contentTypeName}{row.isUnpublished && ' - Unpublished'}
-                        </p>
+                        <button
+                          type='button'
+                          className={styles.button}
+                          aria-label={`Edit ${row.name}`}
+                          onClick={() => handleEdit(row.entryId)}
+                        >
+                          Edit
+                        </button>
                       )}
                     </div>
-                    {row.error ? (
-                      <button type='button' className={styles.button} onClick={retry}>Retry</button>
-                    ) : (
-                      <button
-                        type='button'
-                        className={styles.button}
-                        aria-label={`Edit ${row.name}`}
-                        onClick={() => handleEdit(row.entryId)}
-                      >
-                        Edit
-                      </button>
-                    )}
+                    <div className={styles.details}>
+                      <p className={styles.name}>{row.name || row.entryId || 'Invalid reference'}</p>
+                      {row.error && <p role='alert' className={styles.error}>{row.error}</p>}
+                    </div>
                   </li>
                 ))}
               </ul>

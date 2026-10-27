@@ -89,8 +89,9 @@ child through Contentful's normal controls.
 
 ### Checks requiring Contentful
 
-- Verify the heading, description, names, human-readable content type names,
-  and Edit buttons on real Page entries.
+- Verify the Contentful-style reference cards show names, human-readable content
+  type names, publication status, and Edit buttons on real Page entries. There
+  is no extra heading or description above the cards.
 - Verify the iframe expands to show the full directory, including errors.
 - Verify Edit opens a slide-in; save/publish a child and close it. Confirm the
   updated display name appears and the parent's reference value is unchanged.

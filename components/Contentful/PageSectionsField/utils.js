@@ -44,7 +44,13 @@ export async function resolveSection(sdk, reference, contentTypes) {
       entryId,
       name,
       contentTypeName: contentType.name,
-      isUnpublished: !entry.sys.publishedVersion,
+      status: entry.sys.archivedVersion
+        ? 'Archived'
+        : !entry.sys.publishedVersion
+          ? 'Draft'
+          : entry.sys.version > entry.sys.publishedVersion + 1
+            ? 'Changed'
+            : 'Published',
     };
   } catch (error) {
     const status = error.status || error.response?.status;
