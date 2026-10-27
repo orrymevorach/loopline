@@ -1,7 +1,7 @@
 import HomePage from '@/components/HomePage/HomePage';
 import {
   getEntryByField,
-  getPageReferenceEntries,
+  getPageSections,
 } from '@/lib/contentful-server-utils';
 import {
   formatCarouselSlides,
@@ -19,17 +19,19 @@ export default async function Page() {
     fieldValue: CONTENTFUL_PAGE_IDS.HOME,
   });
 
-  const [carouselSlides, hoursOfOperations, events, funFacts] =
-    await getPageReferenceEntries({
-      page,
-    });
+  const {
+    carouselSlides,
+    hoursOfOperations,
+    events = [],
+    funFacts: [funFacts] = [],
+  } = await getPageSections({ page });
 
   const aboutPage = await getEntryByField({
     contentTypeId: 'page',
     fieldName: 'title',
     fieldValue: CONTENTFUL_PAGE_IDS.ABOUT,
   });
-  const aboutSections = await getPageReferenceEntries({ page: aboutPage });
+  const aboutSections = await getPageSections({ page: aboutPage });
   const { staffPicks } = await getStaffPicks(aboutSections);
 
   return (

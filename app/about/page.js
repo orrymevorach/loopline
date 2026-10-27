@@ -1,7 +1,7 @@
 import About from '@/components/About/About';
 import {
   getEntryByField,
-  getPageReferenceEntries,
+  getPageSections,
 } from '@/lib/contentful-server-utils';
 import { formatAbout } from '@/lib/contentful-format-utils';
 import { CONTENTFUL_PAGE_IDS } from '@/utils/constants';
@@ -14,13 +14,8 @@ export default async function Page() {
     fieldValue: CONTENTFUL_PAGE_IDS.ABOUT,
   });
 
-  const pageSections = await getPageReferenceEntries({ page });
-  const about = pageSections.find(
-    section =>
-      section &&
-      !Array.isArray(section) &&
-      ('description' in section || 'image' in section),
-  );
+  const pageSections = await getPageSections({ page });
+  const { about: [about] = [] } = pageSections;
   const { staffMembers, staffPicks } = await getStaffPicks(pageSections);
   const picksByMemberId = new Map(staffPicks.map(pick => [pick.id, pick]));
   const staffMembersWithPicks = staffMembers.map(member => ({

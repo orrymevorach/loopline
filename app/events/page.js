@@ -1,7 +1,7 @@
 import Events from '@/components/Events/Events';
 import {
   getEntryByField,
-  getPageReferenceEntries,
+  getPageSections,
 } from '@/lib/contentful-server-utils';
 import {
   formatCalendarImage,
@@ -15,10 +15,11 @@ export default async function Page() {
     fieldName: 'title',
     fieldValue: CONTENTFUL_PAGE_IDS.EVENTS,
   });
-  const [calendarImage, events] = await getPageReferenceEntries({
-    page,
-  });
-  const formattedEvents = (events || []).map(formatEvent).filter(Boolean);
+  const {
+    calendarImage: [calendarImage] = [],
+    events = [],
+  } = await getPageSections({ page });
+  const formattedEvents = events.map(formatEvent).filter(Boolean);
 
   return (
     <Events
