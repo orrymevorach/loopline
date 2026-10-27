@@ -7,6 +7,7 @@ import {
   formatCarouselSlides,
   formatHours,
   formatFunFacts,
+  formatEvent,
 } from '@/lib/contentful-format-utils';
 import { getStaffPicks } from '@/lib/staff-pick-server-utils';
 import { CONTENTFUL_PAGE_IDS } from '@/utils/constants';
@@ -18,7 +19,7 @@ export default async function Page() {
     fieldValue: CONTENTFUL_PAGE_IDS.HOME,
   });
 
-  const [carouselSlides, hoursOfOperations, funFacts] =
+  const [carouselSlides, hoursOfOperations, events, funFacts] =
     await getPageReferenceEntries({
       page,
     });
@@ -37,6 +38,7 @@ export default async function Page() {
       hoursOfOperations={formatHours(hoursOfOperations)}
       funFacts={formatFunFacts(funFacts)}
       staffPicks={staffPicks}
+      nextEvent={formatEvent(events?.[0])}
     />
   );
 }

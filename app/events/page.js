@@ -3,7 +3,11 @@ import {
   getEntryByField,
   getPageReferenceEntries,
 } from '@/lib/contentful-server-utils';
-import { formatCarouselSlides } from '@/lib/contentful-format-utils';
+import {
+  formatCalendarImage,
+  formatCarouselSlides,
+  formatEvent,
+} from '@/lib/contentful-format-utils';
 import { CONTENTFUL_PAGE_IDS } from '@/utils/constants';
 
 export default async function Page() {
@@ -12,7 +16,16 @@ export default async function Page() {
     fieldName: 'title',
     fieldValue: CONTENTFUL_PAGE_IDS.EVENTS,
   });
-  const [carouselSlides] = await getPageReferenceEntries({ page });
+  const [carouselSlides, calendarImage, events] = await getPageReferenceEntries({
+    page,
+  });
+  const formattedEvents = (events || []).map(formatEvent).filter(Boolean);
 
-  return <Events carouselSlides={formatCarouselSlides(carouselSlides)} />;
+  return (
+    <Events
+      carouselSlides={formatCarouselSlides(carouselSlides)}
+      calendarImage={formatCalendarImage(calendarImage)}
+      events={formattedEvents}
+    />
+  );
 }

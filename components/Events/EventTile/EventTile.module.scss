@@ -1,0 +1,89 @@
+@use '@mixins' as mixins;
+@use '@variables' as variables;
+
+.tile {
+  background: variables.$purple;
+  border-radius: 24px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+.image {
+  display: block;
+  height: auto;
+  width: 100%;
+}
+
+.imageFrame {
+  aspect-ratio: 1 / 1;
+  position: relative;
+}
+
+.containedImage {
+  object-fit: contain;
+}
+
+.content {
+  align-items: flex-start;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 24px;
+  padding: 32px;
+}
+
+.date {
+  @include mixins.paragraph;
+  margin: 0;
+}
+
+.title {
+  @include mixins.fontPrimary;
+  color: variables.$navy;
+  font-size: 40px;
+  line-height: 46px;
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.details {
+  width: 100%;
+}
+
+.learnMore {
+  @include mixins.paragraph;
+  color: variables.$navy;
+  cursor: pointer;
+  list-style: none;
+  text-decoration: underline;
+
+  &::-webkit-details-marker {
+    display: none;
+  }
+}
+
+.description {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 24px;
+  overflow-wrap: anywhere;
+}
+
+.ticketButton {
+  margin-top: auto;
+}
+
+@media screen and (max-width: variables.$mobile) {
+  .content {
+    gap: 20px;
+    padding: 24px;
+  }
+
+  .title {
+    font-size: 32px;
+    line-height: 38px;
+  }
+}

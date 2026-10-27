@@ -12,6 +12,7 @@ export default function HomePage({
   hoursOfOperations,
   funFacts,
   staffPicks,
+  nextEvent,
 }) {
   return (
     <>
@@ -19,7 +20,7 @@ export default function HomePage({
       <HoursOfOperations hoursOfOperations={hoursOfOperations} />
       {/* <Subscribe /> */}
       <Company />
-      <NextEvent />
+      <NextEvent event={nextEvent} />
       <StaffPicks picks={staffPicks} />
       <FunFacts funFacts={funFacts} />
       <Instagram />

@@ -37,10 +37,12 @@
   gap: 16px;
   max-width: 455px;
 
-  p {
-    margin: 0;
-    @include mixins.fontSecondary;
-  }
+}
+
+.eventText {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .learnMore {

@@ -1,10 +1,16 @@
 import Link from 'next/link';
 import Button from '@/components/shared/Button/Button';
 import styles from './NextEvent.module.scss';
-import image from 'public/event.jpg';
 import SplitSection from '@/components/shared/SplitSection/SplitSection';
+import RichText from '@/components/shared/RichText/RichText';
+import { inlineLinkRichTextConfig } from '@/components/shared/RichText/rich-text-config';
+import fallbackImage from 'public/event.jpg';
 
-export default function NextEvent() {
+export default function NextEvent({ event }) {
+  if (!event) return null;
+
+  const image = event.image || { ...fallbackImage, alt: event.name };
+
   return (
     <section className={styles.section}>
       <SplitSection
@@ -16,21 +22,20 @@ export default function NextEvent() {
         <div className={styles.left}>
           <p className={styles.eyebrow}>
             Our Next Event <br />
-            November 8th
+            {event.date}
           </p>
-          <h2 className={styles.title}>Apero Hour with Grégoire Doulain</h2>
+          <h2 className={styles.title}>{event.name}</h2>
           <div className={styles.description}>
-            <p>
-              Join us for a sultry evening of sliced meats and silky wines, as
-              French charcuterie specialist Grégoire Doulain takes over the bar
-              for a live showcase of Lyonnaise cured meats.
-            </p>
-            <Link href='/events' className={styles.learnMore}>
-              Learn More
-            </Link>
+            {event.shortenedDescriptionSummary && (
+              <RichText
+                json={event.shortenedDescriptionSummary}
+                config={inlineLinkRichTextConfig}
+                classNames={styles.eventText}
+              />
+            )}
           </div>
           <div className={styles.buttons}>
-            <Button href='/events'>Buy Tickets</Button>
+            <Button href={event.ticketLink || '/events'}>Buy Tickets</Button>
             <Button href='/events'>See all events</Button>
           </div>
         </div>

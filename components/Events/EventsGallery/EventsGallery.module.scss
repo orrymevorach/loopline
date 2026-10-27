@@ -1,0 +1,48 @@
+@use '@mixins' as mixins;
+@use '@variables' as variables;
+
+.section {
+  background: variables.$cream;
+  padding: 85px 0;
+}
+
+.heading {
+  @include mixins.heading;
+  margin-bottom: 48px;
+}
+
+.grid {
+  display: grid;
+  gap: 32px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.item {
+  min-width: 0;
+}
+
+@media screen and (max-width: variables.$tablet) {
+  .section {
+    padding: 60px 0;
+  }
+
+  .heading {
+    font-size: 52px;
+    line-height: 58px;
+  }
+}
+
+@media screen and (max-width: variables.$mobile) {
+  .heading {
+    font-size: 36px;
+    line-height: 42px;
+    margin-bottom: 32px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

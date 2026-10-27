@@ -1,16 +1,19 @@
 import Image from 'next/image';
 import Button from '@/components/shared/Button/Button';
 import SplitSection from '@/components/shared/SplitSection/SplitSection';
+import { EVENTS_GALLERY_ID } from '@/components/Events/EventsGallery/EventsGallery';
 import styles from './EventsHero.module.scss';
 import image from 'public/events-hero.jpg';
 
 export default function EventsHero({
   title = 'Events',
   description = 'At Loopline, our events are an extension of the table. From educational tastings and winemaker takeovers to themed dinners, thoughtful collaborations, and community nights, each gathering is designed to bring people together over something worth sharing.',
-  actionHref = 'https://toast.app/r/loopline-bottle-shop-wine-bar-643-dupont-street/experiences',
+  actionHref = `#${EVENTS_GALLERY_ID}`,
   actionLabel = 'See current events',
-  actionTarget = '_blank',
+  actionTarget = null,
 }) {
+  const isPageAnchor = actionHref.startsWith('#');
+
   return (
     <SplitSection imageWidth={745} image={image} priority>
       <div className={styles.content}>
@@ -19,6 +22,7 @@ export default function EventsHero({
         <Button
           href={actionHref}
           target={actionTarget}
+          isAnchor={isPageAnchor}
           isYellow
           classNames={styles.button}
         >

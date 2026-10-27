@@ -355,6 +355,26 @@
         ],
         "disabled": false,
         "omitted": false
+      },
+      {
+        "id": "ticketLink",
+        "name": "Ticket Link",
+        "type": "Symbol",
+        "required": false,
+        "localized": false,
+        "validations": [],
+        "disabled": false,
+        "omitted": false
+      },
+      {
+        "id": "shortenedDescriptionSummary",
+        "name": "Shortened Description Summary",
+        "type": "RichText",
+        "required": false,
+        "localized": false,
+        "validations": [],
+        "disabled": false,
+        "omitted": false
       }
     ]
   },

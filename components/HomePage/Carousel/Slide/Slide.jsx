@@ -28,11 +28,7 @@ export default function Slide({
     >
       <div className={styles.scrim} />
       <div className={styles.content}>
-        {slideData.heading ? (
-          <RichText json={slideData.heading} />
-        ) : (
-          <h1>{slideData.title}</h1>
-        )}
+        {slideData.heading && <RichText json={slideData.heading} />}
         <div className={styles.actions}>
           {slideData.actions.map(({ id, label, ...buttonProps }) => (
             <Button key={id} {...buttonProps}>

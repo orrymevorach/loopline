@@ -29,6 +29,15 @@
   }
 }
 
+.inlineLink {
+  color: inherit;
+  overflow-wrap: anywhere;
+  text-decoration: underline;
+  &:hover {
+    text-decoration: none;
+  }
+}
+
 .unorderedList {
   list-style: disc;
   font-size: 16px;
