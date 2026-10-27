@@ -4,13 +4,12 @@ import Textarea from '@/components/shared/Textarea/Textarea';
 import Dropdown from '@/components/shared/Dropdown/Dropdown';
 import Checkbox from '@/components/shared/Checkbox/Checkbox';
 import checkboxStyles from '@/components/shared/Checkbox/Checkbox.module.scss';
-import { useState } from 'react';
 import clsx from 'clsx';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 
 export default function Form({
   type,
+  inputType,
+  min,
   label,
   id,
   value,
@@ -24,33 +23,6 @@ export default function Form({
   inputContainerClassNames = '',
   items = [],
 }) {
-  const [showCheckMark, setShowCheckMark] = useState(false);
-  const Label = () => {
-    return (
-      <label className={clsx(styles.inputLabel, labelClassNames)} htmlFor={id}>
-        {label}
-        {required && <span className={styles.asterisk}>*</span>}
-      </label>
-    );
-  };
-
-  const handleAnimationStart = event => {
-    if (event.animationName === 'autofill') {
-      setShowCheckMark(true);
-    }
-    if (event.animationName === 'autofill-cancel') {
-      setShowCheckMark(false);
-    }
-  };
-
-  const handleBlur = () => {
-    if (value) {
-      setShowCheckMark(true);
-    } else {
-      setShowCheckMark(false);
-    }
-  };
-
   switch (type) {
     case 'dropdown':
       return (
@@ -70,11 +42,14 @@ export default function Form({
         </div>
       );
     case 'text':
+    case 'date':
       return (
         <div
           className={clsx(styles.formFieldContainer, inputContainerClassNames)}
         >
           <Input
+            type={type === 'date' ? 'date' : inputType}
+            min={min}
             id={id}
             label={label}
             handleChange={e => handleChange(e.target.value)}
@@ -147,35 +122,6 @@ export default function Form({
           {items.map((item, index) => (
             <Form key={index} {...item} />
           ))}
-        </div>
-      );
-    case 'date':
-      return (
-        <div
-          className={clsx(
-            styles.formFieldContainer,
-            styles.datePicker,
-            inputContainerClassNames,
-          )}
-        >
-          <Label label={label} id={id} required={required} />
-          <input
-            type='date'
-            id={id}
-            value={value}
-            onChange={e => handleChange(e.target.value)}
-            onBlur={handleBlur}
-            onAnimationStart={handleAnimationStart}
-            className={clsx(styles.input, styles.dateInput, inputClassNames)}
-            required={required}
-          />
-          {showCheckMark && (
-            <FontAwesomeIcon
-              icon={faCheckCircle}
-              className={clsx(styles.check)}
-              color='#499048'
-            />
-          )}
         </div>
       );
   }

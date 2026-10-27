@@ -13,7 +13,11 @@ export default function Actions() {
       >
         reserve a table
       </Button>
-      <Button isYellow href={ROUTES.CONTACT} classNames={styles.button}>
+      <Button
+        isYellow
+        href={ROUTES.BOOK_A_PRIVATE_EVENT}
+        classNames={styles.button}
+      >
         book a private event
       </Button>
     </div>

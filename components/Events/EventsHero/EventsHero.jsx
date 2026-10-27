@@ -3,9 +3,11 @@ import Button from '@/components/shared/Button/Button';
 import SplitSection from '@/components/shared/SplitSection/SplitSection';
 import { EVENTS_GALLERY_ID } from '@/components/Events/EventsGallery/EventsGallery';
 import styles from './EventsHero.module.scss';
-import image from 'public/events-hero.jpg';
+import defaultImage from 'public/events-hero.jpg';
 
 export default function EventsHero({
+  image = defaultImage,
+  imageAlt = 'Guests chatting over drinks at Loopline',
   title = 'Events',
   description = 'At Loopline, our events are an extension of the table. From educational tastings and winemaker takeovers to themed dinners, thoughtful collaborations, and community nights, each gathering is designed to bring people together over something worth sharing.',
   actionHref = `#${EVENTS_GALLERY_ID}`,
@@ -15,7 +17,11 @@ export default function EventsHero({
   const isPageAnchor = actionHref.startsWith('#');
 
   return (
-    <SplitSection imageWidth={745} image={image} priority>
+    <SplitSection
+      imageWidth={745}
+      image={{ ...image, alt: imageAlt }}
+      priority
+    >
       <div className={styles.content}>
         <h1 className={styles.title}>{title}</h1>
         <p className={styles.text}>{description}</p>

@@ -15,7 +15,7 @@ const MOBILE_MENU_ID = 'mobile-nav-menu';
 
 const eventLinks = [
   { path: '/private-events', label: 'Private Events' },
-  { path: '/events', label: 'Our Events' },
+  { path: '/events', label: 'Upcoming Events' },
 ];
 
 const shopLinks = labels =>
@@ -151,7 +151,12 @@ export default function NavMenu() {
             />
           ))}
           <li>
-            <Button isNavy href={ROUTES.CONTACT} classNames={styles.reserve}>
+            <Button
+              isNavy
+              href='https://toast.app/r/loopline-bottle-shop-wine-bar-643-dupont-street'
+              classNames={styles.reserve}
+              target='_blank'
+            >
               Reserve
             </Button>
           </li>
@@ -195,7 +200,11 @@ export default function NavMenu() {
               />
             ))}
           </ul>
-          <Button isNavy href={ROUTES.CONTACT} classNames={styles.mobileReserve}>
+          <Button
+            isNavy
+            href={ROUTES.CONTACT}
+            classNames={styles.mobileReserve}
+          >
             Reserve
           </Button>
         </div>

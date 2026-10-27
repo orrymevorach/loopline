@@ -25,7 +25,7 @@ export default function WineBar({ menus }) {
 
           <MenuLinks menus={menus} />
           <Actions />
-          <Link href='/events' className={styles.eventsLink}>
+          <Link href='/events#events-gallery' className={styles.eventsLink}>
             See our events <br />
             at the bar
           </Link>

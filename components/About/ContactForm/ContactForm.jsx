@@ -13,15 +13,24 @@ const FIELDS = [
   { id: 'message', name: 'Message', type: 'textarea' },
 ];
 
-export default function ContactForm({ isLight = false }) {
+export default function ContactForm({
+  id,
+  isLight = false,
+  fields = FIELDS,
+  heading = 'Contact',
+  formName = 'General Inquiry Form',
+}) {
   const [values, setValues] = useState(
-    Object.fromEntries(FIELDS.map(field => [field.id, ''])),
+    Object.fromEntries(fields.map(field => [field.id, ''])),
   );
   const [isLoading, setIsLoading] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submissionError, setSubmissionError] = useState('');
 
-  const formConfig = FIELDS.map(field => ({
+  const formConfig = fields.map(field => ({
     type: field.type,
+    inputType: field.inputType,
+    min: field.min,
     id: field.id,
     label: field.name,
     required: true,
@@ -31,25 +40,30 @@ export default function ContactForm({ isLight = false }) {
   }));
 
   const handleSubmit = async () => {
+    setSubmissionError('');
     setIsLoading(true);
 
     try {
-      await sendFormSubmission({
+      const submission = await sendFormSubmission({
         fields: Object.fromEntries(
-          FIELDS.map(field => [field.name, values[field.id]]),
+          fields.map(field => [field.name, values[field.id]]),
         ),
-        formName: 'General Inquiry Form',
+        formName,
       });
+      if (!submission?.success) {
+        throw new Error('Form submission was not accepted');
+      }
       setIsSubmitted(true);
     } catch (error) {
-      console.error('Error submitting form:', error);
+      console.error(`Error submitting ${formName}:`, error);
+      setSubmissionError('Your message could not be sent. Please try again.');
     } finally {
       setIsLoading(false);
     }
   };
 
   return (
-    <section className={clsx(styles.section, isLight && styles.light)}>
+    <section id={id} className={clsx(styles.section, isLight && styles.light)}>
       {isSubmitted ? (
         <ThankYou />
       ) : (
@@ -57,11 +71,12 @@ export default function ContactForm({ isLight = false }) {
           formConfig={formConfig}
           handleSubmit={handleSubmit}
           isLoading={isLoading}
-          heading='Contact'
+          heading={heading}
           headingContainerClassNames={styles.heading}
           titleClassNames={styles.title}
         />
       )}
+      {submissionError && <p role='alert'>{submissionError}</p>}
     </section>
   );
 }

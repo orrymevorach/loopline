@@ -7,7 +7,6 @@ export default function Events({ carouselSlides, calendarImage, events }) {
   return (
     <>
       <EventsHero />
-      <Carousel slides={carouselSlides} />
       <CalendarImage image={calendarImage} />
       <EventsGallery events={events} />
     </>

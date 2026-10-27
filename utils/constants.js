@@ -2,6 +2,7 @@ export const ROUTES = {
   HOME: '/',
   PAGE_NOT_FOUND: '/404',
   CONTACT: '/contact',
+  BOOK_A_PRIVATE_EVENT: '/private-events#book-a-private-event',
   ABOUT: '/about',
   OFFERINGS: '/offerings',
   PROVIDERS: '/providers',
@@ -18,4 +19,5 @@ export const CONTENTFUL_PAGE_IDS = {
   OFFERINGS: 'Offerings Page',
   CONTACT: 'Contact Page',
   EVENTS: 'Our Events Page',
+  PRIVATE_EVENTS: 'Private Events Page',
 };
