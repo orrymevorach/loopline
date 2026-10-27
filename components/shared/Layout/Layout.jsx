@@ -8,7 +8,10 @@ import Wrapper from '../Wrapper/Wrapper';
 
 export default function Layout({ children }) {
   const pathname = usePathname();
-  if (pathname === '/contentful-extensions/staff-pick') return children;
+  if (
+    pathname === '/contentful-extensions/staff-pick' ||
+    pathname === '/contentful/page-sections'
+  ) return children;
 
   return (
     <div>
