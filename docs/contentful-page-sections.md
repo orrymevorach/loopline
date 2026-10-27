@@ -5,8 +5,43 @@ Framework **Entry field** editor. It replaces only the editing interface for the
 Page model's existing multiple-entry reference field. It does not change content
 models, reference values, frontend templates, or section resolution on the website.
 
-The directory displays references in their stored order, but that order does not
-control the website layout. React templates control layout.
+For recognized pages, the directory follows a read-only template configuration,
+including placeholders for website-managed components. Repeated references of
+the same content type keep their stored relative order. Unmatched references and
+failed lookups remain visible at the end. React templates, not this directory or
+the reference order, control the website layout.
+
+## Website-managed placeholders
+
+No Contentful model changes, placeholder entries, or new app parameters are needed.
+Deploy the updated app route through the existing website deployment, then reload
+the Page entry in Contentful. The app definition and Appearance settings remain
+unchanged.
+
+`components/Contentful/PageSectionsField/page-layouts.js` lists the components
+shown by each fixed website template. Its keys must exactly match the Page entry's
+`title` in the environment's default locale: `Home Page`, `About Page`,
+`Wine Bar Page`, `Our Events Page`, `Private Events Page`, or `Contact Page`.
+Unrecognized titles still show all references, without placeholders.
+
+For example, Private Events displays:
+
+1. Private Events introduction and image - Managed by the website
+2. Referenced carousel - editable
+3. Private-event booking form - Managed by the website
+
+Configuration items with `contentTypeId` place existing referenced entries in a
+template slot; they do not create missing entries. Items with `name` create
+read-only directory cards. An optional `description` explains content owned
+elsewhere, such as the home page's staff picks sourced from the About Page.
+Those cards are not editable here, even when their data comes from another
+Contentful entry.
+
+When a developer changes a React template, update this configuration in the same
+change. It is documentation of the layout, not a second rendering system.
+Shared navigation/footer and disabled template components are intentionally omitted.
+Renaming a Page entry requires updating the matching configuration key.
+The app subscribes to title changes and cleans up that subscription on unmount.
 
 ## Deployment
 
@@ -91,7 +126,8 @@ child through Contentful's normal controls.
 
 - Verify the Contentful-style reference cards show names, human-readable content
   type names, publication status, and Edit buttons on real Page entries. There
-  is no extra heading or description above the cards.
+  is no extra heading or description above the cards. Clicking anywhere on an
+  available card opens its entry; the Edit button also supports keyboard access.
 - Verify the iframe expands to show the full directory, including errors.
 - Verify Edit opens a slide-in; save/publish a child and close it. Confirm the
   updated display name appears and the parent's reference value is unchanged.
@@ -103,6 +139,10 @@ child through Contentful's normal controls.
 - Trigger an external field change while lookups are pending. Confirm only
   the newest references render, in their stored order.
 - Confirm there are no add, remove, reorder, drag, or creation controls.
+- Confirm website-managed cards match the template, have no Edit button, and
+  do not open anything when clicked. Verify Private Events shows its intro,
+  carousel, and booking form in that order. Check that renaming a page to an
+  unrecognized title removes only the placeholders, not its referenced entries.
 
 This repository has no configured test framework. Do not send production writes
 just to verify the app. A successful Next.js build and standalone-page check do

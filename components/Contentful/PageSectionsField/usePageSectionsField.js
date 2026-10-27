@@ -2,11 +2,13 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { getEntryId, getReferenceError, resolveSection } from './utils';
+import { getDirectoryRows } from './page-layouts';
 
 export default function usePageSectionsField() {
   const [sdk, setSdk] = useState(null);
   const [references, setReferences] = useState([]);
   const [rows, setRows] = useState([]);
+  const [pageTitle, setPageTitle] = useState('');
   const [connectionError, setConnectionError] = useState('');
   const [isLoading, setIsLoading] = useState(true);
   const [retryVersion, setRetryVersion] = useState(0);
@@ -17,6 +19,7 @@ export default function usePageSectionsField() {
   useEffect(() => {
     let isActive = true;
     let unsubscribe;
+    let unsubscribeTitle;
     let connectedSdk;
     const timeout = window.setTimeout(() => {
       isActive = false;
@@ -46,6 +49,14 @@ export default function usePageSectionsField() {
             return;
           }
           connectedSdk = fieldSdk;
+          const titleField = fieldSdk.entry.fields.title?.getForLocale(fieldSdk.locales.default);
+          if (titleField) {
+            const receiveTitle = value => {
+              if (isActive) setPageTitle(typeof value === 'string' ? value : '');
+            };
+            receiveTitle(titleField.getValue());
+            unsubscribeTitle = titleField.onValueChanged(receiveTitle);
+          }
           const receiveValue = value => {
             if (!isActive) return;
             requestVersion.current += 1;
@@ -72,6 +83,7 @@ export default function usePageSectionsField() {
       isActive = false;
       window.clearTimeout(timeout);
       unsubscribe?.();
+      unsubscribeTitle?.();
       connectedSdk?.window.stopAutoResizer();
     };
   }, []);
@@ -101,7 +113,8 @@ export default function usePageSectionsField() {
 
   return {
     sdk,
-    rows,
+    rows: getDirectoryRows(rows, pageTitle),
+    hasLinkedSections: rows.length > 0,
     isLoading,
     error: connectionError || getReferenceError(references),
     retry: () => {

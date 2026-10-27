@@ -6,7 +6,7 @@ import usePageSectionsField from './usePageSectionsField';
 import styles from './PageSectionsField.module.scss';
 
 export default function PageSectionsField() {
-  const { sdk, rows, isLoading, error, retry } = usePageSectionsField();
+  const { sdk, rows, hasLinkedSections, isLoading, error, retry } = usePageSectionsField();
   const [navigationError, setNavigationError] = useState('');
 
   async function handleEdit(entryId) {
@@ -34,20 +34,25 @@ export default function PageSectionsField() {
             rows.length ? (
               <ul className={styles.list}>
                 {rows.map((row, index) => (
-                  <li className={styles.row} key={`${row.entryId || 'invalid'}-${index}`}>
+                  <li className={styles.row} key={row.placeholderId || `${row.entryId || 'invalid'}-${index}`}>
                     <div className={styles.header}>
-                      <p className={styles.type}>{row.contentTypeName || 'Unavailable section'}</p>
-                      {!row.error && (
+                      <p className={styles.type}>
+                        {row.isWebsiteManaged ? 'Website component' : row.contentTypeName || 'Unavailable section'}
+                      </p>
+                      {row.isWebsiteManaged && (
+                        <span className={clsx(styles.status, styles.websiteManaged)}>Managed by the website</span>
+                      )}
+                      {!row.error && !row.isWebsiteManaged && (
                         <span className={clsx(styles.status, styles[row.status.toLowerCase()])}>
                           {row.status}
                         </span>
                       )}
-                      {row.error ? (
+                      {row.isWebsiteManaged ? null : row.error ? (
                         <button type='button' className={styles.button} onClick={retry}>Retry</button>
                       ) : (
                         <button
                           type='button'
-                          className={styles.button}
+                          className={clsx(styles.button, styles.cardButton)}
                           aria-label={`Edit ${row.name}`}
                           onClick={() => handleEdit(row.entryId)}
                         >
@@ -57,12 +62,16 @@ export default function PageSectionsField() {
                     </div>
                     <div className={styles.details}>
                       <p className={styles.name}>{row.name || row.entryId || 'Invalid reference'}</p>
+                      {row.description && <p className={styles.type}>{row.description}</p>}
                       {row.error && <p role='alert' className={styles.error}>{row.error}</p>}
                     </div>
                   </li>
                 ))}
               </ul>
             ) : <p>No editable sections are linked to this page.</p>
+          )}
+          {!isLoading && rows.length > 0 && !hasLinkedSections && (
+            <p className={styles.type}>No editable sections are linked to this page.</p>
           )}
           {navigationError && <p role='alert' className={styles.error}>{navigationError}</p>}
         </>

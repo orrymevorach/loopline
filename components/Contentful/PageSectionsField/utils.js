@@ -44,6 +44,7 @@ export async function resolveSection(sdk, reference, contentTypes) {
       entryId,
       name,
       contentTypeName: contentType.name,
+      contentTypeId,
       status: entry.sys.archivedVersion
         ? 'Archived'
         : !entry.sys.publishedVersion
