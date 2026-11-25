@@ -43,7 +43,7 @@ function PickCard({ name, price, pickedBy, staffHref, image, details }) {
                   src='/staff-picks/flip.svg'
                   alt=''
                   width={44}
-                  height={32}
+                  height={31}
                 />
             </button>
           </div>
@@ -81,7 +81,7 @@ function PickCard({ name, price, pickedBy, staffHref, image, details }) {
             aria-label={`Back to ${name}`}
             tabIndex={isFlipped ? 0 : -1}
           >
-            <Image src='/staff-picks/flip.svg' alt='' width={44} height={32} />
+            <Image src='/staff-picks/flip.svg' alt='' width={44} height={31} />
           </button>
           <dl className={styles.details}>
             {!hasDetails && (

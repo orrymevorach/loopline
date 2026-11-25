@@ -44,7 +44,7 @@ export default function Instagram() {
             src='/instagram/arrow-left.svg'
             alt=''
             width={32}
-            height={32}
+            height={31}
           />
         </button>
         <div className={styles.track} ref={trackRef}>
@@ -70,7 +70,7 @@ export default function Instagram() {
             src='/instagram/arrow-left.svg'
             alt=''
             width={32}
-            height={32}
+            height={31}
           />
         </button>
       </div>
