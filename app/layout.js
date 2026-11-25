@@ -4,6 +4,7 @@ import { DM_Serif_Display, Plus_Jakarta_Sans } from 'next/font/google';
 import Layout from '@/components/shared/Layout/Layout';
 import JsonLd from '@/components/shared/JsonLd/JsonLd';
 import { SITE_URL } from '@/utils/constants';
+import { isContentfulPreview } from '@/lib/contentful-client';
 import { DEFAULT_SOCIAL, getBusinessJsonLd } from '@/utils/seo';
 import Providers from './providers';
 
@@ -35,6 +36,8 @@ export const metadata = {
     icon: '/brandmark.png',
     apple: '/brandmark.png',
   },
+  // Staging shows draft content and must never be indexed.
+  ...(isContentfulPreview && { robots: { index: false, follow: false } }),
 };
 
 export default function RootLayout({ children }) {

@@ -1,11 +1,5 @@
-import { createClient } from 'contentful';
+import { contentfulClient as client } from '@/lib/contentful-client';
 import { NextResponse } from 'next/server';
-
-const client = createClient({
-  space: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID,
-  accessToken: process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN,
-  environment: process.env.NEXT_PUBLIC_CONTENTFUL_ENVIRONMENT,
-});
 
 export async function POST(request) {
   const { contentTypeId, fieldName, fieldValue } = await request.json();

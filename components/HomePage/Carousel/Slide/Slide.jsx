@@ -21,7 +21,7 @@ export default function Slide({
     <div
       className={clsx(styles.slide, styles[variantClassNames[variant]])}
       style={{
-        backgroundImage: `url(${slideData.image})`,
+        backgroundImage: slideData.image ? `url(${slideData.image})` : undefined,
         backgroundSize: slideData.size,
         backgroundPosition: slideData.position,
       }}
