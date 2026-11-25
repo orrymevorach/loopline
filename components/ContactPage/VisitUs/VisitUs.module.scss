@@ -1,0 +1,89 @@
+@use '@mixins' as mixins;
+@use '@variables' as variables;
+
+.section {
+  background-color: variables.$cream;
+  padding: 0 56px 100px;
+}
+
+.title {
+  @include mixins.heading;
+  color: variables.$navy;
+  font-size: 38px;
+  line-height: 46px;
+  margin: 0 0 40px;
+  text-align: center;
+}
+
+.grid {
+  align-items: stretch;
+  display: grid;
+  gap: 40px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+  margin: 0 auto;
+  max-width: 1000px;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.operation {
+  color: variables.$navy;
+}
+
+.operationTitle {
+  @include mixins.fontSecondaryBold;
+  font-size: 18px;
+  line-height: 1.2;
+  margin: 0 0 5px;
+  text-transform: uppercase;
+}
+
+.detail,
+.phoneLink {
+  @include mixins.fontSecondary;
+  line-height: 1.35;
+  margin: 0;
+}
+
+.phoneLink {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.map {
+  border: 1px solid variables.$navy;
+  border-radius: 22px;
+  min-height: 360px;
+  width: 100%;
+}
+
+@media screen and (max-width: variables.$mobile) {
+  .section {
+    padding: 0 20px 60px;
+  }
+
+  .title {
+    font-size: 28px;
+    line-height: 34px;
+    margin-bottom: 28px;
+  }
+
+  .grid {
+    gap: 28px;
+    grid-template-columns: 1fr;
+  }
+
+  .operationTitle {
+    font-size: 16px;
+  }
+
+  .map {
+    border-radius: 15px;
+    min-height: 280px;
+  }
+}

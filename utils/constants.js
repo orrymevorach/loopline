@@ -40,6 +40,7 @@ export const BUSINESS = {
     streetAddress: '643 Dupont Street',
     addressLocality: 'Toronto',
     addressRegion: 'ON',
+    postalCode: 'M6G 1Z4',
     addressCountry: 'CA',
   },
   bottleShopHours: {

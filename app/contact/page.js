@@ -1,6 +1,11 @@
 import ContactPage from '@/components/ContactPage/ContactPage';
+import {
+  getEntryByField,
+  getPageSections,
+} from '@/lib/contentful-server-utils';
+import { formatHours } from '@/lib/contentful-format-utils';
 import { buildMetadata } from '@/utils/seo';
-import { ROUTES } from '@/utils/constants';
+import { CONTENTFUL_PAGE_IDS, ROUTES } from '@/utils/constants';
 
 export const metadata = buildMetadata({
   title: 'Contact Us',
@@ -9,6 +14,14 @@ export const metadata = buildMetadata({
   path: ROUTES.CONTACT,
 });
 
-export default function Page() {
-  return <ContactPage entries={[]} />;
+export default async function Page() {
+  // Hours and location are managed once, on the Home Page entry in Contentful.
+  const homePage = await getEntryByField({
+    contentTypeId: 'page',
+    fieldName: 'title',
+    fieldValue: CONTENTFUL_PAGE_IDS.HOME,
+  });
+  const { hoursOfOperations } = await getPageSections({ page: homePage });
+
+  return <ContactPage hoursOfOperations={formatHours(hoursOfOperations)} />;
 }

@@ -342,6 +342,26 @@
         "omitted": false
       },
       {
+        "id": "startDate",
+        "name": "Start Date",
+        "type": "Date",
+        "required": false,
+        "localized": false,
+        "validations": [],
+        "disabled": false,
+        "omitted": false
+      },
+      {
+        "id": "endDate",
+        "name": "End Date",
+        "type": "Date",
+        "required": false,
+        "localized": false,
+        "validations": [],
+        "disabled": false,
+        "omitted": false
+      },
+      {
         "id": "image",
         "name": "Image",
         "type": "Link",

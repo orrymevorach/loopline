@@ -102,6 +102,63 @@ export function getBusinessJsonLd() {
   };
 }
 
+// Flattens a Contentful rich text document to plain text.
+function richTextToPlainText(node) {
+  if (!node) return '';
+  if (node.nodeType === 'text') return node.value;
+  return (node.content || [])
+    .map(richTextToPlainText)
+    .join(node.nodeType === 'document' ? ' ' : '')
+    .trim();
+}
+
+// Event structured data for Google's event results. Events without a Start
+// Date in Contentful are skipped, since Google requires one.
+export function getEventsJsonLd(events = []) {
+  const location = {
+    '@type': 'Place',
+    name: BUSINESS.name,
+    address,
+  };
+  const organizer = {
+    '@type': 'Organization',
+    name: BUSINESS.name,
+    url: SITE_URL,
+  };
+
+  const items = events
+    .filter(event => event.name && event.startDate)
+    .map(event => {
+      const description = richTextToPlainText(
+        event.shortenedDescriptionSummary || event.description,
+      );
+
+      return {
+        '@type': 'Event',
+        name: event.name,
+        startDate: event.startDate,
+        ...(event.endDate && { endDate: event.endDate }),
+        eventStatus: 'https://schema.org/EventScheduled',
+        eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+        location,
+        organizer,
+        ...(description && { description }),
+        ...(event.image?.src && { image: [event.image.src] }),
+        ...(event.ticketLink && {
+          offers: {
+            '@type': 'Offer',
+            url: event.ticketLink,
+            availability: 'https://schema.org/InStock',
+          },
+        }),
+      };
+    });
+
+  if (!items.length) return null;
+
+  return { '@context': 'https://schema.org', '@graph': items };
+}
+
 // Escapes `<` so CMS content can't break out of the JSON-LD script tag.
 export function serializeJsonLd(data) {
   return JSON.stringify(data).replace(/</g, '\\u003c');

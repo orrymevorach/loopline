@@ -1,4 +1,5 @@
 import Events from '@/components/Events/Events';
+import JsonLd from '@/components/shared/JsonLd/JsonLd';
 import {
   getEntryByField,
   getPageSections,
@@ -8,7 +9,7 @@ import {
   formatEvent,
 } from '@/lib/contentful-format-utils';
 import { CONTENTFUL_PAGE_IDS, ROUTES } from '@/utils/constants';
-import { buildMetadata } from '@/utils/seo';
+import { buildMetadata, getEventsJsonLd } from '@/utils/seo';
 
 export const metadata = buildMetadata({
   title: 'Wine Tastings & Events in Toronto',
@@ -30,9 +31,12 @@ export default async function Page() {
   const formattedEvents = events.map(formatEvent).filter(Boolean);
 
   return (
-    <Events
-      calendarImage={formatCalendarImage(calendarImage)}
-      events={formattedEvents}
-    />
+    <>
+      <JsonLd data={getEventsJsonLd(formattedEvents)} />
+      <Events
+        calendarImage={formatCalendarImage(calendarImage)}
+        events={formattedEvents}
+      />
+    </>
   );
 }
