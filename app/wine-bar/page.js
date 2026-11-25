@@ -3,7 +3,7 @@ import {
   getEntryByField,
   getPageSections,
 } from '@/lib/contentful-server-utils';
-import { formatMenus } from '@/lib/contentful-format-utils';
+import { formatMenus, formatPageIntro } from '@/lib/contentful-format-utils';
 import { CONTENTFUL_PAGE_IDS, ROUTES } from '@/utils/constants';
 import { buildMetadata } from '@/utils/seo';
 
@@ -20,7 +20,7 @@ export default async function Page() {
     fieldName: 'title',
     fieldValue: CONTENTFUL_PAGE_IDS.WINE_BAR,
   });
-  const { menus } = await getPageSections({ page });
+  const { menus, pageIntro: [intro] = [] } = await getPageSections({ page });
 
-  return <WineBar menus={formatMenus(menus)} />;
+  return <WineBar menus={formatMenus(menus)} intro={formatPageIntro(intro)} />;
 }

@@ -17,19 +17,22 @@ export default function SplitSection({
       style={{ justifyContent, alignItems }}
     >
       {children}
-      <div
-        style={{ '--image-width': `${imageWidth}px` }}
-        className={clsx(styles.frame)}
-      >
-        <Image
-          src={image.src}
-          alt={image.alt || ''}
-          width={image.width}
-          height={image.height}
-          className={styles.image}
-          priority={priority}
-        />
-      </div>
+      {/* Content from Contentful can be missing its image (e.g. an unpublished asset). */}
+      {image?.src && (
+        <div
+          style={{ '--image-width': `${imageWidth}px` }}
+          className={clsx(styles.frame)}
+        >
+          <Image
+            src={image.src}
+            alt={image.alt || ''}
+            width={image.width}
+            height={image.height}
+            className={styles.image}
+            priority={priority}
+          />
+        </div>
+      )}
     </section>
   );
 }

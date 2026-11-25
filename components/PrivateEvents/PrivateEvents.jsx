@@ -1,7 +1,6 @@
 import EventsHero from '@/components/Events/EventsHero/EventsHero';
 import Carousel from '@/components/HomePage/Carousel/Carousel';
 import ContactForm from '@/components/About/ContactForm/ContactForm';
-import image from 'public/private-events-hero.jpg';
 
 const PRIVATE_EVENT_FIELDS = [
   { id: 'name', name: 'Name', type: 'text' },
@@ -19,14 +18,11 @@ const PRIVATE_EVENT_FIELDS = [
   { id: 'message', name: 'Message', type: 'textarea' },
 ];
 
-export default function PrivateEvents({ carouselSlides }) {
+export default function PrivateEvents({ carouselSlides, intro }) {
   return (
     <>
       <EventsHero
-        image={image}
-        imageAlt='Wine being poured for guests around a dining table'
-        title='Private Events'
-        description='Bring your people together at Loopline. Get in touch to discuss a private gathering over wine, food, and good company.'
+        intro={intro}
         actionHref='#book-a-private-event'
         actionLabel='Book a private event'
         actionTarget={null}

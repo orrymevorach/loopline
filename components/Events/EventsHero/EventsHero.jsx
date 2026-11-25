@@ -1,15 +1,17 @@
 import Image from 'next/image';
 import Button from '@/components/shared/Button/Button';
 import SplitSection from '@/components/shared/SplitSection/SplitSection';
+import RichText from '@/components/shared/RichText/RichText';
+import { getParagraphRichTextConfig } from '@/components/shared/RichText/rich-text-config';
 import { EVENTS_GALLERY_ID } from '@/components/Events/EventsGallery/EventsGallery';
 import styles from './EventsHero.module.scss';
-import defaultImage from 'public/events-hero.jpg';
 
+const richTextConfig = getParagraphRichTextConfig(styles.text);
+
+// Heading, copy and photo come from the page's Page Intro in Contentful.
+// The button stays in code because it links to sections on the page.
 export default function EventsHero({
-  image = defaultImage,
-  imageAlt = 'Guests chatting over drinks at Loopline',
-  title = 'Events',
-  description = 'At Loopline, our events are an extension of the table. From educational tastings and winemaker takeovers to themed dinners, thoughtful collaborations, and community nights, each gathering is designed to bring people together over something worth sharing.',
+  intro,
   actionHref = `#${EVENTS_GALLERY_ID}`,
   actionLabel = 'See current events',
   actionTarget = null,
@@ -17,14 +19,12 @@ export default function EventsHero({
   const isPageAnchor = actionHref.startsWith('#');
 
   return (
-    <SplitSection
-      imageWidth={745}
-      image={{ ...image, alt: imageAlt }}
-      priority
-    >
+    <SplitSection imageWidth={745} image={intro?.image} priority>
       <div className={styles.content}>
-        <h1 className={styles.title}>{title}</h1>
-        <p className={styles.text}>{description}</p>
+        {intro?.heading && <h1 className={styles.title}>{intro.heading}</h1>}
+        {intro?.description && (
+          <RichText json={intro.description} config={richTextConfig} />
+        )}
         <Button
           href={actionHref}
           target={actionTarget}

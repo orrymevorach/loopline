@@ -3,32 +3,28 @@ import Wrapper from '../shared/Wrapper/Wrapper';
 import MenuLinks from './MenuLinks/MenuLinks';
 import Actions from './Actions/Actions';
 import SplitSection from '../shared/SplitSection/SplitSection';
+import RichText from '../shared/RichText/RichText';
+import { getParagraphRichTextConfig } from '../shared/RichText/rich-text-config';
 import styles from './WineBar.module.scss';
-import image from 'public/wine-bar-hero.jpg';
 
-export default function WineBar({ menus }) {
+const richTextConfig = getParagraphRichTextConfig(styles.text);
+
+// Heading, copy and photo come from the Wine Bar Page's Page Intro in Contentful.
+export default function WineBar({ menus, intro }) {
   return (
     <Wrapper>
-      <SplitSection
-        image={{
-          ...image,
-          alt: 'Wine bottles on the shelves at the Loopline wine bar in Toronto',
-        }}
-        priority
-        imageWidth={715}
-      >
+      <SplitSection image={intro?.image} priority imageWidth={715}>
         <div className={styles.content}>
-          <h1 className={styles.title}>Wine Bar</h1>
-          <div className={styles.textContainer}>
-            <p className={styles.text}>Wine. Small plates. Good company.</p>
-            <p className={styles.text}>
-              Explore what we’re pouring and what’s coming out of the kitchen.
-            </p>
-
-            <p className={styles.text}>
-              *All menu items are subject to change.
-            </p>
-          </div>
+          {intro?.heading && (
+            <h1 className={styles.title}>{intro.heading}</h1>
+          )}
+          {intro?.description && (
+            <RichText
+              json={intro.description}
+              config={richTextConfig}
+              classNames={styles.textContainer}
+            />
+          )}
 
           <MenuLinks menus={menus} />
           <Actions />

@@ -49,6 +49,18 @@ export const sharedRichTextConfig = {
   },
 };
 
+// Same as the shared config, but paragraphs take the given class so rich text
+// can match a page's existing paragraph styling.
+export const getParagraphRichTextConfig = className => ({
+  ...sharedRichTextConfig,
+  renderNode: {
+    ...sharedRichTextConfig.renderNode,
+    [BLOCKS.PARAGRAPH]: (node, children) => (
+      <p className={className}>{children}</p>
+    ),
+  },
+});
+
 // Matches pasted URLs and Instagram-style @handles. The lookbehind skips
 // email addresses such as hello@loopline.ca, and handles cannot end in a dot
 // so sentence punctuation stays outside the link.

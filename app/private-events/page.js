@@ -3,7 +3,10 @@ import {
   getEntryByField,
   getPageSections,
 } from '@/lib/contentful-server-utils';
-import { formatCarouselSlides } from '@/lib/contentful-format-utils';
+import {
+  formatCarouselSlides,
+  formatPageIntro,
+} from '@/lib/contentful-format-utils';
 import { CONTENTFUL_PAGE_IDS, ROUTES } from '@/utils/constants';
 import { buildMetadata } from '@/utils/seo';
 
@@ -20,7 +23,14 @@ export default async function Page() {
     fieldName: 'title',
     fieldValue: CONTENTFUL_PAGE_IDS.PRIVATE_EVENTS,
   });
-  const { carouselSlides } = await getPageSections({ page });
+  const { carouselSlides, pageIntro: [intro] = [] } = await getPageSections({
+    page,
+  });
 
-  return <PrivateEvents carouselSlides={formatCarouselSlides(carouselSlides)} />;
+  return (
+    <PrivateEvents
+      carouselSlides={formatCarouselSlides(carouselSlides)}
+      intro={formatPageIntro(intro)}
+    />
+  );
 }

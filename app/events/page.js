@@ -7,6 +7,7 @@ import {
 import {
   formatCalendarImage,
   formatEvent,
+  formatPageIntro,
 } from '@/lib/contentful-format-utils';
 import { CONTENTFUL_PAGE_IDS, ROUTES } from '@/utils/constants';
 import { buildMetadata, getEventsJsonLd } from '@/utils/seo';
@@ -27,6 +28,7 @@ export default async function Page() {
   const {
     calendarImage: [calendarImage] = [],
     events = [],
+    pageIntro: [intro] = [],
   } = await getPageSections({ page });
   const formattedEvents = events.map(formatEvent).filter(Boolean);
 
@@ -34,6 +36,7 @@ export default async function Page() {
     <>
       <JsonLd data={getEventsJsonLd(formattedEvents)} />
       <Events
+        intro={formatPageIntro(intro)}
         calendarImage={formatCalendarImage(calendarImage)}
         events={formattedEvents}
       />

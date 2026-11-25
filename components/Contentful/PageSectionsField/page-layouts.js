@@ -17,17 +17,17 @@ export const pageLayouts = {
     { name: 'About banner image' },
   ],
   'Wine Bar Page': [
-    { name: 'Wine Bar introduction and image' },
+    { contentTypeId: 'pageIntro' },
     { contentTypeId: 'galleryMenus' },
     { name: 'Reservation, private-event booking, and events links' },
   ],
   'Our Events Page': [
-    { name: 'Events introduction and image' },
+    { contentTypeId: 'pageIntro' },
     { contentTypeId: 'calendarImage' },
     { contentTypeId: 'galleryEvents' },
   ],
   'Private Events Page': [
-    { name: 'Private Events introduction and image' },
+    { contentTypeId: 'pageIntro' },
     { contentTypeId: 'carousel' },
     { name: 'Private-event booking form' },
   ],
