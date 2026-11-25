@@ -6,7 +6,15 @@ import clsx from 'clsx';
 import Button from '@/components/shared/Button/Button';
 import styles from './StaffPicks.module.scss';
 
-function PickCard({ name, price, pickedBy, staffHref, image, details }) {
+function PickCard({
+  name,
+  price,
+  pickedBy,
+  staffHref,
+  shopHref,
+  image,
+  details,
+}) {
   const [isFlipped, setIsFlipped] = useState(false);
   const hasDetails = Object.keys(details).length > 0;
 
@@ -67,7 +75,13 @@ function PickCard({ name, price, pickedBy, staffHref, image, details }) {
               </h3>
               {price && <p className={styles.price}>{price}</p>}
             </div>
-            <Button href='/wine' isCream classNames={styles.buyButton}>
+            <Button
+              href={shopHref}
+              isAnchor
+              target='_blank'
+              isCream
+              classNames={styles.buyButton}
+            >
               Buy Now
             </Button>
           </div>
@@ -97,7 +111,13 @@ function PickCard({ name, price, pickedBy, staffHref, image, details }) {
               </div>
             ))}
           </dl>
-          <Button href='/wine' isCream classNames={styles.buyButton}>
+          <Button
+            href={shopHref}
+            isAnchor
+            target='_blank'
+            isCream
+            classNames={styles.buyButton}
+          >
             Buy Now
           </Button>
         </div>

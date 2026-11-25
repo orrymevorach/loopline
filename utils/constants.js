@@ -58,6 +58,10 @@ export const BUSINESS = {
 // External storefront — all shop links on the site direct here.
 export const SHOP_URL = 'https://shop.looplinewine.com';
 
+// Toast Online Ordering menu path. Product pages live at
+// `${SHOP_ORDER_URL}/item-<name-slug>_<itemGuid>`.
+export const SHOP_ORDER_URL = `${SHOP_URL}/order/loopline-bottle-shop-wine-bar-643-dupont-street`;
+
 export const CONTENTFUL_PAGE_IDS = {
   HOME: 'Home Page',
   ABOUT: 'About Page',
