@@ -1,25 +1,37 @@
-# name: Sync Staging with Main
+name: Sync Staging with Main
 
-# on:
-#   push:
-#     branches:
-#       - main
+on:
+  push:
+    branches:
+      - main
 
-# jobs:
-#   sync:
-#     runs-on: ubuntu-latest
-#     permissions:
-#       contents: write
-#     steps:
-#       - name: Checkout repository
-#         uses: actions/checkout@v4
-#         with:
-#           fetch-depth: 0
+# Don't let two syncs race each other when pushes land close together.
+concurrency:
+  group: sync-staging
+  cancel-in-progress: false
 
-#       - name: Merge main into staging
-#         run: |
-#           git config --global user.name "GitHub Actions"
-#           git config --global user.email "actions@github.com"
-#           git checkout staging
-#           git merge main --no-edit
-#           git push origin staging
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Merge main into staging
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          if git ls-remote --exit-code --heads origin staging > /dev/null; then
+            git checkout -B staging origin/staging
+            git merge origin/main --no-edit
+          else
+            echo "staging branch not found — creating it from main"
+            git checkout -B staging origin/main
+          fi
+
+          git push origin staging
