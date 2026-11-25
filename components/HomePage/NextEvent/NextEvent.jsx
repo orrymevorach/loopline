@@ -35,7 +35,7 @@ export default function NextEvent({ event }) {
             )}
           </div>
           <div className={styles.buttons}>
-            <Button href={event.ticketLink || '/events'}>Buy Tickets</Button>
+            <Button href={event.ticketLink || '/events'}>Book Now</Button>
             <Button href='/events'>See all events</Button>
           </div>
         </div>

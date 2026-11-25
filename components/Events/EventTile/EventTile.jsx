@@ -53,7 +53,7 @@ export default function EventTile({ event }) {
             classNames={styles.ticketButton}
             target='_blank'
           >
-            Buy Tickets
+            Book Now
           </Button>
         )}
       </div>
