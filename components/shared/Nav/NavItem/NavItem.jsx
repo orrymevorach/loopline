@@ -74,6 +74,7 @@ export default function NavItem({
           <Link
             href={item.path}
             className={triggerClassNames}
+            target={item.isExternal ? '_blank' : undefined}
             onFocus={isMobile ? undefined : activateItem}
             onClick={handleNavigate}
             aria-expanded={!isMobile && hasDropdown ? isDropdownOpen : undefined}

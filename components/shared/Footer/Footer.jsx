@@ -37,7 +37,7 @@ export default function Footer() {
           <div className={styles.linkGroup}>
             <h3>Dine &amp; Shop</h3>
             <Link href='/wine-bar'>Wine Bar</Link>
-            <Link href={ROUTES.OFFERINGS}>Bottle Shop</Link>
+            <Link href={ROUTES.WINE}>Bottle Shop</Link>
             <Link href='/gift-cards'>Gift Cards</Link>
           </div>
 

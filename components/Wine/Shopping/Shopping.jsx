@@ -1,4 +1,5 @@
 import Button from '@/components/shared/Button/Button';
+import { SHOP_URL } from '@/utils/constants';
 import styles from './Shopping.module.scss';
 
 export default function Shopping() {
@@ -38,7 +39,13 @@ export default function Shopping() {
           </ul>
         </div>
         <div className={styles.action}>
-          <Button href='#' isYellow classNames={styles.button}>
+          <Button
+            href={SHOP_URL}
+            isAnchor
+            isYellow
+            target='_blank'
+            classNames={styles.button}
+          >
             Shop now
           </Button>
         </div>

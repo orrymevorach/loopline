@@ -21,9 +21,11 @@
 }
 
 .member {
+  border: 1px solid variables.$black;
+  border-radius: 31px;
   color: variables.$black;
   display: grid;
-  gap: 32px;
+  overflow: hidden;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   min-width: 0;
   scroll-margin-top: 160px;
@@ -31,8 +33,6 @@
 
 .staffTile,
 .wineTile {
-  border: 1px solid variables.$black;
-  border-radius: 31px;
   min-width: 0;
   overflow-wrap: anywhere;
   padding: 28px;
@@ -40,6 +40,7 @@
 
 .wineTile {
   background-color: variables.$purple;
+  border-left: 1px solid variables.$black;
 }
 
 .wineImage {
@@ -97,10 +98,6 @@
   .list {
     gap: 36px;
   }
-
-  .member {
-    gap: 24px;
-  }
 }
 
 @media screen and (max-width: variables.$mobile) {
@@ -116,6 +113,11 @@
   .staffTile,
   .wineTile {
     padding: 20px;
+  }
+
+  .wineTile {
+    border-left: 0;
+    border-top: 1px solid variables.$black;
   }
 
   .title {

@@ -8,10 +8,11 @@ export default function NavDropdownLinks({
   onNavigate,
 }) {
   return links.map(link => (
-    <li key={link.path}>
+    <li key={link.label}>
       <Link
         href={link.path}
         className={clsx(styles.link, isMobile && styles.mobileLink)}
+        target={link.isExternal ? '_blank' : undefined}
         onClick={onNavigate}
       >
         {link.label}

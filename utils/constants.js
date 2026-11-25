@@ -4,6 +4,7 @@ export const ROUTES = {
   CONTACT: '/contact',
   BOOK_A_PRIVATE_EVENT: '/private-events#book-a-private-event',
   ABOUT: '/about',
+  WINE: '/wine',
   OFFERINGS: '/offerings',
   PROVIDERS: '/providers',
   LIBRARY: '/library',
@@ -11,6 +12,9 @@ export const ROUTES = {
   TERMS_OF_USE: '/terms-of-use',
   TESTIMONIALS: '/testimonials',
 };
+
+// External storefront — all shop links on the site direct here.
+export const SHOP_URL = 'https://shop.looplinewine.com';
 
 export const CONTENTFUL_PAGE_IDS = {
   HOME: 'Home Page',

@@ -19,7 +19,7 @@ const slides = [
     image: '/loopline-wine-hero.jpg',
     title: 'Toronto’s neighbourhood\nbottle shop and wine bar.',
     actions: [
-      { label: 'Shop Wine', href: '/offerings', isPurple: true },
+      { label: 'Shop Wine', href: 'https://shop.looplinewine.com', isPurple: true },
       { label: 'Reserve a Table', href: '/contact', isCream: true },
     ],
   },
@@ -27,7 +27,7 @@ const slides = [
     image: '/carousel/wine-club.jpg',
     title: 'A global lineup of iconic\nand under-the-radar wines.',
     actions: [
-      { label: 'Shop Wine', href: '/offerings', isPurple: true },
+      { label: 'Shop Wine', href: 'https://shop.looplinewine.com', isPurple: true },
       { label: 'Join the Wine Club', href: '/wine-club', isCream: true },
     ],
   },

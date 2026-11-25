@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
-import { ROUTES } from '@/utils/constants';
+import { ROUTES, SHOP_URL } from '@/utils/constants';
 import Wrapper from '@/components/shared/Wrapper/Wrapper';
 import Button from '@/components/shared/Button/Button';
 import HamburgerMenu from '@/components/shared/Nav/HamburgerMenu/HamburgerMenu';
@@ -18,10 +18,14 @@ const eventLinks = [
   { path: '/events', label: 'Upcoming Events' },
 ];
 
+// Bottle Shop dropdown is disabled until the custom ecommerce experience is
+// built. Re-enable by adding `dropdown: { columns: shopColumns }` to the
+// Bottle Shop nav item below.
 const shopLinks = labels =>
   labels.map(label => ({
     label,
-    path: `${ROUTES.OFFERINGS}?category=${encodeURIComponent(label)}`,
+    path: SHOP_URL,
+    isExternal: true,
   }));
 
 const shopColumns = [
@@ -64,11 +68,7 @@ const shopColumns = [
 ];
 
 const navItems = [
-  {
-    path: ROUTES.OFFERINGS,
-    label: 'Bottle Shop',
-    dropdown: { columns: shopColumns },
-  },
+  { path: ROUTES.WINE, label: 'Bottle Shop' },
   { path: '/wine-bar', label: 'Wine Bar' },
   { label: 'Events', dropdown: { links: eventLinks } },
   // { path: '/wine-club', label: 'Wine Club' },
@@ -163,18 +163,12 @@ export default function NavMenu() {
         </ul>
         <div className={styles.actions}>
           <Link
-            href='/account'
-            className={styles.iconLink}
-            aria-label='Account'
-          >
-            <Image src='/nav/account.svg' alt='' width={22} height={24} />
-          </Link>
-          <Link
-            href='/cart'
+            href={SHOP_URL}
+            target='_blank'
             className={styles.iconLink}
             aria-label='Shopping bag'
           >
-            <Image src='/nav/cart.svg' alt='' width={29} height={28} />
+            <Image src='/nav/cart.svg' alt='' width={25} height={28} />
           </Link>
           <div className={styles.hamburger}>
             <HamburgerMenu
