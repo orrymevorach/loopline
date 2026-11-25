@@ -1,5 +1,5 @@
 import Button from '../../shared/Button/Button';
-import { ROUTES } from '@/utils/constants';
+import { RESERVATION_URL, ROUTES } from '@/utils/constants';
 import styles from './Actions.module.scss';
 
 export default function Actions() {
@@ -7,7 +7,7 @@ export default function Actions() {
     <div className={styles.actions}>
       <Button
         isYellow
-        href='https://tables.toasttab.com/restaurants/2ac9f5bf-df0b-40df-92ad-dcfcb05f5ece/reserve?partySize=2&dateTime=2026-09-20T18:00:00.000-04:00'
+        href={RESERVATION_URL}
         classNames={styles.button}
         target='_blank'
       >

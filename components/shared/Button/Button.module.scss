@@ -88,8 +88,9 @@
 @media screen and (max-width: variables.$mobile) {
   .button {
     @include mixins.fontSecondaryMedium;
-    font-size: 10px;
-    padding: 5px 20px;
+    font-size: 12px;
+    min-height: 36px;
+    padding: 8px 20px;
   }
 
   .button.navy {

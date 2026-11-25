@@ -61,8 +61,10 @@ div.wrapper {
 
 .logoLink {
   display: block;
-  flex: 0 0 269px;
+  // Let the logo shrink on narrower desktops so the links and cart still fit.
+  flex: 0 1 269px;
   max-width: 269px;
+  min-width: 160px;
 }
 
 .logo {

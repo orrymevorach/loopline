@@ -23,7 +23,7 @@ export default function SplitSection({
       >
         <Image
           src={image.src}
-          alt={image.alt}
+          alt={image.alt || ''}
           width={image.width}
           height={image.height}
           className={styles.image}

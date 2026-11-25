@@ -6,13 +6,13 @@ Guidance for Claude Code when working in this repository.
 
 **Loopline** — a Next.js web app using Contentful as a headless CMS.
 
-- **Framework:** Next.js 16.2.1 (React 18.2)
+- **Framework:** Next.js 16.3 (React 19.3)
 - **Router:** **App Router** (`/app`). This project is staying on App Router — do not suggest or perform a Pages Router migration.
 - **CMS:** Contentful (`contentful` SDK) for content modeling and delivery
 - **Styling:** SCSS Modules (`.module.scss`) — also has MUI (Joy UI + Material UI) and Emotion installed, so some components may use CSS-in-JS instead. Check the component before assuming the styling approach.
 - **UI libraries:** `@mui/joy`, `@mui/material`, `@emotion/react` + `@emotion/styled`, FontAwesome icon sets
 - **Animation:** Framer Motion
-- **Other notables:** `axios` for HTTP, `nodemailer` (likely a contact form / server-side email), `js-cookie` + `cookies` (client + server cookie handling), `next-sitemap` for sitemap generation, `react-intersection-observer` for scroll-based effects
+- **Other notables:** `axios` for HTTP, `nodemailer` (likely a contact form / server-side email), `js-cookie` + `cookies` (client + server cookie handling), `app/sitemap.js` + `app/robots.js` for the sitemap and robots.txt (add new public routes to `app/sitemap.js`), `react-intersection-observer` for scroll-based effects
 
 ## Commands
 
@@ -46,6 +46,14 @@ When creating a new component, always scaffold it as a folder with a colocated `
 - Use `clsx` whenever a className is conditional or combines more than one class — don't build className strings manually with template literals or ternaries chained together.
 - In SCSS Modules, avoid combinator selectors like `>` and `+` (and other DOM-structure-dependent selectors) — prefer giving the target element its own custom class name and styling that directly instead.
 
+## SEO
+
+SEO is a top priority for this client.
+
+- Every page exports `metadata` built with `buildMetadata()` from `utils/seo.js` (title, description, canonical, social previews). New pages must do the same.
+- Business structured data (address, phone, hours) lives in `BUSINESS` in `utils/constants.js` and is rendered site-wide from `app/layout.js`. Keep the hours in sync with Contentful.
+- `SITE_URL` (env var, defaults to `https://looplinewine.com`) is the canonical origin.
+
 ## Contentful
 
 - Content is fetched via the `contentful` SDK (delivery API client).
@@ -59,3 +67,13 @@ When creating a new component, always scaffold it as a folder with a colocated `
 - Don't introduce a competing styling system (e.g. Tailwind, styled-components) — this project already has SCSS Modules + MUI + Emotion, which is enough surface area.
 - Don't place a new component directly in `components/` without its own folder + SCSS Module — follow the existing per-component folder pattern.
 - Sharp (image processing) is an optional dependency of Next.js — expected for `next/image` optimization, not something to remove.
+
+<!-- BEGIN:nextjs-agent-rules -->
+
+# This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
+<!-- END:nextjs-agent-rules -->

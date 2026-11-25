@@ -2,11 +2,19 @@ import Image from 'next/image';
 import Link from 'next/link';
 import styles from './Footer.module.scss';
 import Wrapper from '../Wrapper/Wrapper';
-import { ROUTES } from '@/utils/constants';
+import {
+  BUSINESS,
+  INSTAGRAM_URL,
+  RESERVATION_URL,
+  ROUTES,
+  SHOP_URL,
+  UBER_EATS_URL,
+} from '@/utils/constants';
+
+const MAPS_URL =
+  'https://www.google.com/maps/search/?api=1&query=Loopline%2C+643+Dupont+Street%2C+Toronto%2C+ON';
 
 export default function Footer() {
-  const currentYear = new Date().getFullYear();
-
   return (
     <footer className={styles.footer}>
       <Wrapper>
@@ -21,31 +29,51 @@ export default function Footer() {
 
           <div className={styles.linkGroup}>
             <h3>Visit Us</h3>
-            <Link href='/contact'>Store &amp; Location</Link>
-            <Link href='/contact'>Reservations</Link>
-            <Link href='/contact'>Private Events</Link>
-            <Link href='/contact'>Delivery &amp; Pick Up</Link>
+            <a href={RESERVATION_URL} target='_blank' rel='noopener'>
+              Reservations
+            </a>
+            <Link href={ROUTES.EVENTS}>Upcoming Events</Link>
+            <Link href={ROUTES.PRIVATE_EVENTS}>Private Events</Link>
+            <a href={UBER_EATS_URL} target='_blank' rel='noopener'>
+              Delivery
+            </a>
           </div>
 
           <div className={styles.linkGroup}>
             <h3>About</h3>
             <Link href={ROUTES.ABOUT}>Our Story</Link>
-            <Link href='/careers'>Careers</Link>
-            <Link href='/community'>Community</Link>
+            <Link href={`${ROUTES.ABOUT}#staff-members-title`}>Our Team</Link>
+            <Link href={ROUTES.CONTACT}>Contact</Link>
           </div>
 
           <div className={styles.linkGroup}>
             <h3>Dine &amp; Shop</h3>
-            <Link href='/wine-bar'>Wine Bar</Link>
+            <Link href={ROUTES.WINE_BAR}>Wine Bar</Link>
             <Link href={ROUTES.WINE}>Bottle Shop</Link>
-            <Link href='/gift-cards'>Gift Cards</Link>
+            <a href={SHOP_URL} target='_blank' rel='noopener'>
+              Shop Online
+            </a>
           </div>
 
           <div className={styles.linkGroup}>
-            <h3>Support</h3>
-            <Link href='/account'>Account</Link>
-            <Link href='/contact'>Help &amp; FAQ</Link>
-            <Link href='/shipping'>Shipping &amp; Returns</Link>
+            <h3>Find Us</h3>
+            <address className={styles.address}>
+              <a
+                href={MAPS_URL}
+                target='_blank'
+                rel='noopener'
+                className={styles.addressLink}
+              >
+                {BUSINESS.address.streetAddress}
+                <br />
+                {BUSINESS.address.addressLocality},{' '}
+                {BUSINESS.address.addressRegion}
+              </a>
+              <a href={`tel:${BUSINESS.phone}`}>(416) 516-8059</a>
+            </address>
+            <a href={INSTAGRAM_URL} target='_blank' rel='noopener'>
+              Instagram
+            </a>
           </div>
         </div>
       </Wrapper>

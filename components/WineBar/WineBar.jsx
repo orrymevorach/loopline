@@ -9,7 +9,14 @@ import image from 'public/wine-bar-hero.jpg';
 export default function WineBar({ menus }) {
   return (
     <Wrapper>
-      <SplitSection image={image} priority imageWidth={715}>
+      <SplitSection
+        image={{
+          ...image,
+          alt: 'Wine bottles on the shelves at the Loopline wine bar in Toronto',
+        }}
+        priority
+        imageWidth={715}
+      >
         <div className={styles.content}>
           <h1 className={styles.title}>Wine Bar</h1>
           <div className={styles.textContainer}>

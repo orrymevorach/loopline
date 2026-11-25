@@ -47,6 +47,17 @@
   }
 }
 
+.address {
+  display: flex;
+  flex-direction: column;
+  font-style: normal;
+  gap: 5px;
+}
+
+.addressLink {
+  margin-bottom: 4px;
+}
+
 @media screen and (max-width: variables.$tablet) {
   .footerGrid {
     gap: 32px 20px;

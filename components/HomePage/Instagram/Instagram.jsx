@@ -2,6 +2,7 @@
 import { useRef } from 'react';
 import Image from 'next/image';
 import clsx from 'clsx';
+import { INSTAGRAM_URL } from '@/utils/constants';
 import styles from './Instagram.module.scss';
 
 const posts = [1, 2, 3, 4].map(n => ({
@@ -24,7 +25,7 @@ export default function Instagram() {
     <section className={styles.section}>
       <h2 className={styles.title}>
         <a
-          href='https://www.instagram.com/looplinewine'
+          href={INSTAGRAM_URL}
           target='_blank'
           rel='noopener noreferrer'
         >

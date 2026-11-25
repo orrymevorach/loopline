@@ -18,6 +18,7 @@ export default function ContactForm({
   isLight = false,
   fields = FIELDS,
   heading = 'Contact',
+  headingTag,
   formName = 'General Inquiry Form',
 }) {
   const [values, setValues] = useState(
@@ -72,6 +73,7 @@ export default function ContactForm({
           handleSubmit={handleSubmit}
           isLoading={isLoading}
           heading={heading}
+          headingTag={headingTag}
           headingContainerClassNames={styles.heading}
           titleClassNames={styles.title}
         />

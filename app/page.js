@@ -10,7 +10,15 @@ import {
   formatEvent,
 } from '@/lib/contentful-format-utils';
 import { getStaffPicks } from '@/lib/staff-pick-server-utils';
-import { CONTENTFUL_PAGE_IDS } from '@/utils/constants';
+import { CONTENTFUL_PAGE_IDS, ROUTES } from '@/utils/constants';
+import { buildMetadata } from '@/utils/seo';
+
+export const metadata = buildMetadata({
+  absoluteTitle: 'Loopline | Bottle Shop & Wine Bar in Toronto',
+  description:
+    'Loopline is a neighbourhood bottle shop and wine bar at 643 Dupont Street in Toronto, pouring iconic and under-the-radar wines from small producers, with small plates, tastings and events.',
+  path: ROUTES.HOME,
+});
 
 export default async function Page() {
   const page = await getEntryByField({

@@ -7,7 +7,15 @@ import {
   formatCalendarImage,
   formatEvent,
 } from '@/lib/contentful-format-utils';
-import { CONTENTFUL_PAGE_IDS } from '@/utils/constants';
+import { CONTENTFUL_PAGE_IDS, ROUTES } from '@/utils/constants';
+import { buildMetadata } from '@/utils/seo';
+
+export const metadata = buildMetadata({
+  title: 'Wine Tastings & Events in Toronto',
+  description:
+    'Wine tastings, winemaker takeovers, themed dinners and community nights at Loopline, a bottle shop and wine bar on Dupont Street in Toronto.',
+  path: ROUTES.EVENTS,
+});
 
 export default async function Page() {
   const page = await getEntryByField({

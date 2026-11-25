@@ -4,7 +4,7 @@ export default function ContactPage({ entries = [] }) {
   const [form] = entries;
   return (
     <>
-      <ContactForm isLight />
+      <ContactForm isLight headingTag='h1' />
     </>
   );
 }

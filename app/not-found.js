@@ -1,5 +1,7 @@
 import styles from './not-found.module.scss';
 
+export const metadata = { title: 'Page Not Found' };
+
 export default function NotFound() {
   return (
     <div className={styles.pageNotFoundContainer}>

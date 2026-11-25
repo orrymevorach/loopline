@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
-import { ROUTES, SHOP_URL } from '@/utils/constants';
+import { RESERVATION_URL, ROUTES, SHOP_URL } from '@/utils/constants';
 import Wrapper from '@/components/shared/Wrapper/Wrapper';
 import Button from '@/components/shared/Button/Button';
 import HamburgerMenu from '@/components/shared/Nav/HamburgerMenu/HamburgerMenu';
@@ -153,7 +153,7 @@ export default function NavMenu() {
           <li>
             <Button
               isNavy
-              href='https://toast.app/r/loopline-bottle-shop-wine-bar-643-dupont-street'
+              href={RESERVATION_URL}
               classNames={styles.reserve}
               target='_blank'
             >
@@ -196,7 +196,8 @@ export default function NavMenu() {
           </ul>
           <Button
             isNavy
-            href={ROUTES.CONTACT}
+            href={RESERVATION_URL}
+            target='_blank'
             classNames={styles.mobileReserve}
           >
             Reserve

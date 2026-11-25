@@ -1,5 +1,5 @@
 import Button from '@/components/shared/Button/Button';
-import { SHOP_URL } from '@/utils/constants';
+import { SHOP_URL, UBER_EATS_URL } from '@/utils/constants';
 import styles from './Shopping.module.scss';
 
 export default function Shopping() {
@@ -62,7 +62,7 @@ export default function Shopping() {
         </p>
         <div className={styles.action}>
           <Button
-            href='https://www.ubereats.com/ca/store/loopline-%7C-bottle-shop-%26-wine-bar/NPAuFxhLVQCRu2rYT3kNng?diningMode=DELIVERY'
+            href={UBER_EATS_URL}
             isAnchor
             isYellow
             classNames={styles.button}
